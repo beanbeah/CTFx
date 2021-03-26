@@ -13,8 +13,12 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
     echo '<div id="home-logo"></div>
         <div class="home-intro-text">',
     (!ctfStarted ()) ? (title_decorator ("blue", "0deg", "asterisk.png") . 'CTF will start in <b>' . seconds_to_pretty_time(Config::get('MELLIVORA_CONFIG_CTF_START_TIME') - time ()) . '</b><br><br>') : '',
-    '<b>ACSI CTF training set</b> is a <a href="https://ctftime.org/ctf-wtf/">Capture The Flag training set</a> organized by <a href="https://8059blank.weebly.com/">your lovely seniors</a>. We have prepared challenges from a diverse range of categories such as cryptography, web exploitation, forensics, reverse engineering, binary exploitation, hardware, algorithmics and more! We made sure that each category has challenges for every skill level, so that there is always something for everyone to learn. If you come across anything you don\'t understand (which most likely you will), don\'t be afraid to google or ask your seniors. 
-    </div>';
+    '<b>ACSI CTF Platform</b></div>';
+
+    echo '<div class="row" style="text-align:center; font-size: 20px; margin-bottom:-5px">
+    
+    <div style="display:block ruby; transform: translate(-8%, 0%);">
+    <br></div></div>';
 
     echo '<div class="row">
     <div class="col-md-6">';
@@ -22,9 +26,10 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
     section_head ("Rules");
     
     echo '<ul>
-        <li>Attacking the platform is strictly prohibited and will get you kicked from CCA.</li>
+        <li>Attacking the platform is strictly prohibited and will get you disqualified.</li>
+        <li>The flag format is specified in the challenge description</li>
         <li>Bruteforcing the flag will not get you anywhere except on the naughty list.</li>
-        <li>Any questions regarding challenges or the platform should be asked on our discord server. (Make sure you aren\'t sharing anything important related to a challenge!)</li>
+        <li>Any questions regarding challenges or the platform should be directed to the admins.</li>
     </ul>';
 
     echo '</div>

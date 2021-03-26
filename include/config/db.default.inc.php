@@ -22,4 +22,4 @@ Config::set('MELLIVORA_CONFIG_DB_HOST', 'localhost');
 Config::set('MELLIVORA_CONFIG_DB_PORT', 3306);
 Config::set('MELLIVORA_CONFIG_DB_NAME', 'mellivora');
 Config::set('MELLIVORA_CONFIG_DB_USER', 'mellivora');
-Config::set('MELLIVORA_CONFIG_DB_PASSWORD', 'mellivora_pass');
+Config::set('MELLIVORA_CONFIG_DB_PASSWORD', '$NX54w4XR5%0SAwFOn80');

@@ -18,6 +18,7 @@ body {
 	height: 100%;
 	z-index: -1;
 	background-color: rgb(0, 0, 0);
+	background-image: url("/img/theme/BG.png");
 	position: absolute;
 	pointer-events: none;
 }
@@ -504,6 +505,7 @@ td a:hover {
 
 #header {
 	background-color: #000;
+	background-image: url("/img/theme/headerWave.png");
 	background-position-x: left;
 	background-repeat: no-repeat;
 	border-bottom: 5px solid #0B90FD;
