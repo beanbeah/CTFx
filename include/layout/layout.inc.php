@@ -5,6 +5,8 @@ require(CONST_PATH_LAYOUT . 'scores.inc.php');
 require(CONST_PATH_LAYOUT . 'user.inc.php');
 require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
+require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
+
 
 // set global head_sent variable
 $head_sent = false;
@@ -75,12 +77,14 @@ function head($title = '') {
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'challenges">',lang_get('challenges'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scores'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'profile">',lang_get('profile'),'</a></li>
+                            ',dynamic_menu_content(),'
                             <li>',form_logout(),'</li>';
 
                     } else {
                         echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'home">',lang_get('home'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scoreboard'),'</a></li>
+                            ',dynamic_menu_content(),'
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'register">',lang_get('register'),'</a></li>
                             <li><a href="" data-toggle="modal" data-target="#login-dialog">',lang_get('log_in'),'</a></li>';
                     }
@@ -179,6 +183,8 @@ function section_subhead ($title, $tagline = '', $strip_html = true) {
     ';
 }
 
+
+
 function title_decorator ($color, $rotation = "0deg", $img = "arrow.png") {
     $colorcode = "#808080";
 
@@ -276,6 +282,8 @@ function menu_management () {
     dropdown ("Exceptions", [["List exceptions", "/admin/exceptions"]]);
     dropdown ("Search", [["Search", "/admin/search"]]);
     dropdown ("Edit CTF", [["Edit", "/admin/edit_ctf"]]);
+    dropdown ("Email Rules", [["new_rule", "/admin/new_restrict_email"]],[["list_rule","/admin/list_restrict_email"]],[["test_rule","/admin/test_restrict_email"]]);
+    dropdown ("Edit Site", [["new_menu_item","/admin/new_dynamic_menu_item"]],[["list_menu_items", "/admin/list_dynamic_menu"]],[["new_page","/admin/new_dynamic_page"]],[["list_pages","/admin/list_dynamic_pages"]]);
     echo '</div>';
 }
 

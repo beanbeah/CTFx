@@ -45,15 +45,15 @@ $lang['email_password_on_signup'] = 'A confirmation email containing a random pa
 
 $lang['register'] = 'Register';
 $lang['register_your_team'] = 'Register your team';
-$lang['account_signup_information'] = 'Your team shares one account. {password_information}';
-$lang['team_name'] = 'Team name';
+$lang['account_signup_information'] = '{password_information}';
+$lang['team_name'] = 'User name';
 $lang['select_team_type'] = 'Please select team type';
 $lang['registration_closed'] = 'Registration is currently closed, but you can still <a href="interest">register your interest for upcoming events</a>.';
 $lang['please_fill_details_correctly'] = 'Please fill in all the details correctly.';
 $lang['invalid_team_type'] = 'That does not look like a valid team type.';
-$lang['team_name_too_long_or_short'] = 'Your team name was too long or too short.';
+$lang['team_name_too_long_or_short'] = 'Your username was too long or too short.';
 $lang['email_not_whitelisted'] = 'Email not on whitelist. Please choose a whitelisted email or contact organizers.';
-$lang['user_already_exists'] = 'An account with this team name or email already exists.';
+$lang['user_already_exists'] = 'An account with this username or email already exists.';
 $lang['signup_successful'] = 'Signup successful';
 $lang['signup_successful_text'] = 'Thank you for registering! Your chosen email is: {email}. Make sure to check your spam folder as emails from us may be placed into it. Please stay tuned for updates!';
 $lang['your_password_is'] = 'Your password is';
@@ -131,7 +131,7 @@ $lang['minimum_time_between_submissions'] = 'Minimum of {time} between submissio
 $lang['num_submissions_remaining'] = '{num_remaining} submissions remaining.';
 $lang['time_remaining'] = '{time} remaining';
 
-$lang['challenge_relies_on'] = 'The details for this challenge will be displayed only after {relies_on_link} in the {relies_on_category_link} category has been solved by your team.';
+$lang['challenge_relies_on'] = 'The details for this challenge will be displayed only after {relies_on_link} in the {relies_on_category_link} category has been solved.';
 
 $lang['no_reset_data'] = 'No reset data found.';
 
