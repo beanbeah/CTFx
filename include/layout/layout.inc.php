@@ -282,8 +282,8 @@ function menu_management () {
     dropdown ("Exceptions", [["List exceptions", "/admin/exceptions"]]);
     dropdown ("Search", [["Search", "/admin/search"]]);
     dropdown ("Edit CTF", [["Edit", "/admin/edit_ctf"]]);
-    dropdown ("Email Rules", [["new_rule", "/admin/new_restrict_email"]],[["list_rule","/admin/list_restrict_email"]],[["test_rule","/admin/test_restrict_email"]]);
-    dropdown ("Edit Site", [["new_menu_item","/admin/new_dynamic_menu_item"]],[["list_menu_items", "/admin/list_dynamic_menu"]],[["new_page","/admin/new_dynamic_page"]],[["list_pages","/admin/list_dynamic_pages"]]);
+    dropdown ("Email Whitelist" [["Rules", "/admin/list_restrict_email"]])
+    dropdown ("Edit Site" [["Dynamic Menu","/admin/list_dynamic_menu"],["Dynamic Pages","/admin/list_dynamic_pages"]])
     echo '</div>';
 }
 

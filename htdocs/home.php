@@ -40,7 +40,7 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
     $news = db_query_fetch_all('SELECT * FROM news ORDER BY added DESC');
 
     if (count ($news) == 0) {
-    	message_inline ("No news");
+        message_inline ("No news");
     }
 
     foreach ($news as $item) {
@@ -58,16 +58,6 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
 
     echo '</div></div>';
 
-    $bgchoice = rand(0, 2);
-
-    echo '<style>
-        .background-left {
-            background-image:url("/img/theme/human' . $bgchoice . 'left.png");
-        }
-        .background-right {
-            background-image:url("/img/theme/human' . $bgchoice . 'right.png");
-        }
-    </style>';
 
     cache_end (CONST_CACHE_NAME_HOME);
 }

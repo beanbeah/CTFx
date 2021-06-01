@@ -6,9 +6,10 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 
 head('Email signup rules');
 menu_management();
-section_head('Email signup rules', button_link('Add new rule', 'new_restrict_email'), false);
+section_title('Email signup rules', button_link('Add new rule', 'new_restrict_email'), false);
+section_head('Email Testing Service',button_link('Test','test_restrict_email'),false);
 
-message_inline_blue('Rules in list below are applied top-down. Rules further down on the list override rules above.
+message_inline('Rules in list below are applied top-down. Rules further down on the list override rules above.
                      List is ordered by "priority". A higher "priority" value puts a rule further down the list.
                      Rules are PCRE regex. Example: ^.+@.+$');
 
