@@ -5,7 +5,7 @@ require('../include/mellivora.inc.php');
 enforce_authentication();
 
 $now = time();
-
+$displayed_before = false;
 head('Challenges');
 
 if (isset($_GET['status'])) {
@@ -228,10 +228,9 @@ foreach($challenges as $challenge) {
         print_challenge_files(get_challenge_files($challenge));
 
         //so basically some people complained we need to hide hints, so we shall do gay shit
-        //We do not care about the design. design is not important, we blame ItzyBitzySpider for this horrible design choice
+        //We do not care about the design. design is not important, we blame [redacted] for this horrible design choice
         
         if (check_hint_exist($challenge)){
-        //css kinda needed else q gay
         echo"<style>
         input[type=text], select {
         width: 100%;
@@ -253,13 +252,22 @@ foreach($challenges as $challenge) {
         border-radius: 4px;
         cursor: pointer;
         }</style>";
-        echo '<div><form method="post">
-            <input type="submit" name="ShowHint" value="Show Hint">
+        echo '<div><form method="post">';
+        echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
+        echo'<input type="submit" name="ShowHint" value="Show Hint">
         </form></div>';
 
-         if(isset($_POST['ShowHint'])){
-            print_hints($challenge);
-         }
+        //quick checker to make sure we arent displaying duplicate hints, as well as ensuring we display properly
+        if(isset($_POST['Chall'])){
+            $chall=$_POST['Chall'];
+            if ($chall == $challenge["id"] && !$displayed_before){
+                //echo "<br>" .$chall. "</br>";
+                print_hints($chall,true);
+                $chall=null;    //clear chall state
+                $displayed_before = true;
+            }
+        }
+         
         }
         //at this point means theres no hints and we should gladly fuck off
 

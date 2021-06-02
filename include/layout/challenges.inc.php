@@ -115,7 +115,27 @@ function check_hint_exist($challenge) {
 }
 
 
-function print_hints($challenge) {
+function print_hints($challenge, $is_id) {
+    //idea is to accomodate both choices of calling by ID and calling by list
+    if($is_id){
+        if (cache_start(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge, Config::get('MELLIVORA_CONFIG_CACHE_TIME_HINTS'))) {
+        $hints = db_select_all(
+            'hints',
+            array('body'),
+            array(
+                'visible' => 1,
+                'challenge' => $challenge
+            )
+        );
+
+        foreach ($hints as $hint) {
+            message_inline('<strong>Hint!</strong> ' . get_bbcode()->parse($hint['body']), "green", false);
+        }
+
+        cache_end(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge);
+        }
+    }else{
+
     if (cache_start(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge['id'], Config::get('MELLIVORA_CONFIG_CACHE_TIME_HINTS'))) {
         $hints = db_select_all(
             'hints',
@@ -132,7 +152,11 @@ function print_hints($challenge) {
 
         cache_end(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge['id']);
     }
+    }
 }
+
+
+
 
 function should_print_metadata($challenge) {
     $remaining_submissions = get_num_remaining_submissions($challenge);
