@@ -229,7 +229,7 @@ foreach($challenges as $challenge) {
 
         //so basically some people complained we need to hide hints, so we shall do gay shit
         //We do not care about the design. design is not important, we blame ItzyBitzySpider for this horrible design choice
-        
+        /**        
         if (check_hint_exist($challenge)){
         //css kinda needed else q gay
         echo"<style>
@@ -261,6 +261,8 @@ foreach($challenges as $challenge) {
             print_hints($challenge);
          }
         }
+        */
+        print_hints($challenge);
         //at this point means theres no hints and we should gladly fuck off
 
         // only show the hints and flag submission form if we're not already correct and if the challenge hasn't expired
