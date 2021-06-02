@@ -226,7 +226,42 @@ foreach($challenges as $challenge) {
         echo "</div>";
 
         print_challenge_files(get_challenge_files($challenge));
-        print_hints($challenge);
+
+        //so basically some people complained we need to hide hints, so we shall do gay shit
+        //We do not care about the design. design is not important, we blame ItzyBitzySpider for this horrible design choice
+        
+        if (check_hint_exist($challenge)){
+        //css kinda needed else q gay
+        echo"<style>
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }</style>";
+        echo '<div><form method="post">
+            <input type="submit" name="ShowHint" value="Show Hint">
+        </form></div>';
+
+         if(isset($_POST['ShowHint'])){
+            print_hints($challenge);
+         }
+        }
+        //at this point means theres no hints and we should gladly fuck off
 
         // only show the hints and flag submission form if we're not already correct and if the challenge hasn't expired
         if (!$challenge['correct_submission_added'] && $challenge['available_until'] > $now) {

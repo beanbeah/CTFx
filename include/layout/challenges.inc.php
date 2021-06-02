@@ -62,7 +62,8 @@ function get_challenge_files($challenge) {
     return $files;
 }
 
-function print_challenge_files($files) {
+function 
+print_challenge_files($files) {
     if (count($files)) {
         echo '<div>';
         foreach ($files as $file) {
@@ -93,6 +94,26 @@ function print_challenge_files($files) {
         echo '</div> <!-- / challenge-files -->';
     }
 }
+
+function check_hint_exist($challenge) {
+   
+        $hints = db_select_all(
+            'hints',
+            array('body'),
+            array(
+                'visible' => 1,
+                'challenge' => $challenge['id']
+            )
+        );
+    if (empty($hints)){
+        //no hints at all
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
 
 function print_hints($challenge) {
     if (cache_start(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge['id'], Config::get('MELLIVORA_CONFIG_CACHE_TIME_HINTS'))) {

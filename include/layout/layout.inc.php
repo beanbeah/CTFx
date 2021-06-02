@@ -130,20 +130,6 @@ function foot () {
 <!-- JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
-<audio id="audio-typewriter" src="/audio/typewriter.mp3"></audio>
-<audio id="audio-navbar" src="/audio/navbar.mp3"></audio>
-<audio id="audio-navclick" src="/audio/navclick.mp3"></audio>
-<audio id="audio-footer-mouseover" src="/audio/footer_mouseover.mp3"></audio>
-<audio id="audio-button-mouseover" src="/audio/button_mouseover.mp3"></audio>
-<audio id="audio-button-click" src="/audio/button_click.mp3"></audio>
-<audio id="audio-button-cancel-mouseover" src="/audio/button_cancel_mouseover.mp3"></audio>
-<audio id="audio-button-cancel-click" src="/audio/button_cancel_click.mp3"></audio>
-<audio id="audio-button-small-mouseover" src="/audio/button_small_mouseover.mp3"></audio>
-<audio id="audio-button-small-click" src="/audio/button_small_click.mp3"></audio>
-<audio id="audio-dropdown-open" src="/audio/dropdown_open.mp3"></audio>
-<audio id="audio-checkbox-click" src="/audio/checkbox_click.mp3"></audio>
-
 <script type="text/javascript" src="/js/mellivora.js?ver=' . $staticVersion . '"></script>
 </body>
 </html>';
