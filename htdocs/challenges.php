@@ -20,6 +20,10 @@ if (isset($_GET['status'])) {
     }
 }
 
+if(isset($_POST['Chall'])){
+    $chall=$_POST['Chall'];
+    $get_hint = true;
+}
 $categories = db_select_all(
     'categories',
     array(
@@ -227,10 +231,16 @@ foreach($challenges as $challenge) {
 
         print_challenge_files(get_challenge_files($challenge));
 
-        //so basically some people complained we need to hide hints, so we shall do gay shit
-        //We do not care about the design. design is not important, we blame [redacted] for this horrible design choice
-        
+        //Hint option box. Purely a design feature        
         if (check_hint_exist($challenge)){
+
+        if ($get_hint && !$displayed_before && $chall == $challenge['id']){
+            print_hints($chall,true);
+            $chall = null;
+            $displayed_before = true;
+            $get_hint = false;
+        }
+        else{
         echo"<style>
         input[type=text], select {
         width: 100%;
@@ -256,20 +266,8 @@ foreach($challenges as $challenge) {
         echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
         echo'<input type="submit" name="ShowHint" value="Show Hint">
         </form></div>';
-
-        //quick checker to make sure we arent displaying duplicate hints, as well as ensuring we display properly
-        if(isset($_POST['Chall'])){
-            $chall=$_POST['Chall'];
-            if ($chall == $challenge["id"] && !$displayed_before){
-                //echo "<br>" .$chall. "</br>";
-                print_hints($chall,true);
-                $chall=null;    //clear chall state
-                $displayed_before = true;
-            }
         }
-         
         }
-        //at this point means theres no hints and we should gladly fuck off
 
         // only show the hints and flag submission form if we're not already correct and if the challenge hasn't expired
         if (!$challenge['correct_submission_added'] && $challenge['available_until'] > $now) {
