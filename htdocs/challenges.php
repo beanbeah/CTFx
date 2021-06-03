@@ -5,7 +5,7 @@ require('../include/mellivora.inc.php');
 enforce_authentication();
 
 $now = time();
-
+$displayed_before = false;
 head('Challenges');
 
 if (isset($_GET['status'])) {
@@ -20,6 +20,10 @@ if (isset($_GET['status'])) {
     }
 }
 
+if(isset($_POST['Chall'])){
+    $chall=$_POST['Chall'];
+    $get_hint = true;
+}
 $categories = db_select_all(
     'categories',
     array(
@@ -227,11 +231,16 @@ foreach($challenges as $challenge) {
 
         print_challenge_files(get_challenge_files($challenge));
 
-        //so basically some people complained we need to hide hints, so we shall do gay shit
-        //We do not care about the design. design is not important, we blame ItzyBitzySpider for this horrible design choice
-        /**        
+
         if (check_hint_exist($challenge)){
-        //css kinda needed else q gay
+
+        if ($get_hint && !$displayed_before && $chall == $challenge['id']){
+            print_hints($chall,true);
+            $chall = null;
+            $displayed_before = true;
+            $get_hint = false;
+        }
+        else{
         echo"<style>
         input[type=text], select {
         width: 100%;
@@ -253,17 +262,12 @@ foreach($challenges as $challenge) {
         border-radius: 4px;
         cursor: pointer;
         }</style>";
-        echo '<div><form method="post">
-            <input type="submit" name="ShowHint" value="Show Hint">
+        echo '<div><form method="post">';
+        echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
+        echo'<input type="submit" name="ShowHint" value="Show Hint">
         </form></div>';
-
-         if(isset($_POST['ShowHint'])){
-            print_hints($challenge);
-         }
         }
-        */
-        print_hints($challenge);
-        //at this point means theres no hints and we should gladly fuck off
+
 
         // only show the hints and flag submission form if we're not already correct and if the challenge hasn't expired
         if (!$challenge['correct_submission_added'] && $challenge['available_until'] > $now) {
