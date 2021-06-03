@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'competing'=>$_POST['competing'],
              'country_id'=>$_POST['country'],
              'user_type'=>$_POST['user_type'],
-             'class'=>$_POST['admin'] * 100
-             //that was a temp fix to migrate over the admin, also its q disgusting code if u ask me.
+             'class'=>$_POST['admin'] * CONST_USER_CLASS_MODERATOR
+             //q bruh code but yesh 
           ),
           array(
              'id'=>$_POST['id']
