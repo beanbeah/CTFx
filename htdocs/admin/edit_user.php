@@ -13,6 +13,8 @@ $user = db_select_one(
         'email',
         'enabled',
         'competing',
+        'class',
+        'user_type',
         'country_id'
     ),
     array('id' => $_GET['id'])
@@ -26,12 +28,14 @@ section_title ('Edit user: ' . $user['team_name']);
 form_start('/admin/actions/user');
 form_input_text('Email', $user['email']);
 form_input_text('Team name', $user['team_name']);
-
+$types = db_query_fetch_all('SELECT * FROM user_types ORDER BY title ASC');
+form_select($types, 'user_type', 'id' ,$user['user_type'], 'title');
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
 
 form_input_checkbox('Enabled', $user['enabled']);
 form_input_checkbox('Competing', $user['competing']);
+form_input_checkbox('Admin', $user['class']);
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);
 form_button_submit('Save changes');

@@ -1,6 +1,7 @@
 <?php
 
 require('../include/mellivora.inc.php');
+enforce_authentication();
 
 login_session_refresh();
 
