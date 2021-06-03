@@ -231,7 +231,7 @@ foreach($challenges as $challenge) {
 
         print_challenge_files(get_challenge_files($challenge));
 
-        //Hint option box. Purely a design feature        
+
         if (check_hint_exist($challenge)){
 
         if ($get_hint && !$displayed_before && $chall == $challenge['id']){
@@ -267,7 +267,7 @@ foreach($challenges as $challenge) {
         echo'<input type="submit" name="ShowHint" value="Show Hint">
         </form></div>';
         }
-        }
+
 
         // only show the hints and flag submission form if we're not already correct and if the challenge hasn't expired
         if (!$challenge['correct_submission_added'] && $challenge['available_until'] > $now) {
