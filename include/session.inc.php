@@ -24,6 +24,15 @@ function user_is_staff () {
     return false;
 }
 
+
+
+function get_user_type () {
+    if (user_is_logged_in()){
+        $user = db_select_one('users',array('user_type'),array('id' => $_SESSION['id']));
+        return $user['user_type'];
+    }
+}
+
 function user_class_name ($class) {
     switch ($class) {
         case CONST_USER_CLASS_MODERATOR:
