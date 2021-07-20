@@ -17,6 +17,18 @@ priority is such that the higher numbers means higher priority
 PermaLink: can ignore ngl
 
 ### Email validation is self explanatory i hope :D
+Email Regex rules: use standard regex rules
+Pirority is such that higher numbers = higher priority
+
+### Email Whitelist/Blacklist
+Aim to setup email whitelist/blacklist
+UI should be self explanatory
+
+### Scoreboard API
+what started out as a convenience feature grew into a proper API
+- Provides scores in the form of position, teamname and score
+- Provide changes in score in the form of teamname, score,timestamp
+
 
 
 
