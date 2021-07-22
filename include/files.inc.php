@@ -24,20 +24,35 @@ function store_file($file, $challenge_id, $filename) {
         )
     );
 
-    // do we put the file on AWS S3?
+    // do we put the file on AWS S3 or do we put it on Docker lol
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
-            // Instantiate the S3 client with your AWS credentials
+            // Instantiate the S3 client with your AWS credentials or possibly Digital ocean credentials
+            if (Config::get('MELLIVORA_CONFIG_DO_S3')){
+                $client = S3Client::factory(array(
+                'credentials' => array(
+                    'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
+                    'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
+                ),
+                'region'  => 'us-east-1', //digital ocean specs just say like that lor
+                'endpoint' => Config::get('MELLIVORA_CONFIG_DO_S3_ENDPOINT'),
+                'version' => 'latest'
+            ));
+            }  else {
+            //lets happily assume everyone here uses s3 cus who doesnt man....
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
                     'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
                 ),
-                'region' => 'us-west-2',
+                'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
+            }
 
             $file_key = '/challenges/' . $file_id;
+            
+            //i kinda hope this works ngl
 
             // Upload an object by streaming the contents of a file
             $result = $client->putObject(array(
@@ -91,18 +106,30 @@ function change_file ($file_id, $file) {
 function download_file($file) {
     validate_id(array_get($file, 'id'));
 
-    // do we read the file off AWS S3?
+    // do we read the file off AWS S3 or digital ocean lel.
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
-            // Instantiate the S3 client with your AWS credentials
+            if (Config::get('MELLIVORA_CONFIG_DO_S3')){
+                $client = S3Client::factory(array(
+                'credentials' => array(
+                    'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
+                    'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
+                ),
+                'region'  => 'us-east-1', //digital ocean specs just say like that lor
+                'endpoint' => Config::get('MELLIVORA_CONFIG_DO_S3_ENDPOINT'),
+                'version' => 'latest'
+            ));
+            }  else {
+            //lets happily assume everyone here uses s3 cus who doesnt man....
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
                     'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
                 ),
-                'region'  => 'us-west-2',
+                'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
+            }
 
             $file_key = '/challenges/' . $file['id'];
 
