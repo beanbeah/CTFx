@@ -142,6 +142,7 @@ Config::set('MELLIVORA_CONFIG_AWS_S3_BUCKET', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_REGION','');
 //Digital Ocean S3-like storage 
 Config::set('MELLIVORA_CONFIG_DO_S3',true);
+//include https:// for endpoint
 Config::set('MELLIVORA_CONFIG_DO_S3_ENDPOINT','');
 
 
