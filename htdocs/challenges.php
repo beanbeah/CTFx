@@ -6,6 +6,8 @@ enforce_authentication();
 
 $now = time();
 $displayed_before = false;
+//declare some variables, reduce some errors hopefully
+$get_hint = false;
 head('Challenges');
 
 if (isset($_GET['status'])) {
@@ -234,38 +236,39 @@ foreach($challenges as $challenge) {
 
         if (check_hint_exist($challenge)){
 
-        if ($get_hint && !$displayed_before && $chall == $challenge['id']){
-            print_hints($chall,true);
-            $chall = null;
-            $displayed_before = true;
-            $get_hint = false;
-        }
-        else{
-        echo"<style>
-        input[type=text], select {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-        }
+            if ($get_hint && !$displayed_before && $chall == $challenge['id']){
+                print_hints($chall,true);
+                $chall = null;
+                $displayed_before = true;
+                $get_hint = false;
+            }
+            else{
+                echo"<style>
+                input[type=text], select {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                }
 
-        input[type=submit] {
-        width: 100%;
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        }</style>";
-        echo '<div><form method="post">';
-        echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
-        echo'<input type="submit" name="ShowHint" value="Show Hint">
-        </form></div>';
+                input[type=submit] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                }</style>";
+                echo '<div><form method="post">';
+                echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
+                echo'<input type="submit" name="ShowHint" value="Show Hint">
+                </form></div>';
+            }
         }
 
 

@@ -24,7 +24,7 @@ function store_file($file, $challenge_id, $filename) {
         )
     );
 
-    // do we put the file on AWS S3 or do we put it on Docker lol
+    // do we put the file on AWS S3 or do we put it on Digital Ocean lol
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
             // Instantiate the S3 client with your AWS credentials or possibly Digital ocean credentials
@@ -38,6 +38,9 @@ function store_file($file, $challenge_id, $filename) {
                 'endpoint' => Config::get('MELLIVORA_CONFIG_DO_S3_ENDPOINT'),
                 'version' => 'latest'
             ));
+
+                $file_key = 'challenges/' . $file_id; //this the real black magic here ngl
+
             }  else {
             //lets happily assume everyone here uses s3 cus who doesnt man....
             $client = S3Client::factory(array(
@@ -48,12 +51,11 @@ function store_file($file, $challenge_id, $filename) {
                 'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
+                $file_key = '/challenges/' . $file_id; //to test
+
             }
-
-            $file_key = '/challenges/' . $file_id;
+           
             
-            //i kinda hope this works ngl
-
             // Upload an object by streaming the contents of a file
             $result = $client->putObject(array(
                 'Bucket'     => Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET'),
@@ -131,7 +133,7 @@ function download_file($file) {
             ));
             }
 
-            $file_key = '/challenges/' . $file['id'];
+            $file_key = '/challenges/' . $file['id']; //this the real black magic
 
             $client->registerStreamWrapper();
 
