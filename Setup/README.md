@@ -1,7 +1,7 @@
 # Challenge Importer
 
 The scripts here are to be run in a directory filled with challenges. Below is the file structure expected
-````
+```
 CTF Challenge Data (Folder)
 
 	- CTF Name (Folder)
@@ -20,4 +20,4 @@ CTF Challenge Data (Folder)
 
 ```
 
-`CTFimporter-local` will edit the local database and copy files locally. `
+`CTFimporter-local` will edit the local database and copy files locally.
