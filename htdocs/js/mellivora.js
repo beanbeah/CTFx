@@ -71,7 +71,6 @@ function addCheckboxClickEffects() {
     })
 }
 
-
 function highlightLoggedOnTeamName() {
     var t = document.getElementsByClassName("team_" + global_dict.user_id)[0];
     null != t && (t.classList.add("our-team"))
@@ -138,5 +137,5 @@ function prettyPrintTime(t) {
 }
 
 $(document).ready(function() {
-    highlightSelectedMenuItem(), highlightLoggedOnTeamName(),  addLinkMouseoverSFX(), addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
+    highlightSelectedMenuItem(), highlightLoggedOnTeamName(), addLinkMouseoverSFX(), addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
 });
