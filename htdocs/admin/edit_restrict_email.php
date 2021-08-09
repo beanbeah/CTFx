@@ -21,7 +21,7 @@ head('Site management');
 menu_management();
 
 section_title('Edit signup rule');
-form_start(Config::get('/admin/actions/edit_restrict_email'));
+form_start('/admin/actions/edit_restrict_email');
 form_input_text('Rule', $rule['rule']);
 form_input_text('Priority', $rule['priority']);
 form_input_checkbox('Whitelist', $rule['white']);
