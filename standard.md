@@ -16,6 +16,8 @@ This installation is meant for just **one** machine with a **LEMP** stack.
      - `CREATE DATABASE mellivora CHARACTER SET utf8 COLLATE utf8_general_ci;`
      - `CREATE USER 'mellivora'@'%' IDENTIFIED BY 'mellivora_pass';` Please ensure you change the default username and password
      - `GRANT ALL PRIVILEGES ON mellivora.* TO 'mellivora'@'%';  `
+     - `SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
+     - `SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION';`
      - `exit`
    - `sudo mysql < install/sql/001-mellivora.sql`
    - `sudo mysql < install/sql/002-countries.sql`
@@ -29,8 +31,4 @@ This installation is meant for just **one** machine with a **LEMP** stack.
 
 This installation does not cover configuring SSL. To configure SSL, change the `nginx.conf` and setup a new configuration file under `sites-enabled/`. 
 
-## Troubleshooting:
-Problem: `SQLSTATE[42000]: Syntax error or access violation: 1140 In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'mellivora.u.team_name'; this is incompatible with sql_mode=only_full_group_by`
-
-Solution: `SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
 
