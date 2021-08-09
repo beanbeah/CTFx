@@ -167,9 +167,6 @@ function allowed_email ($email) {
     else if (Config::get('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')){
         $allowedEmail = email_regex_search($email);
     }
-    else{
-        $allowedEmail = false;
-    }
     return $allowedEmail;
 }
 

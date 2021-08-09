@@ -1,8 +1,8 @@
 {
-  "name": "Wealthyturtle/ACSI-RTS-CTFx",
+  "name": "dbsqwerty/ctf_platform",
   "type": "project",
-  "description": "CTF engine written in this weird language they call php",
-  "homepage": "https://github.com/Wealthyturtle/ACSI-RTS-CTFx",
+  "description": "CTF engine based off Mellivora",
+  "homepage": "https://github.com/dbsqwerty/ctf_platform",
   "license": "GPL-3.0",
   "minimum-stability": "stable",
   "authors": [
