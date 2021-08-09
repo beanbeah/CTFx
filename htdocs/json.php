@@ -34,26 +34,6 @@ if ($_GET['view'] == 'scores') {
     }
 }
 
-/**
- * Gets all User Score with timestamp
- * Input: None
- * Output: 
- * {
- *      "scores":[
- *                 {
- *                      "team": "USERNAME OR TEAMNAME",
- *                      "timestamp": "TIMESTAMP",
- *                      "score": "int"
- *                 },   
- * 
- *       ]
- * }
- */
-
-if ($_GET['view'] == 'scoregraph') {
-    
-}
-
 else {
     echo json_error(lang_get('please_request_view'));
     exit;
