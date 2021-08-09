@@ -12,7 +12,7 @@ section_title('New email whitelist/blacklist');
 message_inline('Add email.');
 
 form_start('/admin/actions/new_email_whitelist');
-form_input_text('Emails');
+form_input_text('Email');
 form_input_checkbox('Whitelist');
 form_input_checkbox('Enabled');
 form_hidden('action', 'new');

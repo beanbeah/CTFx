@@ -115,7 +115,7 @@ function send_email (
 function email_whitelist_search ($email){
 
     $emails = db_select_all(
-        'email_whitelist',
+        'email_list',
         array('email','white'),
         array('enabled'=>1)
     );

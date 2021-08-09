@@ -32,15 +32,15 @@ $emails = db_query_fetch_all('
 foreach($emails as $email) {
     echo '
     <tr>
-        <td>',htmlspecialchars($rule['email']),'</td>
+        <td>',htmlspecialchars($email['email']),'</td>
         <td>
-            ',($rule['white'] ?
+            ',($email['white'] ?
             '<img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/accept.png" alt="Whitelisted" title="Whitelisted" />' :
             '<img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/stop.png" alt="Blacklisted" title="Blacklisted" />'),'
         </td>
-        <td>',($rule['enabled'] ? 'Yes' : 'No'), '</td>
+        <td>',($email['enabled'] ? 'Yes' : 'No'), '</td>
         <td>
-            <a href="edit_email_whitelist.php?id=',htmlspecialchars($rule['id']),'" class="btn btn-xs btn-primary">Edit</a>
+            <a href="edit_email_whitelist.php?id=',htmlspecialchars($email['id']),'" class="btn btn-xs btn-primary">Edit</a>
         </td>
     </tr>
     ';
