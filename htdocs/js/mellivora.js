@@ -71,13 +71,6 @@ function addCheckboxClickEffects() {
     })
 }
 
-function typeWriterSFX() {
-    var t = document.getElementsByClassName("typewriter")[0],
-        e = document.getElementById("audio-typewriter");
-    null != t && (e.play(), setTimeout(function() {
-        e.pause()
-    }, 300 + 1e3 / 65 * t.innerText.length))
-}
 
 function highlightLoggedOnTeamName() {
     var t = document.getElementsByClassName("team_" + global_dict.user_id)[0];
@@ -145,5 +138,5 @@ function prettyPrintTime(t) {
 }
 
 $(document).ready(function() {
-    highlightSelectedMenuItem(), highlightLoggedOnTeamName(), typeWriterSFX(), addLinkMouseoverSFX(), addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
+    highlightSelectedMenuItem(), highlightLoggedOnTeamName(),  addLinkMouseoverSFX(), addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
 });
