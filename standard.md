@@ -28,3 +28,9 @@ This installation is meant for just **one** machine with a **LEMP** stack.
    - sudo into `mysql` and run the query `USE mellivora; UPDATE users SET class=100 WHERE id=1;`
 
 This installation does not cover configuring SSL. To configure SSL, change the `nginx.conf` and setup a new configuration file under `sites-enabled/`. 
+
+## Troubleshooting:
+Problem: `SQLSTATE[42000]: Syntax error or access violation: 1140 In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'mellivora.u.team_name'; this is incompatible with sql_mode=only_full_group_by`
+
+Solution: `SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
+
