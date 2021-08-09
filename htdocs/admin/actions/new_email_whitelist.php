@@ -10,6 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'new') {
 
+      //convert emails to array (comma delimited). Iterate thru each email/add it
+
        $id = db_insert(
           'email_list',
           array(

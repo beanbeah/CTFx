@@ -9,7 +9,7 @@ menu_management();
 
 section_title('New email whitelist/blacklist');
 
-message_inline('Add email.');
+message_inline('Add email or emails. Comma delimited.');
 
 form_start('/admin/actions/new_email_whitelist');
 form_input_text('Email');
