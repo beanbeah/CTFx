@@ -24,10 +24,10 @@ function store_file($file, $challenge_id, $filename) {
         )
     );
 
-    // do we put the file on AWS S3 or do we put it on Digital Ocean lol
+    // Determine where to Put files in. AWS or Digital Ocean
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
-            // Instantiate the S3 client with your AWS credentials or possibly Digital ocean credentials
+            // Instantiate the S3 client with Digital ocean credentials
             if (Config::get('MELLIVORA_CONFIG_DO_S3')){
                 $client = S3Client::factory(array(
                 'credentials' => array(
@@ -42,7 +42,7 @@ function store_file($file, $challenge_id, $filename) {
                 $file_key = 'challenges/' . $file_id; //this the real black magic here ngl
 
             }  else {
-            //lets happily assume everyone here uses s3 cus who doesnt man....
+            //AWS S3 instantiate
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
@@ -74,7 +74,7 @@ function store_file($file, $challenge_id, $filename) {
         }
     }
 
-    // or store the file locally?
+    // or store the file locally
     else {
         move_uploaded_file($file['tmp_name'], CONST_PATH_FILE_UPLOAD . $file_id);
         if (!file_exists(CONST_PATH_FILE_UPLOAD . $file_id)) {
@@ -108,7 +108,7 @@ function change_file ($file_id, $file) {
 function download_file($file) {
     validate_id(array_get($file, 'id'));
 
-    // do we read the file off AWS S3 or digital ocean lel.
+
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
             if (Config::get('MELLIVORA_CONFIG_DO_S3')){
@@ -122,7 +122,7 @@ function download_file($file) {
                 'version' => 'latest'
             ));
             }  else {
-            //lets happily assume everyone here uses s3 cus who doesnt man....
+    
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
@@ -149,7 +149,7 @@ function download_file($file) {
             message_error('Caught exception uploading file to S3: ' . $e->getMessage());
         }
     }
-    // or read it locally?
+    // or read it locally
     else {
         $filePath = CONST_PATH_FILE_UPLOAD . $file['id'];
 
