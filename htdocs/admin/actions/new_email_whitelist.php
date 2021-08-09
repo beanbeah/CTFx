@@ -16,14 +16,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $enabled_post = $_POST['enabled'];
 
       foreach($emails as $email_arr){
-       $id = db_insert(
-          'email_list',
-          array(
-             'email'=>$email_arr,
-             'white'=>$whitelist_post,
-             'enabled'=>$enabled_post
-          )
-       );
+         //sanitise email
+         if (valid_email($email_arr)){
+            $id = db_insert(
+               'email_list',
+               array(
+                'email'=>$email_arr,
+                'white'=>$whitelist_post,
+                'enabled'=>$enabled_post
+               )
+            );
+         }
+         else {
+            log_exception(new Exception('Invalid Email'), false, "Invalid Email used in Whitelist: " . $email_arr);
+         }      
       }
 
        if ($id) {
