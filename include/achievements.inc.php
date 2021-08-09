@@ -11,7 +11,7 @@ const CONST_ACHIEVEMENTS = [
 
 	[
 		"icon" => "godofsecrets.png",
-		"title" => "God of secrets",
+		"title" => "Crypto Senpai Orz Orz Orz",
 		"description" => "Solved all Cryptography challenges"
 	],
 
@@ -23,7 +23,7 @@ const CONST_ACHIEVEMENTS = [
 
 	[
 		"icon" => "practicalproblems.png",
-		"title" => "Practical problems",
+		"title" => "REeeeeeeeeeeeee",
 		"description" => "Solved all Reverse Engineering challenges"
 	],
 
@@ -40,14 +40,8 @@ const CONST_ACHIEVEMENTS = [
 	],
 
 	[
-		"icon" => "ditto.png",
-		"title" => "Ditto",
-		"description" => "Solved all Emulation challenges"
-	],
-
-	[
 		"icon" => "breakithammer.png",
-		"title" => "If you can break it with a hammer...",
+		"title" => "Hardware Hackerman",
 		"description" => "Solved all Hardware challenges"
 	],
 
@@ -58,34 +52,17 @@ const CONST_ACHIEVEMENTS = [
 	],
 
 	[
-		"icon" => "earlybird.png",
-		"title" => "Early Bird",
-		"description" => "Created the team before the competition started"
-	],
-
-	[
 		"icon" => "hoarder.png",
-		"title" => "Hoarder",
+		"title" => "Flag Hoarder",
 		"description" => "Solved 5 challenges in the span of 5 minutes"
 	],
 
 	[
 		"icon" => "cheeser.png",
-		"title" => "I swear it must be one of these",
+		"title" => "Brute Forcer",
 		"description" => "Submitted 10 wrong flags for the same challenge"
 	],
 
-	[
-		"icon" => "everypoint.png",
-		"title" => "Every point counts",
-		"description" => "Solved a challenge that's already at its minimum score"
-	],
-
-	[
-		"icon" => "goodsamaritan.png",
-		"title" => "Good Samaritan",
-		"description" => "Helped the organizers fix an issue with the competition"
-	]
 ];
 
 function add_achievement($achievementID) {

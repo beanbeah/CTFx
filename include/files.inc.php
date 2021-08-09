@@ -24,21 +24,38 @@ function store_file($file, $challenge_id, $filename) {
         )
     );
 
-    // do we put the file on AWS S3?
+    // Determine where to Put files in. AWS or Digital Ocean
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
-            // Instantiate the S3 client with your AWS credentials
+            // Instantiate the S3 client with Digital ocean credentials
+            if (Config::get('MELLIVORA_CONFIG_DO_S3')){
+                $client = S3Client::factory(array(
+                'credentials' => array(
+                    'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
+                    'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
+                ),
+                'region'  => 'us-east-1', //digital ocean specs just say like that lor
+                'endpoint' => Config::get('MELLIVORA_CONFIG_DO_S3_ENDPOINT'),
+                'version' => 'latest'
+            ));
+
+                $file_key = 'challenges/' . $file_id; //this the real black magic here ngl
+
+            }  else {
+            //AWS S3 instantiate
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
                     'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
                 ),
-                'region' => 'us-west-2',
+                'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
+                $file_key = '/challenges/' . $file_id; //to test
 
-            $file_key = '/challenges/' . $file_id;
-
+            }
+           
+            
             // Upload an object by streaming the contents of a file
             $result = $client->putObject(array(
                 'Bucket'     => Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET'),
@@ -57,7 +74,7 @@ function store_file($file, $challenge_id, $filename) {
         }
     }
 
-    // or store the file locally?
+    // or store the file locally
     else {
         move_uploaded_file($file['tmp_name'], CONST_PATH_FILE_UPLOAD . $file_id);
         if (!file_exists(CONST_PATH_FILE_UPLOAD . $file_id)) {
@@ -91,20 +108,32 @@ function change_file ($file_id, $file) {
 function download_file($file) {
     validate_id(array_get($file, 'id'));
 
-    // do we read the file off AWS S3?
+
     if (Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID') && Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET') && Config::get('MELLIVORA_CONFIG_AWS_S3_BUCKET')) {
         try {
-            // Instantiate the S3 client with your AWS credentials
+            if (Config::get('MELLIVORA_CONFIG_DO_S3')){
+                $client = S3Client::factory(array(
+                'credentials' => array(
+                    'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
+                    'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
+                ),
+                'region'  => 'us-east-1', //digital ocean specs just say like that lor
+                'endpoint' => Config::get('MELLIVORA_CONFIG_DO_S3_ENDPOINT'),
+                'version' => 'latest'
+            ));
+            }  else {
+    
             $client = S3Client::factory(array(
                 'credentials' => array(
                     'key' => Config::get('MELLIVORA_CONFIG_AWS_S3_KEY_ID'),
                     'secret' => Config::get('MELLIVORA_CONFIG_AWS_S3_SECRET')
                 ),
-                'region'  => 'us-west-2',
+                'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
+            }
 
-            $file_key = '/challenges/' . $file['id'];
+            $file_key = '/challenges/' . $file['id']; //this the real black magic
 
             $client->registerStreamWrapper();
 
@@ -120,7 +149,7 @@ function download_file($file) {
             message_error('Caught exception uploading file to S3: ' . $e->getMessage());
         }
     }
-    // or read it locally?
+    // or read it locally
     else {
         $filePath = CONST_PATH_FILE_UPLOAD . $file['id'];
 

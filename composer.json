@@ -1,14 +1,18 @@
 {
-  "name": "nakiami/mellivora",
+  "name": "Wealthyturtle/ACSI-RTS-CTFx",
   "type": "project",
-  "description": "Mellivora is a CTF engine written in PHP",
-  "homepage": "https://github.com/Nakiami/mellivora",
+  "description": "CTF engine written in this weird language they call php",
+  "homepage": "https://github.com/Wealthyturtle/ACSI-RTS-CTFx",
   "license": "GPL-3.0",
   "minimum-stability": "stable",
   "authors": [
     {
-      "name": "Nakiami",
-      "homepage": "https://github.com/Nakiami/"
+      "name": "Wealthyturtle",
+      "homepage": "https://github.com/Wealthyturtle/"
+    },
+    {
+      "name": "dbsqwerty",
+      "homepage": "https://github.com/dbsqwerty/"
     }
   ],
   "config": {
