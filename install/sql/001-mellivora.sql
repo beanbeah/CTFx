@@ -161,6 +161,14 @@ CREATE TABLE restrict_email (
   PRIMARY KEY (id)	
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
 
+CREATE TABLE email_list (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  email varchar(255) NOT NULL,
+  enabled tinyint(1) NOT NULL DEFAULT '1',
+  white tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 CREATE TABLE submissions (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   added int(10) unsigned NOT NULL,
