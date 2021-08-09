@@ -17,7 +17,6 @@ This installation is meant for just **one** machine with a **LEMP** stack.
      - `CREATE USER 'mellivora'@'%' IDENTIFIED BY 'mellivora_pass';` Please ensure you change the default username and password
      - `GRANT ALL PRIVILEGES ON mellivora.* TO 'mellivora'@'%';  `
      - `SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
-     - `SET SESSION sql_mode = 'NO_ENGINE_SUBSTITUTION';`
      - `exit`
    - `sudo mysql < install/sql/001-mellivora.sql`
    - `sudo mysql < install/sql/002-countries.sql`
