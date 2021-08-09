@@ -20,4 +20,4 @@ CTF Challenge Data (Folder)
 
 ```
 
-`CTFimporter-local` will edit the local database and copy files locally. 
+`CTFimporter-local` will edit the local database and copy files locally. `
