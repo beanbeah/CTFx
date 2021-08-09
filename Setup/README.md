@@ -13,11 +13,14 @@ CTF Challenge Data (Folder)
 				- DESCRIPTION.TXT
 				- POINTS.TXT
 				- SOLUTION.TXT
+				- URL.TXT
+				- HINT.TXT
 
 		- FLAGFORMAT.TXT
 		- INITIALS.TXT
 		- WEIGHT.TXT
 
 ```
+Note that `HINT.TXT`,`URL.TXT` are optional.
 
 `CTFimporter-local` will edit the local database and copy files locally.
