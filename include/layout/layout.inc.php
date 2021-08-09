@@ -30,7 +30,7 @@ function head($title = '') {
     <link rel="icon" href="/img/favicon.png" type="image/png" />
 
     <!-- CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">';
 
     js_global_dict();
@@ -128,7 +128,7 @@ function foot () {
 </div> <!-- /page -->
 
 <!-- JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/mellivora.js?ver=' . $staticVersion . '"></script>
 </body>
@@ -268,7 +268,7 @@ function menu_management () {
     dropdown ("Exceptions", [["List exceptions", "/admin/exceptions"]]);
     dropdown ("Search", [["Search", "/admin/search"]]);
     dropdown ("Edit CTF", [["Edit", "/admin/edit_ctf"]]);
-    dropdown ("Email Whitelist", [["Rules", "/admin/list_restrict_email"]]);
+    dropdown ("Email Rules", [["Regex Rules", "/admin/list_restrict_email"],["Test Email","/admin/test_restrict_email"],["Email Whitelist", "/admin/list_email_whitelist"]]);
     dropdown ("Edit Site" ,[["Dynamic Menu","/admin/list_dynamic_menu"],["Dynamic Pages","/admin/list_dynamic_pages"]]);
     echo '</div>';
 }

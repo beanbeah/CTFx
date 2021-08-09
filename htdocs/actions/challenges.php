@@ -163,8 +163,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )
             )["count"];
 
+            //This section of the code is really based on ur CTF setup and thus subject to change. 
+            //Will be highlighted in the documentation. 
+
             if ($solvedChalls == $totalChalls) {
-                // Custom order for X-MAS stuff, you can change this however you want
+                // change this however you want
                 if ($challenge['category'] <= 9) {
                     add_achievement($challenge['category'] - 1);
                 }
@@ -186,10 +189,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($solvedInThePast5Mins >= 5) {
                 add_achievement(10);
-            }
-
-            if ($challenge['solves'] >= $challenge['solve_decay'] && $challenge['solve_decay'] > 0 && $challenge['category'] != 10) {
-                add_achievement(12);
             }
 
             // ACHIEVEMENT-CODE

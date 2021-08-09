@@ -56,8 +56,12 @@ Config::set('MELLIVORA_CONFIG_REGISTER_REDIRECT_TO', 'home');
 // account limitations
 Config::set('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH', 2);
 Config::set('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH', 30);
-Config::set('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', true);
 Config::set('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED', true);
+
+//Signup restrictions
+Config::set('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', true);
+Config::set('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', true);
+Config::set('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK', false);
 
 // if set to true, a random password will be generated
 // on signup and sent out by email to the user
@@ -139,3 +143,10 @@ Config::set('MELLIVORA_CONFIG_SEGMENT_IO_KEY', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_KEY_ID', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_SECRET', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_BUCKET', '');
+Config::set('MELLIVORA_CONFIG_AWS_S3_REGION','');
+//Digital Ocean S3-like storage 
+Config::set('MELLIVORA_CONFIG_DO_S3',true);
+//include https:// for endpoint
+Config::set('MELLIVORA_CONFIG_DO_S3_ENDPOINT','');
+
+

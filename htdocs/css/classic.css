@@ -110,7 +110,7 @@ body {
 .ctfx-card-head {
 	background-color: #505050;
 	padding: 15px 15px 5px 15px;
-	border-bottom: 5px solid #42A0FF;
+	border-bottom: 5px solid #718792;
 }
 
 .ctfx-card-head small {
@@ -265,7 +265,7 @@ small .btn-xs {
 }
 
 .btn-1:hover, .btn-1:focus, .btn-1:active, .btn-1.active {
-	background-color: #42A0FF;
+	background-color: #718792;
 	color: #fff;
 }
 
@@ -289,7 +289,7 @@ small .btn-xs {
 }
 
 .btn-1::before {
-	background-color: #42A0FF;
+	background-color: #718792;
 }
 
 .btn-2::before {
@@ -320,7 +320,7 @@ h4 {
 }
 
 a {
-	color: #42A0FF;
+	color: #718792;
 	outline: none !important;
 	transition: color 200ms ease-in-out;
 }
@@ -483,7 +483,7 @@ td a:hover {
 
 #header {
 	background-color: #F5F5F5;
-	border-bottom: 5px solid #42A0FF;
+	border-bottom: 5px solid #;
 	min-height: 65px;
 	overflow: auto;
 	padding: 10px 65px 0px 65px;
@@ -587,7 +587,7 @@ td a:hover {
 }
 
 .challenge-solved .ctfx-card-head {
-	background-color: #42A0FF;
+	background-color: #718792;
 }
 
 .ctfx-card-head .time-left {
@@ -668,7 +668,7 @@ td a:hover {
 }
 
 .our-team {
-	color: #42A0FF !important;
+	color: #718792 !important;
 }
 
 .team-table tbody tr td {
@@ -729,7 +729,7 @@ td a:hover {
 }
 
 .team-table .progress-bar {
-	background-color: #42A0FF;
+	background-color: #718792;
 }
 
 .team-table .team-score {
@@ -794,7 +794,7 @@ td a:hover {
 
 .modal.challenge-attempt.correct .modal-header {
 	background-image: url('/img/ui/flag_white.svg');
-	background-color: #42A0FF;
+	background-color: #718792;
 }
 
 .modal.challenge-attempt.manual .modal-header {
@@ -871,7 +871,7 @@ td a:hover {
 }
 
 .progress-bar-info, .progress-bar-success {
-	background-color: #42A0FF;
+	background-color: #718792;
 }
 
 /** BBCode **/
@@ -952,7 +952,7 @@ td a:hover {
 
 .page-header {
 	margin: 15px 0px 10px 0px;
-	border-bottom: 2px solid #42A0FF;
+	border-bottom: 2px solid #718792;
 }
 
 .ctfx-pager {
@@ -1023,7 +1023,7 @@ td a:hover {
 }
 
 .light-theme a:hover {
-	color: #42A0FF;
+	color: #718792;
 }
 
 @media (max-width: 800px) {

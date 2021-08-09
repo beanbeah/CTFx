@@ -6,8 +6,7 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 
 head('User types');
 menu_management();
-section_title ('Users types');
-
+section_title ('Users types', button_link('New User Type', 'new_user_type'), false);
 echo '
     <table id="files" class="table table-striped table-hover">
       <thead>

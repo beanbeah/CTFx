@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           message_generic('Success', 'Check your email for more details');
 
         } else {
-            message_error('Sign up failed? Helpful.');
+            message_error('Sign up failed. Please contact admins for help.');
         }
     }
 }

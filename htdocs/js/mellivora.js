@@ -18,18 +18,6 @@ function highlightSelectedMenuItem() {
     }
 }
 
-function addLinkMouseoverSFX() {
-    for (var t = document.querySelectorAll("#menu-main a,#menu-main button,.challenge-filename"), e = document.getElementById("audio-navbar"), n = document.getElementById("audio-navclick"), o = 0, i = t.length; o < i; o++) {
-        var a = t[o];
-        if (0 == a.parentNode.classList.contains("active")) {
-            a.addEventListener("mouseenter", function() {
-                e.currentTime = 0, e.play()
-            }), a.addEventListener("click", function() {
-                n.play()
-            })
-        }
-    }
-}
 
 function addButtonMouseoverEffects() {
     for (var t = [].concat([].slice.call(document.getElementsByClassName("btn")), [].slice.call(document.getElementsByClassName("close")), [].slice.call(document.getElementsByClassName("category-link"))), e = document.getElementById("audio-button-mouseover"), n = document.getElementById("audio-button-click"), o = document.getElementById("audio-button-small-mouseover"), i = document.getElementById("audio-button-small-click"), a = document.getElementById("audio-button-cancel-mouseover"), s = document.getElementById("audio-button-cancel-click"), l = 0, r = t.length; l < r; l++) t[l].classList.contains("btn-4") || t[l].classList.contains("close") ? (t[l].addEventListener("mouseenter", function() {
@@ -69,14 +57,6 @@ function addCheckboxClickEffects() {
     for (var t = document.getElementsByTagName("input"), e = document.getElementById("audio-checkbox-click"), n = 0, o = t.length; n < o; n++) "checkbox" == t[n].type && t[n].addEventListener("click", function() {
         e.currentTime = 0, e.play()
     })
-}
-
-function typeWriterSFX() {
-    var t = document.getElementsByClassName("typewriter")[0],
-        e = document.getElementById("audio-typewriter");
-    null != t && (e.play(), setTimeout(function() {
-        e.pause()
-    }, 300 + 1e3 / 65 * t.innerText.length))
 }
 
 function highlightLoggedOnTeamName() {
@@ -145,5 +125,5 @@ function prettyPrintTime(t) {
 }
 
 $(document).ready(function() {
-    highlightSelectedMenuItem(), highlightLoggedOnTeamName(), typeWriterSFX(), addLinkMouseoverSFX(), addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
+    highlightSelectedMenuItem(), highlightLoggedOnTeamName(),  addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
 });

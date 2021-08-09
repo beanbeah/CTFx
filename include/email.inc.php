@@ -112,29 +112,62 @@ function send_email (
     return $successfully_sent_to;
 }
 
+function email_whitelist_search ($email){
+
+    $emails = db_select_all(
+        'email_list',
+        array('email','white'),
+        array('enabled'=>1)
+    );
+
+    foreach($emails as $whitelist){
+        if ($email === $whitelist['email']){
+            if ($whitelist['white']){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+}
+
+function email_regex_search ($email){
+    $rules = db_select_all( 
+        'restrict_email',   
+        array(  
+            'rule', 
+            'white' 
+        ),  
+        array(  
+            'enabled'=>1    
+        ),  
+        'priority ASC'  
+    );  
+
+    foreach($rules as $rule) {  
+        if (preg_match('/'.$rule['rule'].'/', $email)) {    
+            if ($rule['white']) {   
+                return true;   
+            } else {    
+                return false;  
+            }   
+        }   
+    }
+}
+
 function allowed_email ($email) {	
-    $allowedEmail = true;	
-    $rules = db_select_all(	
-        'restrict_email',	
-        array(	
-            'rule',	
-            'white'	
-        ),	
-        array(	
-            'enabled'=>1	
-        ),	
-        'priority ASC'	
-    );	
-    foreach($rules as $rule) {	
-        if (preg_match('/'.$rule['rule'].'/', $email)) {	
-            if ($rule['white']) {	
-                $allowedEmail = true;	
-            } else {	
-                $allowedEmail = false;	
-            }	
-        }	
-    }	
-    return $allowedEmail;	
+    $allowedEmail = false;	
+    if (Config::get('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK') && Config::get('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')){
+        $allowedEmail = email_regex_search($email) && email_whitelist_search($email);
+    }
+    else if (Config::get('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK')){
+        $allowedEmail = email_whitelist_search($email);
+    }
+    else if (Config::get('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')){
+        $allowedEmail = email_regex_search($email);
+    }
+    return $allowedEmail;
 }
 
 function valid_email ($email) {
