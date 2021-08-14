@@ -121,8 +121,8 @@ function foot () {
 </div> <!-- /container -->
 
 <div id="footer">
-    <b>ACSI CTFx</b> v1 Beta<br>
-	Made with &#x1f499; by ACSI RTS</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
+    <b>CTFx</b> v1 Beta<br>
+	Made with &#x1f499;</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
 </div>
 
 </div> <!-- /page -->
