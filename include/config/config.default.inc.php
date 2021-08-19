@@ -45,8 +45,11 @@ Config::set('MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS', 50);
 Config::set('MELLIVORA_CONFIG_CHALL_SOLVE_DECAY', 100);
 
 // CTF default start and end times, in unix timestamp
-Config::set('MELLIVORA_CONFIG_CTF_START_TIME', 1584699200);
-Config::set('MELLIVORA_CONFIG_CTF_END_TIME', 1985699206);
+Config::set('MELLIVORA_CONFIG_CTF_START_TIME', );
+Config::set('MELLIVORA_CONFIG_CTF_END_TIME', );
+
+//CTF Misc Settings
+Config::set('MELLIVORA_CONFIG_SHOW_SCOREBOARD',true);   //boolean
 
 // redirects
 Config::set('MELLIVORA_CONFIG_INDEX_REDIRECT_TO', 'home');
@@ -58,7 +61,7 @@ Config::set('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH', 2);
 Config::set('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH', 30);
 Config::set('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED', true);
 
-//Signup restrictions
+//Signup restrictions, boolean
 Config::set('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', true);
 Config::set('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', true);
 Config::set('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK', false);
