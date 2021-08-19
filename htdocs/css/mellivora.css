@@ -200,7 +200,7 @@ body {
 }
 
 .dropdown-menu li a:hover {
-	background-color: #C2E812;
+	background-color: #b3ddff;
 	color: #000;
 }
 
@@ -300,7 +300,7 @@ small .btn-xs {
 }
 
 .btn-2:hover, .btn-2:active, .btn-2:focus, .btn-2.active {
-	background-color: #C2E812;
+	background-color: #b3ddff;
 	color: #000;
 }
 
@@ -323,7 +323,7 @@ small .btn-xs {
 }
 
 .btn-2::before {
-	background-color: #C2E812;
+	background-color: #b3ddff;
 }
 
 .btn-3::before {
@@ -356,7 +356,7 @@ a {
 }
 
 a:hover, a:focus {
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 img::selection {
@@ -872,7 +872,7 @@ td a:hover {
 
 .modal.challenge-attempt.manual .modal-header {
 	background-image: url('/img/ui/padlock_white.svg');
-	background-color: #C2E812;
+	background-color: #b3ddff;
 	color: #000;
 }
 
@@ -915,7 +915,7 @@ td a:hover {
 
 .message-centered .submessage {
 	font-size: 18px;
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 /** Alerts **/
@@ -1052,7 +1052,7 @@ td a:hover {
 }
 
 .ctfx-pager .pager-arrow:hover {
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 .country-flag {
