@@ -257,6 +257,7 @@ small .btn-xs {
 	min-width: 240px;
 	min-height: 45px;
 	padding: 7px 20px;
+	border-radius: 5px;
 	font-size: 20px;
 	background-color: #fff;
 	color: #000;
@@ -283,6 +284,7 @@ small .btn-xs {
 	position: absolute;
 	width: 100%;
 	height: 5px;
+	border-radius: 5px;
 	z-index: -1;
 	bottom: 0;
 	left: 0;
