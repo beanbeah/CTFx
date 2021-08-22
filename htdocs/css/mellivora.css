@@ -275,7 +275,7 @@ small .btn-xs {
 }
 
 .logout:hover {
-	background-color: #718792
+	background-color: #407090
 }
 
 .btn-lg:hover {
@@ -300,12 +300,12 @@ small .btn-xs {
 }
 
 .btn-1:hover, .btn-1:focus, .btn-1:active, .btn-1.active {
-	background-color: #718792;
+	background-color: #407090;
 	color: #fff;
 }
 
 .btn-2:hover, .btn-2:active, .btn-2:focus, .btn-2.active {
-	background-color: #b3ddff;
+	background-color: #407090;
 	color: #000;
 }
 
@@ -324,11 +324,11 @@ small .btn-xs {
 }
 
 .btn-1::before {
-	background-color: #718792;
+	background-color: #407090;
 }
 
 .btn-2::before {
-	background-color: #b3ddff;
+	background-color: #407090;
 }
 
 .btn-3::before {
@@ -355,7 +355,7 @@ h4 {
 }
 
 a {
-	color: #718792;
+	color: #b3ddff;
 	outline: none !important;
 	transition: color 200ms ease-in-out;
 }
@@ -521,7 +521,7 @@ td a:hover {
 	background-color: #1c313a;
 	background-position-x: left;
 	background-repeat: no-repeat;
-	border-bottom: 5px solid #718792;
+	border-bottom: 5px solid #b3ddff;
 	min-height: 61px;
 	overflow: auto;
 	padding: 10px 65px 0px 65px;
@@ -619,9 +619,9 @@ td a:hover {
 }
 
 .challenge-solved .ctfx-card-head {
-	background: rgb(113,135,146);
-	background: linear-gradient(90deg, rgba(113,135,146,1) 0%, rgba(113,135,146,1) 60%, rgba(113,135,146,1) 100%);
-	border-bottom: 0px solid #718792;
+	background: rgb(133,165,181);
+	background: linear-gradient(90deg, rgba(133,165,181,1) 0%, rgba(133,165,181,1) 60%, rgba(133,165,181,1) 100%);
+	border-bottom: 0px solid #b3ddff;
 	padding-bottom: 10px;
 }
 
@@ -747,7 +747,7 @@ td a:hover {
 }
 
 .our-team {
-	color: #718792 !important;
+	color: #b3ddff !important;
 }
 
 .team-table tbody tr td {
@@ -808,7 +808,7 @@ td a:hover {
 }
 
 .team-table .progress-bar {
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 .team-table .team-score {
@@ -873,7 +873,7 @@ td a:hover {
 
 .modal.challenge-attempt.correct .modal-header {
 	background-image: url('/img/ui/flag_white.svg');
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 .modal.challenge-attempt.manual .modal-header {
@@ -946,12 +946,12 @@ td a:hover {
 }
 
 .progress-striped .progress-bar-info, .progress-striped .progress-bar-success {
-	background-image: linear-gradient(90deg, rgba(113,135,146,1) 0%, rgba(13,156,254,1) 60%, rgba(15,196,254,1) 100%);
+	background-image: linear-gradient(90deg, rgba(133,165,181,1) 0%, rgba(13,156,254,1) 60%, rgba(15,196,254,1) 100%);
 	background-size: auto;
 }
 
 .progress-bar-info, .progress-bar-success {
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 /** BBCode **/
@@ -1039,7 +1039,7 @@ td a:hover {
 
 .page-header {
 	margin: 15px 0px 10px 0px;
-	border-bottom: 2px solid #718792;
+	border-bottom: 2px solid #b3ddff;
 }
 
 .ctfx-pager {
@@ -1110,7 +1110,7 @@ td a:hover {
 }
 
 .light-theme a:hover {
-	color: #718792;
+	color: #b3ddff;
 }
 
 @media (max-width: 800px) {
