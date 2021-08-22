@@ -130,9 +130,10 @@ body {
 }
 
 .ctfx-card-head {
-	background-color: #505050;
+	background-color: #103060;
 	padding: 15px 15px 5px 15px;
-	border-bottom: 5px solid #718792;
+	border-bottom: 5px solid #95c3ff;
+	border-radius: 5px;
 }
 
 .ctfx-card-head small {
