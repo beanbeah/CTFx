@@ -41,11 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //write to config file, quite hacky at the moment
         if ($_POST['freeze']){
             
-            $concat_3 = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', true);+g';
+            $concat_3 = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', false);+g';
             shell_exec("sed -i '{$concat_3}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
         }
         else {
-            $concat_4 = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', false);+g';
+            $concat_4 = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', true);+g';
             shell_exec("sed -i '{$concat_4}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
 
         }
