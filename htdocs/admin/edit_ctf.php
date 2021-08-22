@@ -19,9 +19,9 @@ form_hidden('action', 'change_times');
 form_button_submit('Update');
 form_end();
 
-section_subhead('CTF Scoreboard Freeze');
+section_subhead('Scoreboard Freeze');
 form_start('/admin/actions/edit_ctf');
-form_input_checkbox('Freeze',Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD'));
+form_input_checkbox('Freeze',!Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD'));
 message_inline('This WILL write to the config.inc.php file');
 form_hidden('action','scoreboard_freeze');
 form_button_submit('Update');
