@@ -9,7 +9,8 @@ send_cache_headers('scores', Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'));
 
 head(lang_get('scoreboard'));
 
-if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+function show_score(){
+    if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
 
     $now = time();
 
@@ -85,6 +86,21 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
     echo '</div></div>';
 
     cache_end(CONST_CACHE_NAME_SCORES);
+    }
+}
+
+if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === false) {
+    if (user_is_staff()){
+        message_inline('Scoreboard is currently frozen for all players');
+        show_score();
+    }
+    else {
+        message_inline('Scoreboard is frozen');
+    }
+}
+
+else if(Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === true){
+    show_score();
 }
 
 foot();
