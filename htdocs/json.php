@@ -10,22 +10,8 @@ if (!isset($_GET['view'])) {
     echo json_error(lang_get('please_request_view'));
     exit;
 }
-/**
- * Gets all User Score
- * Input: None
- * Output: 
- * {
- *      "standings":[
- *                 {
- *                      "pos": "int",
- *                      "team": "USERNAME OR TEAMNAME",
- *                      "score": "int"
- *                 },   
- * 
- *       ]
- * }
- */
-if ($_GET['view'] == 'scores') {
+
+if ($_GET['view'] == 'scoreboard') {
     if (cache_start(CONST_CACHE_NAME_SCORES_JSON, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
         json_scoreboard(array_get($_GET, 'user_type'));
         // To make the scoreboard fully CTFTime compatible you can run this python3 one-liner to encode unicode chars to \uXXXX:
