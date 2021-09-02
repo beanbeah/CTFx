@@ -27,6 +27,6 @@
     "aws/aws-sdk-php": "3.*"
   },
   "require-dev": {
-    "codeception/codeception": "2.*"
+    "codeception/codeception": "3.*"
   }
 }
