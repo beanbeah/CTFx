@@ -4,7 +4,7 @@ It should be noted that this deployment method has been tested only with Digital
 
 ## Node Installation 
 
-1) Install the following dependencies `nginx php-fpm php-xml php-curl php-mysql php-mbstring php-pear composer`
+1) Install the following dependencies `nginx php-fpm php-xml php-curl php-mysql php-mbstring php-pear composer php-redis`
 2) Copy repo contents to `/var/www/ctfx`
 3) Run `composer install --no-dev --optimize-autoloader` under `/var/www/ctfx`
 4) Make the folder `writeable` writable (`sudo chown -R www-data:www-data writeable/`)
@@ -29,7 +29,7 @@ This should be done on a separate droplet or machine that is within the same pri
 
 This should be done on a separate droplet or machine that is within the same private network as MySQL and the various nodes. 
 
-1) Install the following dependencies `redis php-redis`
+1) Install the following dependencies `redis`
 2) Configure Redis to accept external connections. Edit `/etc/redis/redis.conf` and change/add the following
    - `bind localhost your_inet_addr`
    - `requirepass your_password`
@@ -40,6 +40,7 @@ This should be done on a separate droplet or machine that is within the same pri
 1) Edit `php.ini` and change/add the following
    - `session.save_handler = redis`
    - `session.save_path = "tcp://IPADDRESS:PORT?auth=REDISPASSWORD`
+   REDIS password must be URL encoded
 2) Copy `include/config/db.default.inc.php` to `include/config/db.inc.php` and configure. 
 3) Copy `include/config/config.default.inc.php` to `include/config/config.inc.php` and configure. 
 4) Restart Nginx and PHP-FPM
