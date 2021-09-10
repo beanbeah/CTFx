@@ -23,6 +23,7 @@ This should be done on a separate droplet or machine that is within the same pri
    - `CREATE DATABASE mellivora CHARACTER SET utf8 COLLATE utf8_general_ci;`
    - `CREATE USER 'mellivora'@'%' IDENTIFIED WITH mysql_native_password BY 'mellivora_pass';` Please ensure you change the default username and password
    - `GRANT ALL PRIVILEGES ON mellivora.* TO 'mellivora'@'%';  `
+   - `SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
    - `exit`
 2) `sudo mysql < install/sql/001-mellivora.sql`
 3) `sudo mysql < install/sql/002-countries.sql`
