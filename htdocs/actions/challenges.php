@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         validate_captcha();
     }
 
-    if ($_POST['action'] == 'submit_flag') {
+    if ($_POST['action'] === 'submit_flag') {
 
         validate_id($_POST['challenge']);
 

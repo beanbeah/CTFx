@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // stage 1, part 2
-    if ($_POST['action'] == 'reset_password') {
+    if ($_POST['action'] === 'reset_password') {
 
         if (Config::get('MELLIVORA_CONFIG_RECAPTCHA_ENABLE_PUBLIC')) {
             validate_captcha();
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // stage 2, part 2
-    else if ($_POST['action'] == 'choose_password' && is_valid_id($auth['user_id'])) {
+    else if ($_POST['action'] === 'choose_password' && is_valid_id($auth['user_id'])) {
 
         $new_password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
 

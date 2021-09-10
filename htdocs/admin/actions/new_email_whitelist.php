@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     validate_xsrf_token($_POST[CONST_XSRF_TOKEN_KEY]);
 
-    if ($_POST['action'] == 'new') {
+    if ($_POST['action'] === 'new') {
       //convert emails to array (comma delimited). Iterate thru each email/add it
       $email_raw = $_POST['email'];
       $emails = explode(',',$email_raw);

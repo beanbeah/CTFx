@@ -4,7 +4,7 @@ require('../../../include/mellivora.inc.php');
 
 enforce_authentication(CONST_USER_CLASS_MODERATOR);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     validate_id($_POST['id']);

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     validate_xsrf_token($_POST[CONST_XSRF_TOKEN_KEY]);
 
-    if ($_POST['action'] == 'test') {
+    if ($_POST['action'] === 'test') {
         $email = $_POST['email'];
         
         if (valid_email($email) && allowed_email($email)){

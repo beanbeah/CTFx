@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     validate_id($_POST['id']);
     validate_xsrf_token($_POST[CONST_XSRF_TOKEN_KEY]);
 
-    if ($_POST['action'] == 'edit') {
+    if ($_POST['action'] === 'edit') {
 
         db_update(
            'dynamic_menu',
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('/admin/edit_dynamic_menu_item.php?id='.$_POST['id'].'&generic_success=1');
     }
 
-    else if ($_POST['action'] == 'delete') {
+    else if ($_POST['action'] === 'delete') {
 
         if (!$_POST['delete_confirmation']) {
             message_error('Please confirm delete');
