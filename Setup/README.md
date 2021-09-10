@@ -9,18 +9,18 @@ CTF Challenge Data (Folder)
 		- Category Name (Folder)
 
 			- Challenge Name (Folder)
-				- CHALLENGE_FILES
-				- DESCRIPTION.TXT
-				- POINTS.TXT
-				- SOLUTION.TXT
-				- URL.TXT
-				- HINT.TXT
+				- Any challenge files that you want to distribute
+				- DESCRIPTION.txt
+				- POINTS.txt
+				- SOLUTION.txt
+				- URL.txt
+				
 
-		- FLAGFORMAT.TXT
-		- INITIALS.TXT
-		- WEIGHT.TXT
+		- FLAGFORMAT.txt
+		- INITIALS.txt
+		- WEIGHT.txt
 
 ```
-Note that `HINT.TXT`,`URL.TXT` are optional.
+Note that `HINT.txt`,`URL.txt` are optional.
 
 `CTFimporter-local` will edit the local database and copy files locally.
