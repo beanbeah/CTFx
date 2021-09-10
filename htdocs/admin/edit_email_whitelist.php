@@ -31,7 +31,8 @@ form_end();
 
 section_subhead('Delete email');
 form_start('/admin/actions/edit_email_whitelist');
-form_input_checkbox('Delete confirmation');
+form_input_checkbox('Delete confirmation', false, 'red');
+
 form_hidden('action', 'delete');
 form_hidden('id', $_GET['id']);
 form_button_submit('Delete email', 'danger');

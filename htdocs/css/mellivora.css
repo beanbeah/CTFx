@@ -65,10 +65,12 @@ body {
 	vertical-align: middle;
 	background-color: #505050;
 	margin-right: 5px;
+	border-radius: 5px;
 }
 
 .title-decorator {
 	width: 34px;
+	border-radius: 5px;
 	position: absolute;
 	animation: maskdown-first 3s infinite ease-out;
 }
@@ -123,14 +125,15 @@ body {
 	background-color: #222;
 	color: #fff;
 	border: none;
-	border-radius: 0px;
+	border-radius: 5px;
 	margin-bottom: 10px;
 }
 
 .ctfx-card-head {
-	background-color: #505050;
+	background-color: #103060;
 	padding: 15px 15px 5px 15px;
-	border-bottom: 5px solid #718792;
+	border-bottom: 5px solid #95c3ff;
+	border-radius: 5px;
 }
 
 .ctfx-card-head small {
@@ -187,7 +190,7 @@ body {
 
 .dropdown-menu {
 	border: none;
-	border-radius: 0px;
+	border-radius: 5px;
 	margin-top: 0px;
 	padding: 0px;
 }
@@ -200,7 +203,7 @@ body {
 }
 
 .dropdown-menu li a:hover {
-	background-color: #C2E812;
+	background-color: #b3ddff;
 	color: #000;
 }
 
@@ -218,7 +221,7 @@ body {
 
 .btn {
 	border: none;
-	border-radius: 0px;
+	border-radius: 5px;
 	opacity: 1 !important;
 	outline: none;
 }
@@ -272,7 +275,7 @@ small .btn-xs {
 }
 
 .logout:hover {
-	background-color: #718792
+	background-color: #407090
 }
 
 .btn-lg:hover {
@@ -283,6 +286,7 @@ small .btn-xs {
 	position: absolute;
 	width: 100%;
 	height: 5px;
+	border-radius: 0px 0px 5px 5px;
 	z-index: -1;
 	bottom: 0;
 	left: 0;
@@ -292,15 +296,16 @@ small .btn-xs {
 
 .btn-lg:hover::before {
 	height: 100%;
+	border-radius:5px;
 }
 
 .btn-1:hover, .btn-1:focus, .btn-1:active, .btn-1.active {
-	background-color: #718792;
+	background-color: #407090;
 	color: #fff;
 }
 
 .btn-2:hover, .btn-2:active, .btn-2:focus, .btn-2.active {
-	background-color: #C2E812;
+	background-color: #407090;
 	color: #000;
 }
 
@@ -319,11 +324,11 @@ small .btn-xs {
 }
 
 .btn-1::before {
-	background-color: #718792;
+	background-color: #407090;
 }
 
 .btn-2::before {
-	background-color: #C2E812;
+	background-color: #407090;
 }
 
 .btn-3::before {
@@ -350,13 +355,13 @@ h4 {
 }
 
 a {
-	color: #718792;
+	color: #b3ddff;
 	outline: none !important;
 	transition: color 200ms ease-in-out;
 }
 
 a:hover, a:focus {
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 img::selection {
@@ -395,7 +400,7 @@ textarea {
 	background-color: #FFF;
 	color: #0a0a0a;
 	border: none;
-	border-radius: 0px;
+	border-radius: 5px;
 	height: auto;
 	box-sizing: border-box;
 	padding: 5px 5px 5px 12px;
@@ -516,7 +521,7 @@ td a:hover {
 	background-color: #1c313a;
 	background-position-x: left;
 	background-repeat: no-repeat;
-	border-bottom: 5px solid #718792;
+	border-bottom: 5px solid #b3ddff;
 	min-height: 61px;
 	overflow: auto;
 	padding: 10px 65px 0px 65px;
@@ -550,6 +555,7 @@ td a:hover {
 	background-position: right;
 	background-size: 200% 100%;
 	border-radius: 5px;
+	font-weight: bold;
 }
 
 #menu-main li {
@@ -579,7 +585,7 @@ td a:hover {
 	height: 320px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("/img/logo.gif");
+	background: url("/img/logo.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -613,9 +619,9 @@ td a:hover {
 }
 
 .challenge-solved .ctfx-card-head {
-	background: rgb(113,135,146);
-	background: linear-gradient(90deg, rgba(113,135,146,1) 0%, rgba(113,135,146,1) 60%, rgba(113,135,146,1) 100%);
-	border-bottom: 0px solid #718792;
+	background: rgb(133,165,181);
+	background: linear-gradient(90deg, rgba(133,165,181,1) 0%, rgba(133,165,181,1) 60%, rgba(133,165,181,1) 100%);
+	border-bottom: 0px solid #b3ddff;
 	padding-bottom: 10px;
 }
 
@@ -741,7 +747,7 @@ td a:hover {
 }
 
 .our-team {
-	color: #718792 !important;
+	color: #b3ddff !important;
 }
 
 .team-table tbody tr td {
@@ -802,7 +808,7 @@ td a:hover {
 }
 
 .team-table .progress-bar {
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 .team-table .team-score {
@@ -850,7 +856,7 @@ td a:hover {
 	max-width: 1100px;
 	color: #000;
 	border: none;
-	border-radius: 0px;
+	border-radius: 5px;
 }
 
 .modal.challenge-attempt .modal-header {
@@ -867,12 +873,12 @@ td a:hover {
 
 .modal.challenge-attempt.correct .modal-header {
 	background-image: url('/img/ui/flag_white.svg');
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 .modal.challenge-attempt.manual .modal-header {
 	background-image: url('/img/ui/padlock_white.svg');
-	background-color: #C2E812;
+	background-color: #b3ddff;
 	color: #000;
 }
 
@@ -915,7 +921,7 @@ td a:hover {
 
 .message-centered .submessage {
 	font-size: 18px;
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 /** Alerts **/
@@ -936,16 +942,16 @@ td a:hover {
 .progress {
 	background-color: rgba(255, 255, 255, 0.1);
 	margin-bottom: 10px;
-	border-radius: 0px;
+	border-radius: 5px;
 }
 
 .progress-striped .progress-bar-info, .progress-striped .progress-bar-success {
-	background-image: linear-gradient(90deg, rgba(113,135,146,1) 0%, rgba(13,156,254,1) 60%, rgba(15,196,254,1) 100%);
+	background-image: linear-gradient(90deg, rgba(133,165,181,1) 0%, rgba(13,156,254,1) 60%, rgba(15,196,254,1) 100%);
 	background-size: auto;
 }
 
 .progress-bar-info, .progress-bar-success {
-	background-color: #718792;
+	background-color: #b3ddff;
 }
 
 /** BBCode **/
@@ -1033,7 +1039,7 @@ td a:hover {
 
 .page-header {
 	margin: 15px 0px 10px 0px;
-	border-bottom: 2px solid #718792;
+	border-bottom: 2px solid #b3ddff;
 }
 
 .ctfx-pager {
@@ -1052,7 +1058,7 @@ td a:hover {
 }
 
 .ctfx-pager .pager-arrow:hover {
-	color: #C2E812;
+	color: #b3ddff;
 }
 
 .country-flag {
@@ -1104,7 +1110,7 @@ td a:hover {
 }
 
 .light-theme a:hover {
-	color: #718792;
+	color: #b3ddff;
 }
 
 @media (max-width: 800px) {

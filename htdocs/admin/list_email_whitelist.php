@@ -6,7 +6,8 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 
 head('Email Whitelist');
 menu_management();
-section_title('List of Emails', button_link('Add email', 'new_email_whitelist'), false);
+section_title('List of Emails', button_link('Add email', 'new_email_whitelist'));
+
 
 echo '
     <table id="rules" class="table table-striped table-hover">

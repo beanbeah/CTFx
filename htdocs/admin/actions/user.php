@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     validate_id($_POST['id']);
     validate_xsrf_token($_POST[CONST_XSRF_TOKEN_KEY]);
 
-    if ($_POST['action'] == 'edit') {
+    if ($_POST['action'] === 'edit') {
 
         validate_email($_POST['email']);
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirectBack ("generic_success");
     }
 
-    else if ($_POST['action'] == 'delete') {
+    else if ($_POST['action'] === 'delete') {
 
         if (!$_POST['delete_confirmation']) {
             message_error('Please confirm delete');
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('/admin/users.php?generic_success=1');
     }
 
-    else if ($_POST['action'] == 'reset_password') {
+    else if ($_POST['action'] === 'reset_password') {
 
         if (!$_POST['reset_confirmation']) {
             message_error('Please confirm password reset');

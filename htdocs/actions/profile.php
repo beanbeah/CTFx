@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     validate_xsrf_token($_POST[CONST_XSRF_TOKEN_KEY]);
 
-    if ($_POST['action'] == 'edit') {
+    if ($_POST['action'] === 'edit') {
 
         db_update(
           'users',
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('profile?generic_success=1');
     }
 
-    else if ($_POST['action'] == '2fa_generate') {
+    else if ($_POST['action'] === '2fa_generate') {
 
         db_insert(
             'two_factor_auth',
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('profile?generic_success=1');
     }
 
-    else if ($_POST['action'] == '2fa_enable') {
+    else if ($_POST['action'] === '2fa_enable') {
 
         if (!validate_two_factor_auth_code($_POST['code'])) {
             message_error('Incorrect code');
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('profile?generic_success=1');
     }
 
-    else if ($_POST['action'] == '2fa_disable') {
+    else if ($_POST['action'] === '2fa_disable') {
 
         db_update(
             'users',
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         redirect('profile?generic_success=1');
     }
 
-    else if ($_POST['action'] == 'reset_password') {
+    else if ($_POST['action'] === 'reset_password') {
 
         if (Config::get('MELLIVORA_CONFIG_RECAPTCHA_ENABLE_PRIVATE')) {
             validate_captcha();

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     validate_xsrf_token($_POST['xsrf_token']);
 
-    if ($_POST['action'] == 'delete') {
+    if ($_POST['action'] === 'delete') {
 
         if (!$_POST['delete_confirmation']) {
             message_error('Please confirm delete');

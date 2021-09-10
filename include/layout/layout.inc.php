@@ -101,7 +101,7 @@ function head($title = '') {
         ';
 
     if (isset($_GET['generic_success'])) {
-        message_inline ("Action Successful", "green", true, "margin-bottom: 0px");
+        message_inline ("Action Successful", "darkishblue", true, "margin-bottom: 0px");
         spacer ();
     } else if (isset($_GET['generic_failure'])) {
         message_inline ("Action Failed", "red", true, "margin-bottom: 0px");
@@ -121,8 +121,8 @@ function foot () {
 </div> <!-- /container -->
 
 <div id="footer">
-    <b>ACSI CTFx</b> v1 Beta<br>
-	Made with &#x1f499; by ACSI RTS</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
+    <b>CTFx</b> v1 Beta<br>
+	Made with &#x1f499;</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
 </div>
 
 </div> <!-- /page -->
@@ -135,7 +135,7 @@ function foot () {
 </html>';
 }
 
-function section_title ($title, $tagline = '', $decorator_color = "green") {
+function section_title ($title, $tagline = '', $decorator_color = "darkishblue") {
     echo '
     <div class="row">
         <div class="col-lg-12 page-header">
@@ -147,7 +147,7 @@ function section_title ($title, $tagline = '', $decorator_color = "green") {
     ';
 }
 
-function section_head ($title, $tagline = '', $decorator_color = "green", $typewriter = true) {
+function section_head ($title, $tagline = '', $decorator_color = "darkishblue", $typewriter = true) {
     echo '
         <div class="row">
             <div class="col-lg-12" style="margin-bottom: 5px">
@@ -175,8 +175,8 @@ function title_decorator ($color, $rotation = "0deg", $img = "arrow.png") {
     $colorcode = "#808080";
 
     switch ($color) {
-        case "blue": $colorcode = "#0B90FD"; break;
-        case "green": $colorcode = "#C2E812"; break;
+        case "lightblue": $colorcode = "#B3DDFF"; break;
+        case "darkishblue": $colorcode = "#82abcc"; break;
         case "red": $colorcode = "#F2542D"; break;
         default: break; // default: remains gray
     }

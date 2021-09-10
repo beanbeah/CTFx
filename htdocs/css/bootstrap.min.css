@@ -1,4 +1,4 @@
-yyy/*!
+/*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -1408,7 +1408,7 @@ textarea {
 }
 
 a {
-	color: #718792;
+	color: #b3ddff;
 	text-decoration: none
 }
 
@@ -1688,7 +1688,7 @@ mark {
 }
 
 .text-primary {
-	color: #718792
+	color: #b3ddff
 }
 
 a.text-primary:focus,
@@ -1734,7 +1734,7 @@ a.text-danger:hover {
 
 .bg-primary {
 	color: #fff;
-	background-color: #718792
+	background-color: #b3ddff
 }
 
 a.bg-primary:focus,
@@ -3794,7 +3794,7 @@ fieldset[disabled] .btn-default:hover {
 
 .btn-primary {
 	color: #fff;
-	background-color: #718792;
+	background-color: #b3ddff;
 	border-color: #2e6da4
 }
 
@@ -3857,12 +3857,12 @@ fieldset[disabled] .btn-primary.focus,
 fieldset[disabled] .btn-primary:active,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary:hover {
-	background-color: #718792;
+	background-color: #b3ddff;
 	border-color: #2e6da4
 }
 
 .btn-primary .badge {
-	color: #718792;
+	color: #b3ddff;
 	background-color: #fff
 }
 
@@ -4164,7 +4164,7 @@ fieldset[disabled] .btn-danger:hover {
 
 .btn-link {
 	font-weight: 400;
-	color: #718792;
+	color: #b3ddff;
 	border-radius: 0
 }
 
@@ -4359,7 +4359,7 @@ tbody.collapse.in {
 .dropdown-menu>.active>a:hover {
 	color: #fff;
 	text-decoration: none;
-	background-color: #718792;
+	background-color: #b3ddff;
 	outline: 0
 }
 
@@ -4852,7 +4852,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .nav>li>a:focus,
 .nav>li>a:hover {
 	text-decoration: none;
-	background-color: #718792
+	background-color: #b3ddff
 }
 
 .nav>li.disabled>a {
@@ -4871,7 +4871,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .nav .open>a:focus,
 .nav .open>a:hover {
 	background-color: #eee;
-	border-color: #718792
+	border-color: #b3ddff
 }
 
 .nav .nav-divider {
@@ -4983,7 +4983,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .nav-pills>li.active>a:focus,
 .nav-pills>li.active>a:hover {
 	color: #fff;
-	background-color: #718792
+	background-color: #b3ddff
 }
 
 .nav-stacked>li {
@@ -5710,7 +5710,7 @@ fieldset[disabled] .navbar-inverse .btn-link:hover {
 	padding: 6px 12px;
 	margin-left: -1px;
 	line-height: 1.42857143;
-	color: #718792;
+	color: #b3ddff;
 	text-decoration: none;
 	background-color: #fff;
 	border: 1px solid #ddd
@@ -5748,8 +5748,8 @@ fieldset[disabled] .navbar-inverse .btn-link:hover {
 	z-index: 2;
 	color: #fff;
 	cursor: default;
-	background-color: #718792;
-	border-color: #718792
+	background-color: #b3ddff;
+	border-color: #b3ddff
 }
 
 .pagination>.disabled>a,
@@ -5886,7 +5886,7 @@ a.label:hover {
 }
 
 .label-primary {
-	background-color: #718792
+	background-color: #b3ddff
 }
 
 .label-primary[href]:focus,
@@ -5969,7 +5969,7 @@ a.badge:hover {
 
 .list-group-item.active>.badge,
 .nav-pills>.active>a>.badge {
-	color: #718792;
+	color: #b3ddff;
 	background-color: #fff
 }
 
@@ -6055,7 +6055,7 @@ a.badge:hover {
 a.thumbnail.active,
 a.thumbnail:focus,
 a.thumbnail:hover {
-	border-color: #718792
+	border-color: #b3ddff
 }
 
 .thumbnail .caption {
@@ -6202,7 +6202,7 @@ a.thumbnail:hover {
 	line-height: 20px;
 	color: #fff;
 	text-align: center;
-	background-color: #718792;
+	background-color: #b3ddff;
 	-webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
 	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
 	-webkit-transition: width .6s ease;
@@ -6401,8 +6401,8 @@ button.list-group-item {
 .list-group-item.active:hover {
 	z-index: 2;
 //	color: #fff;
-	background-color: #718792;
-	border-color: #718792
+	background-color: #b3ddff;
+	border-color: #b3ddff
 }
 
 .list-group-item.active .list-group-item-heading,
@@ -6867,26 +6867,26 @@ button.list-group-item-danger.active:hover {
 }
 
 .panel-primary {
-	border-color: #718792
+	border-color: #b3ddff
 }
 
 .panel-primary>.panel-heading {
 	color: #fff;
-	background-color: #718792;
-	border-color: #718792
+	background-color: #b3ddff;
+	border-color: #b3ddff
 }
 
 .panel-primary>.panel-heading+.panel-collapse>.panel-body {
-	border-top-color: #718792
+	border-top-color: #b3ddff
 }
 
 .panel-primary>.panel-heading .badge {
-	color: #718792;
+	color: #b3ddff;
 	background-color: #fff
 }
 
 .panel-primary>.panel-footer+.panel-collapse>.panel-body {
-	border-bottom-color: #718792
+	border-bottom-color: #b3ddff
 }
 
 .panel-success {

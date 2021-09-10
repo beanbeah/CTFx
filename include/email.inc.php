@@ -25,7 +25,7 @@ function send_email (
         $replyto_name = Config::get('MELLIVORA_CONFIG_EMAIL_REPLYTO_NAME');
     }
 
-    $mail = new PHPMailer();
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->IsHTML($is_html);
     $mail->XMailer = ' ';
     $mail->CharSet = 'UTF-8';
@@ -157,7 +157,9 @@ function email_regex_search ($email){
 }
 
 function allowed_email ($email) {	
-    $allowedEmail = false;	
+
+    $allowedEmail = true;	
+
     if (Config::get('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK') && Config::get('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')){
         $allowedEmail = email_regex_search($email) && email_whitelist_search($email);
     }

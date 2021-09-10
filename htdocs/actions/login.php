@@ -9,7 +9,7 @@ if (user_is_logged_in()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($_POST['action'] == 'login') {
+    if ($_POST['action'] === 'login') {
 
         $email = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'USR')];
         $password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
