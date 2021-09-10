@@ -56,8 +56,8 @@ $opts = db_query_fetch_all('
 array_unshift($opts, array('id'=>0, 'title'=> '-- Depend on another challenge? --'));
 form_select($opts, 'Relies on', 'id', $challenge['relies_on'], 'title', 'category');
 
-form_input_text('Available from (Time in UTC)', date_time($challenge['available_from']), null, "Available from (Time in UTC)");
-form_input_text('Available until (Time in UTC)', date_time($challenge['available_until']), null, "Available until (Time in UTC)");
+form_input_text('Available from', date_time($challenge['available_from']), null, "Available from (Time in UTC)");
+form_input_text('Available until', date_time($challenge['available_until']), null, "Available until (Time in UTC)");
 
 form_input_checkbox('Automark', $challenge['automark']);
 form_input_checkbox('Case insensitive', $challenge['case_insensitive']);
