@@ -157,7 +157,9 @@ function email_regex_search ($email){
 }
 
 function allowed_email ($email) {	
+
     $allowedEmail = true;	
+
     if (Config::get('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK') && Config::get('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')){
         $allowedEmail = email_regex_search($email) && email_whitelist_search($email);
     }

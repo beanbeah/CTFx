@@ -8,6 +8,7 @@ head('Email signup rules');
 menu_management();
 section_title('Email signup rules', button_link('New rule', 'new_restrict_email'));
 
+
 message_inline('Rules in list below are applied top-down. Rules further down on the list override rules above.
                      List is ordered by "priority". A higher "priority" value puts a rule further down the list.
                      Rules are PCRE regex. Example: ^.+@.+$');

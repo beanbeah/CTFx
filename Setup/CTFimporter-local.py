@@ -6,6 +6,8 @@ import shutil
 import hashlib
 
 # Global Constants
+HOST = '127.0.0.1'
+PORT = 3306
 USERNAME = 'mellivora'
 PASSWORD = 'mellivora_pass'
 DATABASE = 'mellivora'
@@ -23,7 +25,7 @@ CHALLENGE_CATEGORIES = set()
 CHALLENGE_TITLES = dict() #Challenge Title (Formatted) -> CHALLENGES[] index
 SAFE_FOR_DB_CHANGES = True
 
-CNX = mysql.connector.connect(user=USERNAME, password=PASSWORD, database=DATABASE)
+CNX = mysql.connector.connect(host=HOST, port=PORT, user=USERNAME, password=PASSWORD, database=DATABASE)
 DB_CATEGORIES = dict() #Category Title -> Category ID
 DB_CHALLENGES = dict() #Challenge Title -> Challenge ID
 
