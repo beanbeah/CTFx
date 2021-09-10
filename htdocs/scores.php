@@ -89,7 +89,11 @@ function show_score(){
     }
 }
 
-if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === false) {
+if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
+    show_score();
+}
+
+else{
     if (user_is_staff()){
         message_inline('Scoreboard is currently frozen for all players');
         show_score();
@@ -97,10 +101,6 @@ if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === false) {
     else {
         message_inline('Scoreboard is frozen');
     }
-}
-
-else if(Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === true){
-    show_score();
 }
 
 foot();
