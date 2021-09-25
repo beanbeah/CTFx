@@ -9,7 +9,7 @@ send_cache_headers('scores', Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'));
 
 head(lang_get('scoreboard'));
 
-function show_score(){
+function show_score($selective_scoring=false){
     if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
 
     $now = time();
@@ -49,7 +49,7 @@ function show_score(){
     // at least one ser type
     else {
         foreach ($user_types as $user_type) {
-            if (user_is_staff() || get_user_type() == $user_type['id']){
+            if (user_is_staff() || get_user_type() == $user_type['id'] || $selective_scoring){
                 if(user_is_staff()){section_head(htmlspecialchars($user_type['title']) . ' ' . lang_get('scoreboard'),
                     '<a href="/json?view=scoreboard&user_type='.$user_type['id'].'"></a>'
                 );}
