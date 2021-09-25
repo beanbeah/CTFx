@@ -59,30 +59,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )
             );
 
-           db_update(
-                'challenges',
-                array(
-                    'title'=>$_POST['title'],
-                    'description'=>$_POST['description'],
-                    'flag'=>$_POST['flag'],
-                    'automark'=>$_POST['automark'],
-                    'case_insensitive'=>$_POST['case_insensitive'],
-                    'points' => dynamicScoringFormula ($_POST['initial_points'], $_POST['minimum_points'], $_POST['solve_decay'], $challenge['solves']),
-                    'initial_points' => empty_to_zero($_POST['initial_points']),
-                    'minimum_points' => empty_to_zero($_POST['minimum_points']),
-                    'solve_decay' => empty_to_zero($_POST['solve_decay']),
-                    'category'=>$_POST['category'],
-                    'exposed'=>$_POST['exposed'],
-                    'available_from'=>strtotime($_POST['available_from']),
-                    'available_until'=>strtotime($_POST['available_until']),
-                    'num_attempts_allowed'=>$_POST['num_attempts_allowed'],
-                    'min_seconds_between_submissions'=>$_POST['min_seconds_between_submissions'],
-                    'relies_on'=>$_POST['relies_on']
-                ),
-                array('id'=>$_POST['id'])
-            );
+            //date-time validation
+            $expression = "/^(((0[1-9]|[12]\d|3[01])[\/\.-](0[13578]|1[02])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((0[1-9]|[12]\d|30)[\/\.-](0[13456789]|1[012])[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((0[1-9]|1\d|2[0-8])[\/\.-](02)[\/\.-]((19|[2-9]\d)\d{2})\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9]))|((29)[\/\.-](02)[\/\.-]((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))\s(0[0-9]|1[0-9]|2[0-3]):([0-5][0-9]):([0-5][0-9])))$/";
+            
+            $from_raw = $_POST['available_from'];
+            $end_raw =  $_POST['available_until'];
 
-            redirect('/admin/challenge.php?id='.$_POST['id'].'&generic_success=1');
+            if (preg_match($expression,$from_raw)&&preg_match($expression, $end_raw)){
+                $from = new DateTime($from_raw, new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')));
+                $end = new DateTime($end_raw, new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')));
+
+                $from = $from->format('U');
+                $end = $end->format('U');
+                db_update(
+                    'challenges',
+                    array(
+                        'title'=>$_POST['title'],
+                        'description'=>$_POST['description'],
+                        'flag'=>$_POST['flag'],
+                        'automark'=>$_POST['automark'],
+                        'case_insensitive'=>$_POST['case_insensitive'],
+                        'points' => dynamicScoringFormula ($_POST['initial_points'], $_POST['minimum_points'], $_POST['solve_decay'], $challenge['solves']),
+                        'initial_points' => empty_to_zero($_POST['initial_points']),
+                        'minimum_points' => empty_to_zero($_POST['minimum_points']),
+                        'solve_decay' => empty_to_zero($_POST['solve_decay']),
+                        'category'=>$_POST['category'],
+                        'exposed'=>$_POST['exposed'],
+                        'available_from'=>$from,
+                        'available_until'=>$end,
+                        'num_attempts_allowed'=>$_POST['num_attempts_allowed'],
+                        'min_seconds_between_submissions'=>$_POST['min_seconds_between_submissions'],
+                        'relies_on'=>$_POST['relies_on']
+                    ),
+                    array('id'=>$_POST['id'])
+                );
+
+                redirect('/admin/challenge.php?id='.$_POST['id'].'&generic_success=1');
+            } else{
+                redirect('/admin/challenge.php?id='.$_POST['id'].'&generic_failure=1');
+            }
         }
 
         else if ($_POST['action'] === 'delete') {

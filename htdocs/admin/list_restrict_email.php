@@ -48,7 +48,7 @@ foreach($rules as $rule) {
     echo '
     <tr>
         <td>',htmlspecialchars($rule['rule']),'</td>
-        <td>',date_time($rule['added']),'</td>
+        <td>',date_time($rule['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),'</td>
         <td>',htmlspecialchars($rule['team_name']),'</td>
         <td>
             ',($rule['white'] ?

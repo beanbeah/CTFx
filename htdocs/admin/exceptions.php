@@ -75,7 +75,7 @@ foreach($exceptions as $exception) {
     echo '
     <tr>
         <td>',htmlspecialchars($exception['message']),'</td>
-        <td>',date_time($exception['added']),'</td>
+        <td>',date_time($exception['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),'</td>
         <td>',($exception['added_by'] ?
          '<a href="/admin/user.php?id='.htmlspecialchars($exception['added_by']).'">'.htmlspecialchars($exception['team_name']).'</a>'
          :

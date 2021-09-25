@@ -218,15 +218,21 @@ function time_elapsed ($to, $from = false) {
     return seconds_to_pretty_time($to);
 }
 
-function date_time($timestamp = false, $specific = 6) {
+function date_time($timestamp = false,  $timezone = false, $specific = 6) {
 
     if($timestamp === false) {
         $timestamp = time();
     }
-
-    $specific = substr('Y-m-d H:i:s', 0, ($specific*2)-1);
-
-    return date($specific, $timestamp);
+    
+    $specific = substr('d-m-Y H:i:s', 0, ($specific*2)-1); 
+    $UTC = new DateTimeZone("UTC");   
+    $date = new DateTime(date($specific, $timestamp));
+    
+    if ($timezone){
+        $date->setTimezone(new DateTimeZone($timezone));
+    }  
+    
+    return $date->format('d-m-Y H:i:s');
 }
 
 function ctfStarted () {
@@ -469,7 +475,7 @@ function check_server_and_db_time() {
     $time = time();
     $error = abs($time - $dbInfo['timestamp']);
     if ($error >= 5) {
-        message_inline('Database and PHP times are out of sync. This will cause problems.
+        message_inline('Database and PHP times (In UTC) are out of sync. This will cause problems.
         DB time: '.date_time($dbInfo['timestamp']).', PHP time: '.date_time($time).' ('.$error.' seconds off).', "red");
     }
 

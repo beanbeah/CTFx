@@ -62,8 +62,8 @@ foreach ($entries as $entry) {
             </a>
         </td>
         <td><a href="/admin/ip_log?ip=',htmlspecialchars($entry['ip']),'">', htmlspecialchars(Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? gethostbyaddr($entry['ip']) : $entry['ip']), '</a></td>
-        <td>', date_time($entry['added']), '</td>
-        <td>', date_time($entry['last_used']), '</td>
+        <td>', date_time($entry['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td>', date_time($entry['last_used'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td>', number_format($entry['times_used']), '</td>
     </tr>
     ';
