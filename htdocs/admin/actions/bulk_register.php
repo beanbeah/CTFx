@@ -12,13 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       //convert array (comma delimited). Iterate thru each email/add it
       $email_raw = $_POST['email'];
       $emails = explode(',',$email_raw);
-      $username_raw = $_POST['username'];
-      $usernames = explode(',',$username_raw);
+      $team_name_raw = $_POST['team_name'];
+      $team_names = explode(',',$team_name_raw);
       $type = ($_POST['user_type'] ? $_POST['user_type'] : null);
       $country = $_POST['country'];
 
-      if (count($emails) != count($usernames)){
-         message_error("Number of emails != Number of Users");
+      if (count($emails) != count($team_names)){
+         message_error("Number of emails != Number of Teamnames");
       }
 
       if (isset($type) && !is_valid_id($type)) {
@@ -27,34 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       for ($i = 0; $i<count($emails);$i++){
          $email = $emails[$i];
-         $username = $usernames[$i];
+         $team_name = $team_names[$i];
 
-         if (!valid_email($email) || !(strlen($username) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH'))){
-            log_exception(new Exception('Invalid User Details'), false, "Invalid User Details entered, skipping this user. Email: " . $email . " Username: " . $username);
+         if (!valid_email($email) || strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH'))){
+            log_exception(new Exception('Invalid User Details'), false, "Invalid User Details entered, skipping this user. Email: " . $email . " Team name: " . $team_name);
             continue;
          }
 
          $password = generate_random_string(12);
-         if (register_account(
+         if (!register_account(
             $email,
             $password,
-            $username,
+            $team_name,
             $country,
             $type,
             false
         )){
-            continue;
-         } else {
-            log_exception(new Exception('Sign Up failed'), false, "Invalid User Details entered, skipping this user. Email: " . $email . " Username: " . $username);
+            log_exception(new Exception('Sign Up failed'), false, "Invalid User Details entered, skipping this user. Email: " . $email . " Team name: " . $team_name);
          }
       }
       redirect('/admin/bulk_register?generic_success=1');
    }
-}
-
-
-
-
-
-    
-  
+} 

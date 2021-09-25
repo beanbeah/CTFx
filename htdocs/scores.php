@@ -9,7 +9,7 @@ send_cache_headers('scores', Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'));
 
 head(lang_get('scoreboard'));
 
-function show_score($selective_scoring=false){
+function show_score($selective_scoreboard_display=false){
     if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
 
     $now = time();
