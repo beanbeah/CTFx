@@ -90,7 +90,7 @@ function show_score($selective_scoring=false){
 }
 
 if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
-    show_score();
+    show_score(true);
 }
 
 else{
