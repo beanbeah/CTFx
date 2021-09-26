@@ -56,7 +56,6 @@ function print_graph(){
             edited_data["datasets"].push(value);
         }
         let ctx = document.querySelector("canvas").getContext("2d");
-        ctx.scale(0.85,0.7);
         let chart = new Chart(ctx, {
             type: "line",
             data: edited_data,

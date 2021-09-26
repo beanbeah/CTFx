@@ -37,7 +37,25 @@ if ($_GET['view'] == 'scores') {
         cache_end(CONST_CACHE_NAME_SCORES_JSON);
     }
 }
-
+/**
+ * Gets all Top 10 users scoreboard history (sorted chronologically). This is explicitely meant for Chart.js
+ * Input: None
+ * Output: 
+ * {
+ *      [
+ *          {
+ *              "label": "USERNAME OR TEAMNAME",
+ *              "data":[
+ *                          {
+ *                              "x": "int" (this is the epoch time)
+ *                              "y": "int" (this is the player's score at time x)
+ *                          }
+ *                      ]
+ *          },   
+ * 
+ *       ]
+ * }
+ */
 else if ($_GET['view'] == 'graph') {
     if (cache_start(CONST_CACHE_NAME_SCORES_JSON, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
         json_score_dump();
