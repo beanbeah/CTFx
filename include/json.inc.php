@@ -43,8 +43,11 @@ function json_scoreboard ($user_type = null) {
     echo json_encode($scoreboard);
 }
 
-function json_score_dump () {
+function json_score_dump() {
     $export = array();
+    $dateTimeZone = new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE'));
+    $dateTime = new DateTime("now", $dateTimeZone);
+    $timeOffset = $dateTimeZone->getOffset($dateTime);
 
     //first retrieve top 10 so we dont actually die
     $consolidated_scores = db_query_fetch_all('
@@ -73,17 +76,18 @@ function json_score_dump () {
                 submissions.challenge = challenges.id
             ORDER BY time_solve ASC');
 
-        $export[$i]['position'] = $i + 1;
-        $export[$i]['team_name'] = $consolidated_scores[$i]['team_name'];
+        $export[$i]['label'] = $consolidated_scores[$i]['team_name'];
 
         //consolidate scores
         $sum = 0;
         for ($j = 0; $j<count($challenges_solved); $j++){
             $sum += $challenges_solved[$j]['points'];
-            $time = $challenges_solved[$j]['time_solve'];
-            $export[$i]['score_time'][$j] = array($time,$sum);
+            $time = $challenges_solved[$j]['time_solve'] + $timeOffset;
+            $export[$i]['data'][$j] = array("x"=>$time,"y"=>$sum);
         }
     }
-
     echo json_encode($export);
 }
+
+
+
