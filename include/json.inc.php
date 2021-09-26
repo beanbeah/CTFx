@@ -82,7 +82,8 @@ function json_score_dump() {
         $sum = 0;
         for ($j = 0; $j<count($challenges_solved); $j++){
             $sum += $challenges_solved[$j]['points'];
-            $time = $challenges_solved[$j]['time_solve'] + $timeOffset;
+            //chartJS requires ms
+            $time = ($challenges_solved[$j]['time_solve'] + $timeOffset) * 1000;
             $export[$i]['data'][$j] = array("x"=>$time,"y"=>$sum);
         }
     }
