@@ -47,6 +47,8 @@ Config::set('MELLIVORA_CONFIG_CHALL_SOLVE_DECAY', 100);
 // CTF default start and end times, in unix timestamp
 Config::set('MELLIVORA_CONFIG_CTF_START_TIME', 1584699200);
 Config::set('MELLIVORA_CONFIG_CTF_END_TIME', 1985699206);
+Config::set('MELLIVORA_CONFIG_CTF_TIMEZONE', 'Asia/Singapore');
+
 //CTF Misc Settings
 Config::set('MELLIVORA_CONFIG_SHOW_SCOREBOARD', true);   //boolean
 

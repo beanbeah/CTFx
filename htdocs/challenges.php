@@ -133,7 +133,7 @@ foreach($challenges as $challenge) {
                 <h4>Hidden challenge worth ', number_format($challenge['points']), 'pts</h4>
             </div>
             <div class="ctfx-card-body">
-                Available in ',time_remaining($challenge['available_from']),' (from ', date_time($challenge['available_from']), ' until ', date_time($challenge['available_until']), ')
+                Available in ',time_remaining($challenge['available_from']),' (from ', date_time($challenge['available_from'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ' until ', date_time($challenge['available_until'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
             </div>
         </div>';
 

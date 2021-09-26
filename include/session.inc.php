@@ -438,7 +438,7 @@ function logout() {
     redirect(Config::get('MELLIVORA_CONFIG_INDEX_REDIRECT_TO'));
 }
 
-function register_account($email, $password, $team_name, $country, $type = null) {
+function register_account($email, $password, $team_name, $country, $type = null, $send_email = true) {
 
     if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
         message_error(lang_get('registration_closed'));
@@ -524,8 +524,8 @@ function register_account($email, $password, $team_name, $country, $type = null)
         );
 
         // send details to user
-        send_email(array($email), $email_subject, $email_body);
-
+        if($send_email)send_email(array($email), $email_subject, $email_body);
+        
         // if account isn't enabled by default, display message and die
         if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED')) {
             message_generic(

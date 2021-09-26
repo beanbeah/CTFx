@@ -48,7 +48,7 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
             <div class="ctfx-card-head"><h4>',
                 htmlspecialchars($item['title']),
                 '</h4> <small>',
-                date_time ($item['added']),
+                date_time ($item['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),
                 '</small></div>
             <div class="ctfx-card-body">
                 ',get_bbcode()->parse($item['body']),'
