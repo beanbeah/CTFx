@@ -1,13 +1,14 @@
 <?php
 
-function scoreboard ($scores) {
+function scoreboard ($scores,$show_podium = false) {
   if (empty ($scores)) {
     message_center ("No teams");
   }
 
   //$scores = json_decode (file_get_contents ("/var/www/ctfx/include/layout/custom_scores.json"), true);
 
-  podium ($scores);
+  if($show_podium)podium($scores);
+  print_graph();
   echo '<table class="table team-table table-striped table-hover"><tbody>';
 
     $maxScore = $scores[0]['score'];
@@ -31,6 +32,71 @@ function scoreboard ($scores) {
 
     echo '</tbody>
     </table>';
+}
+
+function print_graph(){
+    echo'
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+    <div class="score-graph">Top 10 Teams</div>
+    <canvas></canvas>
+    <script>';
+
+    //plot graph function
+    echo'
+    function plot_graph(raw_data){
+        //Colors from https://bl.ocks.org/emeeks/8cdec64ed6daf955830fa723252a4ab3
+        const colors = ["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"];
+        var edited_data = [];
+        edited_data["datasets"] = [];
+        for (let [key, value] of Object.entries(raw_data["datasets"])) {
+            value["backgroundColor"] = colors[key];
+            value["borderColor"] = colors[key];
+            edited_data["datasets"].push(value);
+        }
+        let ctx = document.querySelector("canvas").getContext("2d");
+        ctx.scale(0.85,0.7);
+        let chart = new Chart(ctx, {
+            type: "line",
+            data: edited_data,
+            options: {
+                scales: {
+                    x: {
+                        type: "time",
+                        ticks: {
+                            color: "#ffffff"
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: "#ffffff"
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: "bottom",
+                        labels: {
+                            color: "#ffffff"
+                        }
+                    }
+                }
+            },
+        });
+    }';
+
+    //fetch data + plot
+    echo'
+    fetch("https://ctf.8059blank.tk/json?view=graph")
+    .then((resp) => resp.json())
+    .then(function(data) {
+        plot_graph({"datasets": data});
+    })
+    .catch(function(error) {
+        console.log(error);
+    });
+    </script><br>';
 }
 
 function podium ($scores) {

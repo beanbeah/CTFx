@@ -86,6 +86,7 @@ function json_score_dump() {
             $time = ($challenges_solved[$j]['time_solve'] + $timeOffset) * 1000;
             $export[$i]['data'][$j] = array("x"=>$time,"y"=>$sum);
         }
+        $export[$i]['data'][count($challenges_solved)] = array("x"=>time()*1000,"y"=>$sum);
     }
     echo json_encode($export);
 }
