@@ -58,7 +58,6 @@ function json_score_dump () {
         LEFT JOIN challenges AS c ON c.id = s.challenge
         WHERE
           u.competing = 1
-          '.(is_valid_id($user_type) ? 'AND u.user_type = :user_type' : '').'
         GROUP BY u.id
         ORDER BY score DESC, tiebreaker ASC');
 
