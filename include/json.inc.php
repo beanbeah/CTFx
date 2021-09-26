@@ -45,9 +45,6 @@ function json_scoreboard ($user_type = null) {
 
 function json_score_dump() {
     $export = array();
-    $dateTimeZone = new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE'));
-    $dateTime = new DateTime("now", $dateTimeZone);
-    $timeOffset = $dateTimeZone->getOffset($dateTime);
 
     //first retrieve top 10 so we dont actually die
     $consolidated_scores = db_query_fetch_all('
@@ -83,7 +80,7 @@ function json_score_dump() {
         for ($j = 0; $j<count($challenges_solved); $j++){
             $sum += $challenges_solved[$j]['points'];
             //chartJS requires ms
-            $time = ($challenges_solved[$j]['time_solve'] + $timeOffset) * 1000;
+            $time = ($challenges_solved[$j]['time_solve']) * 1000;
             $export[$i]['data'][$j] = array("x"=>$time,"y"=>$sum);
         }
         $export[$i]['data'][count($challenges_solved)] = array("x"=>time()*1000,"y"=>$sum);

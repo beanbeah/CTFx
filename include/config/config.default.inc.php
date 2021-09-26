@@ -42,7 +42,12 @@ Config::set('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES', '/');
 // Challenges
 Config::set('MELLIVORA_CONFIG_CHALL_INITIAL_POINTS', 500);
 Config::set('MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS', 50);
-Config::set('MELLIVORA_CONFIG_CHALL_SOLVE_DECAY', 100);
+Config::set('MELLIVORA_CONFIG_CHALL_SOLVE_DECAY', 0);
+
+//New Dynamic Scoring Formula
+Config::set('MELLIVORA_CONFIG_CHALL_LOWER_BOUND', 0.1);
+Config::set('MELLIVORA_CONFIG_CHALL_UPPER_BOUND', 0.7);
+Config::set('MELLIVORA_CONFIG_CHALL_PARTICIPANTS', 150);
 
 // CTF default start and end times, in unix timestamp
 Config::set('MELLIVORA_CONFIG_CTF_START_TIME', 1584699200);
@@ -62,11 +67,9 @@ Config::set('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH', 2);
 Config::set('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH', 30);
 Config::set('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED', true);
 
-
 //Signup restrictions, boolean
-
 Config::set('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', true);
-Config::set('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', true);
+Config::set('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', false);
 Config::set('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK', false);
 
 // if set to true, a random password will be generated
@@ -91,7 +94,7 @@ Config::set('MELLIVORA_CONFIG_APPEND_MD5_TO_DOWNLOADS', false);
 // email stuff
 Config::set('MELLIVORA_CONFIG_EMAIL_USE_SMTP', true);
 Config::set('MELLIVORA_CONFIG_EMAIL_FROM_EMAIL', 'yourmail@gmail.com');
-Config::set('MELLIVORA_CONFIG_EMAIL_FROM_NAME', 'X-MAS CTF Team');
+Config::set('MELLIVORA_CONFIG_EMAIL_FROM_NAME', 'ACSI CTF Team');
 // blank for same as "FROM"
 Config::set('MELLIVORA_CONFIG_EMAIL_REPLYTO_EMAIL', '');
 Config::set('MELLIVORA_CONFIG_EMAIL_REPLYTO_NAME', '');

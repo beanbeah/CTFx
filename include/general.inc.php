@@ -566,13 +566,27 @@ function empty_to_zero($val) {
     return $val;
 }
 
-function dynamicScoringFormula ($initial, $min, $decay, $solves) {
+function dynamicScoringFormula_old ($initial, $min, $decay, $solves) {
     if ($decay == 0)
         return $initial; // Avoid divide by 0 exception
     else if ($solves >= $decay)
         return $min; // Clamp at minimum solves
     else
         return $initial - (($initial - $min) / ($decay * $decay)) * ($solves * $solves);
+}
+
+function dynamicScoringFormula($initial, $min, $solves) {
+    $lb = Config::get('MELLIVORA_CONFIG_CHALL_LOWER_BOUND');
+    $ub = Config::get('MELLIVORA_CONFIG_CHALL_UPPER_BOUND');
+    $total = Config::get('MELLIVORA_CONFIG_CHALL_PARTICIPANTS');
+    $x = $solves/$total;
+    if ($x <= $lb){
+        return $initial;
+    } else if ($x >= $ub){
+        return $min;
+    } else {
+        return $initial-intdiv(($initial-$min),($ub-$lb))*($x-$lb);
+    }
 }
 
 function challengeSolve ($id) {
@@ -591,7 +605,7 @@ function challengeSolve ($id) {
         'challenges',
         array(
             'solves'=>$challenge['solves'] + 1,
-            'points'=>dynamicScoringFormula ($challenge['initial_points'], $challenge['minimum_points'], $challenge['solve_decay'], $challenge['solves'] + 1)
+            'points'=>dynamicScoringFormula ($challenge['initial_points'], $challenge['minimum_points'], $challenge['solves'] + 1)
         ),
         array('id'=>$id)
     );
@@ -613,7 +627,7 @@ function challengeUnsolve ($id) {
         'challenges',
         array(
             'solves'=>$challenge['solves'] - 1,
-            'points'=>dynamicScoringFormula ($challenge['initial_points'], $challenge['minimum_points'], $challenge['solve_decay'], $challenge['solves'] - 1)
+            'points'=>dynamicScoringFormula ($challenge['initial_points'], $challenge['minimum_points'], $challenge['solves'] - 1)
         ),
         array('id'=>$id)
     );
