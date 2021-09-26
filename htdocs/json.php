@@ -38,6 +38,13 @@ if ($_GET['view'] == 'scores') {
     }
 }
 
+else if ($_GET['view'] == 'graph') {
+    if (cache_start(CONST_CACHE_NAME_SCORES_JSON, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+        json_score_dump();
+        cache_end(CONST_CACHE_NAME_SCORES_JSON);
+    }
+}
+
 else {
     echo json_error(lang_get('please_request_view'));
     exit;

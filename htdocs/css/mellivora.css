@@ -578,6 +578,13 @@ td a:hover {
 	width: 100%;
 }
 
+/** Scoreboard Graph **/
+.score-graph {
+	font-size:  20px;
+	text-align: center;
+	margin-bottom: 1.5px;
+}
+
 /** Home Page **/
 
 #home-logo {
