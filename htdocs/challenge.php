@@ -6,6 +6,52 @@ validate_id($_GET['id']);
 
 head(lang_get('challenge_details'));
 
+function show_solves($submissions){
+    $num_correct_solves = count($submissions);
+
+                if (!$num_correct_solves) {
+                    echo lang_get('challenge_not_solved');
+                }
+
+                else {
+                    $user_count = get_num_participating_users();
+                    echo lang_get(
+                        'challenge_solved_by_percentage',
+                        array(
+                            'solve_percentage' => number_format((($num_correct_solves / $user_count) * 100), 1)
+                        )
+                    );
+
+                    echo '
+                   <table class="challenge-table table table-striped table-hover">
+                   <thead>
+                   <tr>
+                     <th>',lang_get('position'),'</th>
+                     <th>',lang_get('team'),'</th>
+                     <th>',lang_get('solved'),'</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   ';
+                    $i = 1;
+                    foreach ($submissions as $submission) {
+                        echo '
+                          <tr>
+                            <td>', number_format($i), ' ', get_position_medal($i), '</td>
+                            <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
+                            <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
+                          </tr>
+                          ';
+                        $i++;
+                    }
+
+                    echo '
+                   </tbody>
+                   </table>
+                     ';
+                }
+}
+
 if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA_CONFIG_CACHE_TIME_CHALLENGE'))) {
 
     $challenge = db_query_fetch_one('
@@ -59,50 +105,17 @@ if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA
 
     section_title ($challenge['title']);
 
-    $num_correct_solves = count($submissions);
-
-    if (!$num_correct_solves) {
-        echo lang_get('challenge_not_solved');
-    }
-
-    else {
-        $user_count = get_num_participating_users();
-        echo lang_get(
-            'challenge_solved_by_percentage',
-            array(
-                'solve_percentage' => number_format((($num_correct_solves / $user_count) * 100), 1)
-            )
-        );
-
-        echo '
-       <table class="challenge-table table table-striped table-hover">
-       <thead>
-       <tr>
-         <th>',lang_get('position'),'</th>
-         <th>',lang_get('team'),'</th>
-         <th>',lang_get('solved'),'</th>
-       </tr>
-       </thead>
-       <tbody>
-       ';
-        $i = 1;
-        foreach ($submissions as $submission) {
-            echo '
-              <tr>
-                <td>', number_format($i), ' ', get_position_medal($i), '</td>
-                <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
-                <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
-              </tr>
-              ';
-            $i++;
+    if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
+        show_solves($submissions);
+    } else{
+        if (user_is_staff()){
+            message_inline('Scoreboard and Challenge Solve Count are currently frozen for all players');
+            show_solves($submissions);
         }
-
-        echo '
-       </tbody>
-       </table>
-         ';
+        else {
+            message_inline('Scoreboard and Challenge Solve Count are frozen');
+        }
     }
-
     cache_end(CONST_CACHE_NAME_CHALLENGE . $_GET['id']);
 }
 
