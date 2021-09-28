@@ -738,7 +738,7 @@ class BBCodeLibrary
                 print "ISVALIDURL<br />";
             if ($bbcode->url_targetable !== false && isset($params['target']))
                 $target = " target=\"" . htmlspecialchars($params['target']) . "\"";
-            else $target = "";
+            else $target = " target=\"_blank";
             if ($bbcode->url_target !== false)
                 if (!($bbcode->url_targetable == 'override' && isset($params['target'])))
                     $target = " target=\"" . htmlspecialchars($bbcode->url_target) . "\"";
