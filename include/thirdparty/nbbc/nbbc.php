@@ -738,7 +738,7 @@ class BBCodeLibrary
                 print "ISVALIDURL<br />";
             if ($bbcode->url_targetable !== false && isset($params['target']))
                 $target = " target=\"" . htmlspecialchars($params['target']) . "\"";
-            else $target = " target=\"_blank";
+            else $target = "";
             if ($bbcode->url_target !== false)
                 if (!($bbcode->url_targetable == 'override' && isset($params['target'])))
                     $target = " target=\"" . htmlspecialchars($bbcode->url_target) . "\"";
@@ -1088,7 +1088,7 @@ class BBCode
         $this->detect_urls = false;
         $this->url_pattern = '<a href="{$url/h}">{$text/h}</a>';
         $this->url_targetable = false;
-        $this->url_target = false;
+        $this->url_target = '_blank';
     }
 
     function SetPreTrim($trim = "a")
