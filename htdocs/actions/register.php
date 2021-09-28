@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             $password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
             if (!empty($password)) {
-                if (strlen($password) <= '8') {
+                if (strlen($password) < '8') {
                     message_error("Your Password Must Contain At Least 8 Characters!");
                 } else if(!preg_match("#[0-9]+#",$password)) {
                     message_error("Your Password Must Contain At Least 1 Number!");

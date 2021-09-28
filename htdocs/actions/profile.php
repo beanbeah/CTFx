@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if(!empty($_POST['new_password']) && ($_POST['new_password'] == $_POST['new_password_again'])) {
-            if (strlen($password) <= '8') {
+            if (strlen($password) < '8') {
                     message_error("Your Password Must Contain At Least 8 Characters!");
             } else if(!preg_match("#[0-9]+#",$password)) {
                     message_error("Your Password Must Contain At Least 1 Number!");
