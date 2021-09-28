@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             send_email(array($user['email']), $email_subject, $email_body);
         }
 
-        message_generic('Success', 'If the email you provided was found in the database, an email has now been sent to it with further instructions!');
+        message_generic('Success', 'If the email you provided belongs to a valid user, an email has now been sent to it with further instructions!');
     }
 
     // stage 2, part 2
@@ -82,7 +82,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $new_password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
 
-        if (empty($new_password)) {
+        if (!empty($new_password)) {
+            if (strlen($new_password) <= '8') {
+                message_error("Your Password Must Contain At Least 8 Characters!");
+            } else if(!preg_match("#[0-9]+#",$new_password)) {
+                message_error("Your Password Must Contain At Least 1 Number!");
+            } else if(!preg_match("#[A-Z]+#",$new_password)) {
+                message_error("Your Password Must Contain At Least 1 Capital Letter!");
+            } else if(!preg_match("#[a-z]+#",$new_password)) {
+                message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
+            } else if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $new_password)) {
+                message_error("Your Password Must Contain At Least 1 Special Character !");
+            }
+        } else {
             message_error('You can\'t have an empty password');
         }
 

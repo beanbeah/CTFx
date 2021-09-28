@@ -52,8 +52,8 @@ else if ($_GET['action']=='choose_password' && is_valid_id($auth['user_id'])) {
 
     head (lang_get('choose_password'));
     section_title ("Choose Password:");
-
-    echo '
+    echo '<p>',
+    lang_get('password_requirement'),'</p>
     <form method="post" class="form-signin" action="actions/reset_password">
         <input name="',md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD'),'" type="password" class="form-control form-group" placeholder="',lang_get('password'),'" required autofocus />
         <input type="hidden" name="action" value="choose_password" />

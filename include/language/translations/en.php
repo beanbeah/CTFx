@@ -42,7 +42,7 @@ $lang['reset_password'] = 'Reset password';
 $lang['choose_password'] = 'Choose password';
 $lang['password'] = 'Password';
 $lang['email_password_on_signup'] = 'A confirmation email containing a random password will be sent to the chosen address.';
-
+$lang['password_requirement'] = "Please ensure your password is at least 8 characters long, with an Uppercase Character, a Lowercase Character, a Digit and a Symbol."
 $lang['register'] = 'Register';
 $lang['register_your_team'] = 'Register your team';
 $lang['account_signup_information'] = '{password_information}';

@@ -62,6 +62,7 @@ form_end();
 section_subhead(lang_get('reset_password'));
 form_start('actions/profile');
 form_input_password('Current password');
+message_inline(lang_get('password_requirement'));
 form_input_password('New password');
 form_input_password('New password again');
 form_hidden('action', 'reset_password');

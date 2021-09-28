@@ -16,7 +16,7 @@ if (Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
     lang_get(
             'account_signup_information',
             array(
-                'password_information' => (Config::get('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ? lang_get('email_password_on_signup') : '')
+                'password_information' => (Config::get('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ? lang_get('email_password_on_signup') : lang_get('password_requirement'))
             )
     ),'</p>
     <form method="post" id="registerForm" class="form-signin" action="actions/register">
