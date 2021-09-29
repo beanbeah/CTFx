@@ -585,7 +585,7 @@ function dynamicScoringFormula($initial, $min, $solves) {
     } else if ($x >= $ub){
         return $min;
     } else {
-        return $initial-intdiv(($initial-$min),($ub-$lb))*($x-$lb);
+        return $initial-ceil(($initial-$min)/($ub-$lb))*($x-$lb);
     }
 }
 
