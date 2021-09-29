@@ -81,23 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else if ($_POST['action'] === 'choose_password' && is_valid_id($auth['user_id'])) {
 
         $new_password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
-
-        if (!empty($new_password)) {
-            if (strlen($new_password) < '8') {
-                message_error("Your Password Must Contain At Least 8 Characters!");
-            } else if(!preg_match("#[0-9]+#",$new_password)) {
-                message_error("Your Password Must Contain At Least 1 Number!");
-            } else if(!preg_match("#[A-Z]+#",$new_password)) {
-                message_error("Your Password Must Contain At Least 1 Capital Letter!");
-            } else if(!preg_match("#[a-z]+#",$new_password)) {
-                message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
-            } else if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $new_password)) {
-                message_error("Your Password Must Contain At Least 1 Special Character !");
-            }
-        } else {
-            message_error('You can\'t have an empty password');
-        }
-
+        $new_password_confirmation = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD_CONFIRM')];
+        password_validation($new_password,$new_password_confirmation);
         $new_passhash = make_passhash($new_password);
 
         db_update(

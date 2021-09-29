@@ -106,23 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             message_error('Current password was incorrect.');
         }
 
-        if(!empty($_POST['new_password']) && ($_POST['new_password'] == $_POST['new_password_again'])) {
-            if (strlen($password) < '8') {
-                    message_error("Your Password Must Contain At Least 8 Characters!");
-            } else if(!preg_match("#[0-9]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Number!");
-            } else if(!preg_match("#[A-Z]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Capital Letter!");
-            } else if(!preg_match("#[a-z]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
-            } else if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) {
-                    message_error("Your Password Must Contain At Least 1 Special Character !");
-            }       
-        } else if(!empty($_POST['new_password'])) {
-            message_error('Passwords did not match.');
-        } else {
-            message_error('Password cannot be empty.');
-        }
+        password_validation($_POST['new_password'],$_POST['new_password_again']);
 
         $new_passhash = make_passhash($_POST['new_password']);
 

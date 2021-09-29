@@ -21,21 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $password = generate_random_string(12);
         } else {
             $password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
-            if (!empty($password)) {
-                if (strlen($password) < '8') {
-                    message_error("Your Password Must Contain At Least 8 Characters!");
-                } else if(!preg_match("#[0-9]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Number!");
-                } else if(!preg_match("#[A-Z]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Capital Letter!");
-                } else if(!preg_match("#[a-z]+#",$password)) {
-                    message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
-                } else if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) {
-                    message_error("Your Password Must Contain At Least 1 Special Character !");
-                }
-            } else {
-                message_error('You can\'t have an empty password');
-            }
+            $password_confirmation = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD_CONFIRM')];
+            password_validation($password,$password_confirmation);
         }
 
         if (register_account(
