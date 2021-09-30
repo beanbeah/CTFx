@@ -62,6 +62,17 @@ else if ($_GET['view'] == 'graph') {
         cache_end(CONST_CACHE_NAME_SCORES_JSON);
     }
 }
+/**
+ * The same as graph function except for all users. Incredibly slow and resource intensive process. 
+ * Should only be used after the CTF ends for analysis. 
+ */
+else if ($_GET['view'] == 'scoreboard_change_all'){
+    enforce_authentication(CONST_USER_CLASS_MODERATOR);
+    if (cache_start(CONST_CACHE_NAME_SCORES_JSON, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+        json_score_dump(true);
+        cache_end(CONST_CACHE_NAME_SCORES_JSON);
+    } 
+}
 
 else {
     echo json_error(lang_get('please_request_view'));

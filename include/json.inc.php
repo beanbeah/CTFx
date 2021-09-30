@@ -43,10 +43,10 @@ function json_scoreboard ($user_type = null) {
     echo json_encode($scoreboard);
 }
 
-function json_score_dump() {
+function json_score_dump($all_users = false) {
     $export = array();
 
-    //first retrieve top 10 so we dont actually die
+    //first retrieve position/ranking
     $consolidated_scores = db_query_fetch_all('
         SELECT
            u.id AS user_id,
@@ -61,7 +61,9 @@ function json_score_dump() {
         GROUP BY u.id
         ORDER BY score DESC, tiebreaker ASC');
 
-    for ($i =0; $i < 10; $i++){
+    $user_number = ($all_users ? Config::get('MELLIVORA_CONFIG_CHALL_PARTICIPANTS') : 10);
+
+    for ($i =0; $i < $user_number; $i++){
         $challenges_solved = db_query_fetch_all('
             SELECT 
                 submissions.added AS time_solve, 
