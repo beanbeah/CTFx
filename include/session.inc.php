@@ -380,7 +380,7 @@ function password_validation($password, $password_confirmation){
             } else if(!preg_match("#[a-z]+#",$password)) {
                     message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
             } else if(!preg_match("#[!\"\#$%&'()*+,-.\\\\:/;<=>?@[\]^_`{|}~]+#", $password)) {
-                    message_error("Your Password Must Contain At Least 1 Special Character !");
+                    message_error("Your Password Must Contain At Least 1 Special Character!");
             }       
         } else if(!empty($password)) {
             message_error('Passwords did not match.');

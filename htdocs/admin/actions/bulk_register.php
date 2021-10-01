@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
          $email = $emails[$i];
          $team_name = $team_names[$i];
 
-         if (!valid_email($email) || (strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH')) || (strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH'))){
+         if (!valid_email($email) || strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')){
             log_exception(new Exception('Invalid User Details'), false, "Invalid User Details entered, skipping this user. Email: " . $email . " Team name: " . $team_name);
             continue;
          }
