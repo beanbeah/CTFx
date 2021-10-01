@@ -7,12 +7,11 @@ require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
 require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
 
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 // set global head_sent variable
 $head_sent = false;
-// singleton parsedown object
-$parsedown = null;
-
+$converter = null;
 $staticVersion = "1.2.4";
 
 function head($title = '') {
@@ -20,7 +19,6 @@ function head($title = '') {
     global $staticVersion;
 
     header('Content-Type: text/html; charset=utf-8');
-    header('Content-Security-Policy: script-src \'self\'');
     echo '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -431,10 +429,14 @@ function get_pager_from($val) {
 }
 
 function parse_markdown($text) {
-    global $parsedown;
-    if ($parsedown === null) {
-            $parsedown = new Parsedown();
-            $parsedown->setSafeMode(true);
+    global $converter;
+    if ($converter === null) {
+            $config = [
+                'html_input' => 'escape',
+                'allow_unsafe_links' => 'false',
+                'max_nesting_level' => 5
+            ];
+            $converter = new GithubFlavoredMarkdownConverter($config);
         }
-    return $parsedown->text($text);
+    return $converter->convertToHtml($text);
 }
