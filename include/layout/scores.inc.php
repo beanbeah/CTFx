@@ -39,6 +39,8 @@ function print_graph(){
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+    <script src="/js/chartjs-plugin-zoom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <div class="score-graph">Top 10 Teams</div>
     <canvas></canvas>
     <script>';
@@ -48,6 +50,22 @@ function print_graph(){
     function plot_graph(raw_data){
         //Colors from https://bl.ocks.org/emeeks/8cdec64ed6daf955830fa723252a4ab3
         const colors = ["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"];
+        const zoomOptions = {
+          pan: {
+            enabled: true,
+            mode: "xy",
+            modifierKey: "ctrl",
+          },
+          zoom: {
+            mode: "xy",
+            drag: {
+              enabled: true,
+              borderColor: "rgb(54, 162, 235)",
+              borderWidth: 1,
+              backgroundColor: "rgba(54, 162, 235, 0.3)"
+            }
+          }
+        };
         var edited_data = [];
         edited_data["datasets"] = [];
         for (let [key, value] of Object.entries(raw_data["datasets"])) {
@@ -74,14 +92,19 @@ function print_graph(){
                     }
                 },
                 plugins: {
+                    zoom: zoomOptions,
                     legend: {
                         position: "bottom",
                         labels: {
                             color: "#ffffff"
                         }
-                    }
+                    },
+
                 }
             },
+        });
+        $("#reset-zoom").click(function(){
+            chart.resetZoom();
         });
     }';
 
@@ -95,7 +118,10 @@ function print_graph(){
     .catch(function(error) {
         console.log(error);
     });
-    </script><br>';
+    </script>
+    <button id="reset-zoom">Reset zoom</button>
+    <div class="chartjs-note">Pan is activated by keeping ctrl pressed.</div>
+    <br>';
 }
 
 function podium ($scores) {
