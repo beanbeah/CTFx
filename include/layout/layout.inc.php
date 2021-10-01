@@ -10,8 +10,8 @@ require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
 
 // set global head_sent variable
 $head_sent = false;
-// singleton bbcode instance
-$bbc = null;
+// singleton parsedown object
+$parsedown = null;
 
 $staticVersion = "1.2.4";
 
@@ -20,6 +20,7 @@ function head($title = '') {
     global $staticVersion;
 
     header('Content-Type: text/html; charset=utf-8');
+    header('Content-Security-Policy: script-src \'self\'');
     echo '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -273,73 +274,6 @@ function menu_management () {
     echo '</div>';
 }
 
-function bbcode_manual () {
-    echo '
-    <table>
-        <tr>
-        <td>
-            <ul>
-            <li><b>Text Styles:</b>
-                <ul>
-                <li>[b]<b>Bold</b>[/b]</li>
-                <li>[i]<i>Italics</i>[/i]</li>
-                <li>[u]<u>Underline</u>[/u]</li>
-                <li>[s]<strike>Strikethrough</strike>[/s]</li>
-                <li>[sup]<sup>Superscript</sup>[/sup]</li>
-                <li>[sub]<sub>Subscript</sub>[/sub]</li>
-                <li>[spoiler]<span class="bbcode_spoiler">Spoiler</span>[/spoiler]</li>
-                <li>[size=2]<span style="font-size:.83em">Custom Size</span>[/size]</li>
-                <li>[color=red]<span style="color:red">Custom Color</span>[/color]</li>
-                <li>[font=verdana]<span style="font-family:\'verdana\'">Custom Font</span>[/font]</li>
-                </ul>
-            </li>
-            <li><b>Links:</b>
-                <ul>
-                <li>[url]<a href="https://www.eff.org/">https://www.eff.org/</a>[/url]</li>
-                <li>[url=https://www.eff.org/]<a href="https://www.eff.org/">Named link</a>[/url]</li>
-                <li>[email]<a href="mailto:mail@mail.com" class="bbcode_email">mail@mail.com</a>[/email]</li>
-                </ul>
-            </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-            <li><b>Replaced Items:</b>
-                <ul>
-                <li>[img]/img/award_xenon.png[/img] => <img src="/img/award_xenon.png" alt="award_xenon.png" class="bbcode_img"></li>
-                <li>[br]</li>
-                </ul>
-            </li>
-            <li><b>Alignment:</b>
-                <ul>
-                <li>[center]...[/center]</li>
-                <li>[left]...[/left]</li>
-                <li>[right]...[/right]</li>
-                <li>[indent]...[/indent]</li>
-                </ul>
-            </li>
-            <li><b>Containers:</b>
-                <ul>
-                <li>[code]
-                <div class="bbcode_code">
-                    <div class="bbcode_code_head">Code:</div>
-                    <div class="bbcode_code_body" style="white-space:pre">',
-'for i in range (50):
-    print (i)',
-                '</div></div>[/code]</li>
-                <li>[quote]<div class="bbcode_quote">
-                    <div class="bbcode_quote_head">Quote:</div>
-                    <div class="bbcode_quote_body">Quoting Something</div>
-                </div>[/quote]</li>
-                </ul>
-            </li>
-            </ul>
-        </td>
-        </tr>
-    </table>
-    ';
-}
-
 function js_global_dict () {
 
     $dict = array();
@@ -496,13 +430,11 @@ function get_pager_from($val) {
     return 0;
 }
 
-function get_bbcode() {
-    global $bbc;
-
-    if ($bbc === null) {
-        $bbc = new BBCode();
-        $bbc->SetEnableSmileys(false);
-    }
-
-    return $bbc;
+function parse_markdown($text) {
+    global $parsedown;
+    if ($parsedown === null) {
+            $parsedown = new Parsedown();
+            $parsedown->setSafeMode(true);
+        }
+    return $parsedown->text($text);
 }
