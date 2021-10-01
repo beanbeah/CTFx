@@ -1088,7 +1088,7 @@ class BBCode
         $this->detect_urls = false;
         $this->url_pattern = '<a href="{$url/h}">{$text/h}</a>';
         $this->url_targetable = false;
-        $this->url_target = false;
+        $this->url_target = '_blank';
     }
 
     function SetPreTrim($trim = "a")

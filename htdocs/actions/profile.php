@@ -106,13 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             message_error('Current password was incorrect.');
         }
 
-        if (!strlen($_POST['new_password'])) {
-            message_error('Password cannot be empty.');
-        }
-
-        if ($_POST['new_password'] != $_POST['new_password_again']) {
-            message_error('Passwords did not match.');
-        }
+        password_validation($_POST['new_password'],$_POST['new_password_again']);
 
         $new_passhash = make_passhash($_POST['new_password']);
 

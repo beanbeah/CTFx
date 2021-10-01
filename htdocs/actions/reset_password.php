@@ -74,18 +74,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             send_email(array($user['email']), $email_subject, $email_body);
         }
 
-        message_generic('Success', 'If the email you provided was found in the database, an email has now been sent to it with further instructions!');
+        message_generic('Success', 'If the email you provided belongs to a valid user, an email has now been sent to it with further instructions!');
     }
 
     // stage 2, part 2
     else if ($_POST['action'] === 'choose_password' && is_valid_id($auth['user_id'])) {
 
         $new_password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
-
-        if (empty($new_password)) {
-            message_error('You can\'t have an empty password');
-        }
-
+        $new_password_confirmation = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD_CONFIRM')];
+        password_validation($new_password,$new_password_confirmation);
         $new_passhash = make_passhash($new_password);
 
         db_update(

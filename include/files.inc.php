@@ -51,7 +51,7 @@ function store_file($file, $challenge_id, $filename) {
                 'region' => Config::get('MELLIVORA_CONFIG_AWS_S3_REGION'),
                 'version' => 'latest'
             ));
-                $file_key = '/challenges/' . $file_id; //to test
+                $file_key = '/challenges/' . $file_id; 
 
             }
            

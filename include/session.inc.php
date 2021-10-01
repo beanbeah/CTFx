@@ -369,6 +369,27 @@ function log_user_ip($user_id) {
     }
 }
 
+function password_validation($password, $password_confirmation){
+    if(!empty($password) && ($password === $password_confirmation)) {
+            if (strlen($password) < '8') {
+                    message_error("Your Password Must Contain At Least 8 Characters!");
+            } else if(!preg_match("#[0-9]+#",$password)) {
+                    message_error("Your Password Must Contain At Least 1 Number!");
+            } else if(!preg_match("#[A-Z]+#",$password)) {
+                    message_error("Your Password Must Contain At Least 1 Capital Letter!");
+            } else if(!preg_match("#[a-z]+#",$password)) {
+                    message_error("Your Password Must Contain At Least 1 Lowercase Letter!");
+            } else if(!preg_match("#[!\"\#$%&'()*+,-.\\\\:/;<=>?@[\]^_`{|}~]+#", $password)) {
+                    message_error("Your Password Must Contain At Least 1 Special Character!");
+            }       
+        } else if(!empty($password)) {
+            message_error('Passwords did not match.');
+        } else {
+            message_error('You can\'t have an empty password');
+        }
+    return true;
+}
+
 function make_passhash($password) {
     $hash = password_hash($password, PASSWORD_DEFAULT);
 

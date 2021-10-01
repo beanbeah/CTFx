@@ -21,6 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $password = generate_random_string(12);
         } else {
             $password = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD')];
+            $password_confirmation = $_POST[md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD_CONFIRM')];
+            password_validation($password,$password_confirmation);
         }
 
         if (register_account(
