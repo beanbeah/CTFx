@@ -20,6 +20,7 @@ use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 $head_sent = false;
 $converter = null;
 $staticVersion = "1.2.4";
+$highlightTheme = 'github';
 
 function head($title = '') {
     global $head_sent;
@@ -37,6 +38,7 @@ function head($title = '') {
 
     <!-- CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/' . $highlightTheme .'.min.css">
     <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">';
 
     js_global_dict();
@@ -137,6 +139,7 @@ function foot () {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/mellivora.js?ver=' . $staticVersion . '"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 </body>
 </html>';
 }
@@ -440,14 +443,13 @@ function parse_markdown($text) {
     if ($converter === null) {
             $config = [
                 'html_input' => 'escape',
-                'allow_unsafe_links' => 'false',
+                'allow_unsafe_links' => false,
                 'max_nesting_level' => 5
             ];
             $environment = new Environment($config);
             $environment->addExtension(new CommonMarkCoreExtension());
-            $environment->addRenderer(FencedCode::class, new FencedCodeRenderer(['c', 'php', 'js']));
-            $environment->addRenderer(IndentedCode::class, new IndentedCodeCodeRenderer(['c', 'php', 'js']));
-
+            $environment->addRenderer(FencedCode::class, new FencedCodeRenderer());
+            $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
             $converter = new MarkdownConverter($environment);
         }
     return $converter->convertToHtml($text);
