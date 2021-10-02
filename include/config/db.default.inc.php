@@ -18,8 +18,8 @@
  */
 
 Config::set('MELLIVORA_CONFIG_DB_ENGINE', 'mysql');
-Config::set('MELLIVORA_CONFIG_DB_HOST', 'localhost');
+Config::set('MELLIVORA_CONFIG_DB_HOST', 'database');
 Config::set('MELLIVORA_CONFIG_DB_PORT', 3306);
 Config::set('MELLIVORA_CONFIG_DB_NAME', 'mellivora');
 Config::set('MELLIVORA_CONFIG_DB_USER', 'mellivora');
-Config::set('MELLIVORA_CONFIG_DB_PASSWORD', '');
+Config::set('MELLIVORA_CONFIG_DB_PASSWORD', 'mellivora');

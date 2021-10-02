@@ -7,7 +7,14 @@ require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
 require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
 
-use League\CommonMark\GithubFlavoredMarkdownConverter;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
+use League\CommonMark\MarkdownConverter;
+use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
+use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
+
 
 // set global head_sent variable
 $head_sent = false;
@@ -436,7 +443,12 @@ function parse_markdown($text) {
                 'allow_unsafe_links' => 'false',
                 'max_nesting_level' => 5
             ];
-            $converter = new GithubFlavoredMarkdownConverter($config);
+            $environment = new Environment($config);
+            $environment->addExtension(new CommonMarkCoreExtension());
+            $environment->addRenderer(FencedCode::class, new FencedCodeRenderer(['c', 'php', 'js']));
+            $environment->addRenderer(IndentedCode::class, new IndentedCodeCodeRenderer(['c', 'php', 'js']));
+
+            $converter = new MarkdownConverter($environment);
         }
     return $converter->convertToHtml($text);
 }

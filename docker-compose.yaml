@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+  website:
+    container_name: web_interface
+    build:
+      context: ./
+    environment:
+      MELLIVORA_CONFIG_DB_ENGINE: mysql
+      MELLIVORA_CONFIG_DB_HOST: database
+      MELLIVORA_CONFIG_DB_PORT: 3306
+      MELLIVORA_CONFIG_DB_NAME: mellivora
+      MELLIVORA_CONFIG_DB_USER: mellivora
+      MELLIVORA_CONFIG_DB_PASSWORD: mellivora
+    restart: always
+    ports: 
+      - "8088:80"
+  database:
+    container_name: database
+    build:
+      context: ./db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "seandontforgetmewhenyougetrichpls"
+    ports: 
+      - "33060:3306"
