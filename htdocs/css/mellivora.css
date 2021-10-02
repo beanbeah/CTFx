@@ -797,7 +797,6 @@ td a:hover {
 }
 
 .our-team {
-	color: #00205c !important;
 }
 
 .team-table tbody tr td {
@@ -810,22 +809,28 @@ td a:hover {
 }
 
 .team-table tbody tr {
-	background-color: #0a0a0a20 !important;
+	background-color: #00205c05 !important;
 }
 
 .team-table .team-number {
 	display: inline;
-	color: #a0a0a0;
+	float: left;
+	color: #00205c;
 }
 
 .team-table .team-name {
 	max-width: 200px;
-	width: 20px;
+	width: 150px;
 	text-align: right;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	padding-right: 0px;
+}
+
+.team-table .team-name a{
+	float:left;
+	color: #00205c;
 }
 
 .team-table .team-flag {
@@ -836,18 +841,18 @@ td a:hover {
 .team-table .team-progress-bar {
 	float: left;
 	width: 100%;
-	border-bottom: 5px solid #a0a0a0;
+	border-bottom: 2px solid #a0a0a0;
 	padding-left: 0px;
-	padding-right: 0px;
+	padding-right: 20px;
 	padding-bottom: 2px;
 }
 
 .team-table .progress {
 	background: none;
-	margin-bottom: 0px;
+	margin-bottom: 3px;
 	height: 23px;
 }
-
+/* 
 .progress svg {
 	width: 0px;
 }
@@ -855,10 +860,10 @@ td a:hover {
 .team-table .progress svg {
 	width: 23px;
 	float: right;
-}
+} */
 
 .team-table .progress-bar {
-	background-color: #00205c;
+	background-color: #ffc629aa;
 }
 
 .team-table .team-score {

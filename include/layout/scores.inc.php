@@ -20,7 +20,7 @@ function scoreboard ($scores,$show_podium = false) {
     foreach ($scores as $score) {
         echo '<tr>
           <td class="team-name">
-            <div class="team-number">',number_format($i++),'.</div>
+            <div class="team-number">',number_format($i++),'. </div>
             <a href="user?id=',htmlspecialchars($score['user_id']),'" class="team_',htmlspecialchars($score['user_id']),'">'
                 , htmlspecialchars($score['team_name']),
             '</a></td>',

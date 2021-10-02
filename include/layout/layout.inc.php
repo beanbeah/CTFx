@@ -317,9 +317,6 @@ function progress_bar ($percent, $type = false, $striped = true) {
     <div class="progress',$striped ? ' progress-striped' : '','">
         <div class="progress-bar progress-bar-',$type,'" role="progressbar" aria-valuenow="',$percent,'" aria-valuemin="0" aria-valuemax="100" style="width: ',$percent,'%">
             <span class="sr-only">',$percent,'% complete</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" preserveAspectRatio="none">
-                <polygon fill="#0a0a0a" points="0,0 10,10 10,0"/>
-            </svg>
         </div>
     </div>
     ';
