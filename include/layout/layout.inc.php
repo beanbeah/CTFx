@@ -20,7 +20,7 @@ use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 $head_sent = false;
 $converter = null;
 $staticVersion = "1.2.4";
-$highlightTheme = "github";
+$highlightTheme = "base16/atelier-sulphurpool-light";
 
 function head($title = '') {
     global $head_sent;
