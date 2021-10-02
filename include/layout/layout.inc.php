@@ -20,11 +20,12 @@ use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 $head_sent = false;
 $converter = null;
 $staticVersion = "1.2.4";
-$highlightTheme = 'github';
+$highlightTheme = "github";
 
 function head($title = '') {
     global $head_sent;
     global $staticVersion;
+    global $highlightTheme;
 
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html>
@@ -38,7 +39,7 @@ function head($title = '') {
 
     <!-- CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/' . $highlightTheme .'.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/' . $highlightTheme . '.min.css">
     <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">';
 
     js_global_dict();
@@ -124,6 +125,7 @@ function head($title = '') {
 
 function foot () {
     global $staticVersion;
+    global $highlightTheme;
     
     echo '</div> <!-- / content container -->
 </div> <!-- /container -->
