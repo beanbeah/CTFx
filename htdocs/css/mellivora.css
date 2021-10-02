@@ -5,11 +5,11 @@ html {
 }
 
 body {
-	background-color: #1c313a;
-	color: #FFF;
+	background-color: #E8E8ED;
+	color: #00205c;
 	min-height: 100%;
 	position: relative;
-	font-family: Sans-serif;
+	font-family: Helvetica, Sans-serif;
 	font-size: 16px;
 }
 
@@ -17,13 +17,13 @@ body {
 	width: 100%;
 	height: 100%;
 	z-index: -1;
-	background-color: #1c313a;
+	background-color: #E8E8ED;
 	position: absolute;
 	pointer-events: none;
 }
 
 .background-left {
-	background-color: #1c313a;
+	background-color: #E8E8ED;
 	background-image: none;
 	background-repeat: no-repeat;
 	background-position-x: left;
@@ -31,7 +31,7 @@ body {
 }
 
 .background-right {
-	background-color: #1c313a;
+	background-color: #E8E8ED;
 	background-image: none;
 	background-repeat: no-repeat;
 	background-position-x: right;
@@ -122,22 +122,24 @@ body {
 /** Cards **/
 
 .ctfx-card {
-	background-color: #222;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
+	background-color: #E8E8ED;
+	color: #00205c;
+	/* border: solid 2px #0675b4; */
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px 0px #00000020;
 	margin-bottom: 10px;
 }
 
 .ctfx-card-head {
-	background-color: #103060;
+	background-color: #ffc629;
+	color:	#00205c;
 	padding: 15px 15px 5px 15px;
-	border-bottom: 5px solid #95c3ff;
+	/* border-bottom: 5px solid #00205c40; */
 	border-radius: 5px;
 }
 
 .ctfx-card-head small {
-	color: #ffffff99)
+	color: #00205c;
 }
 
 .ctfx-card-head h4 {
@@ -149,7 +151,7 @@ body {
 }
 
 .ctfx-card-head a {
-	color: #FFF !important;
+	color: #00205c;
 	font-weight: bold;
 }
 
@@ -203,7 +205,7 @@ body {
 }
 
 .dropdown-menu li a:hover {
-	background-color: #b3ddff;
+	background-color: #00205c;
 	color: #000;
 }
 
@@ -275,7 +277,7 @@ small .btn-xs {
 }
 
 .logout:hover {
-	background-color: #407090
+	background-color: #ffc629
 }
 
 .btn-lg:hover {
@@ -300,12 +302,12 @@ small .btn-xs {
 }
 
 .btn-1:hover, .btn-1:focus, .btn-1:active, .btn-1.active {
-	background-color: #407090;
+	background-color: #ce0e2d;
 	color: #fff;
 }
 
 .btn-2:hover, .btn-2:active, .btn-2:focus, .btn-2.active {
-	background-color: #407090;
+	background-color: #ffc629;
 	color: #000;
 }
 
@@ -324,11 +326,11 @@ small .btn-xs {
 }
 
 .btn-1::before {
-	background-color: #407090;
+	background-color: #ce0e2d;
 }
 
 .btn-2::before {
-	background-color: #407090;
+	background-color: #ffc629;
 }
 
 .btn-3::before {
@@ -355,13 +357,13 @@ h4 {
 }
 
 a {
-	color: #b3ddff;
+	color: #00205c;
 	outline: none !important;
 	transition: color 200ms ease-in-out;
 }
 
 a:hover, a:focus {
-	color: #b3ddff;
+	color: #00205c;
 }
 
 img::selection {
@@ -518,13 +520,13 @@ td a:hover {
 /** Header **/
 
 #header {
-	background-color: #1c313a;
+	background-color: #E8E8ED;
 	background-position-x: left;
 	background-repeat: no-repeat;
-	border-bottom: 5px solid #b3ddff;
-	min-height: 61px;
+	/* border-bottom: 5pxpx solid #00205c; */
+	min-height: 90px;
 	overflow: auto;
-	padding: 10px 65px 0px 65px;
+	padding: 15px 65px 0px 75px;
 	width: 100%;
 	margin-bottom: 10px;
 	font-size: 13px;
@@ -547,7 +549,7 @@ td a:hover {
 }
 
 #menu-main a, #menu-main button {
-	color: #fff;
+	color: #00205c;
 	opacity: 1;
 	margin-top: 12px;
 	margin-bottom: 16px;
@@ -563,7 +565,7 @@ td a:hover {
 }
 
 #menu-main .active a, #menu-main a:hover, #menu-main .active button, #menu-main button:hover {
-	color: #000;
+	color: #00205c;
 	background-position: left;
 }
 
@@ -606,7 +608,7 @@ td a:hover {
 	height: 320px;
 	margin-left: auto;
 	margin-right: auto;
-	background: url("/img/logo.png");
+	background: url("/img/theme/headerLogo.png");
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -639,14 +641,23 @@ td a:hover {
 	line-height: 1.3;
 }
 
-.challenge-solved .ctfx-card-head {
-	background: #85a5b5;
-	background: linear-gradient(90deg, #85a5b5 0%, #85a5b5 60%, #85a5b5 100%);
-	border-bottom: 0px solid #b3ddff;
+.challenge-solved .ctfx-card-head{
+	background: #ffc62970;
+	/* background: linear-gradient(90deg, #00CCCC 0%, #00CCCC 60%, #00CCCC 100%); */
+	/* border-bottom: 0px solid #00205c; */
 	padding-bottom: 10px;
 }
 
-.challenge-solved .solver-1 {
+.challenge-solved .ctfx-card-head a {
+	color: #00205c70;
+	font-weight: bold;
+}
+
+.challenge-solved, .challenge-solved small{
+	color:#00205c70;
+}
+
+/* /* .challenge-solved .solver-1 {
 	background: url('/img/ui/xenon.gif');
 	background-size: cover;
 }
@@ -659,15 +670,15 @@ td a:hover {
 .challenge-solved .solver-3 {
 	background: url('/img/ui/hydrogen.gif');
 	background-size: cover;
-}
-
+} */
+/* 
 .solver-1 a, .solver-1 .challenge-solved-text, .solver-1 small {
 	color: #000 !important;
 }
 
 .solver-1 .challenge-solved-icon {
 	filter: none;
-}
+} */ */
 
 .ctfx-card-head .time-left {
 	float: right;
@@ -716,7 +727,7 @@ td a:hover {
 	color: #fff;
 	padding: 5px;
 	vertical-align: middle;
-	background: linear-gradient(to right, # 49.9%, #000 49.9%);
+	background: linear-gradient(to right, #000 49.9%, #000 49.9%);
 	background-position: right;
 	background-size: 200% 100%;
 	transition: background-position 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -768,7 +779,7 @@ td a:hover {
 }
 
 .our-team {
-	color: #b3ddff !important;
+	color: #00205c !important;
 }
 
 .team-table tbody tr td {
@@ -829,7 +840,7 @@ td a:hover {
 }
 
 .team-table .progress-bar {
-	background-color: #b3ddff;
+	background-color: #00205c;
 }
 
 .team-table .team-score {
@@ -863,7 +874,7 @@ td a:hover {
 	position: absolute;
 	right: 20px;
 	z-index: 1;
-	font-family: Sans-serif;
+	font-family: Helvetica, Sans-serif;
 	font-weight: normal;
 	font-size: 40px;
 	transition: opacity 200ms ease-in-out;
@@ -894,12 +905,12 @@ td a:hover {
 
 .modal.challenge-attempt.correct .modal-header {
 	background-image: url('/img/ui/flag_white.svg');
-	background-color: #b3ddff;
+	background-color: #00205c;
 }
 
 .modal.challenge-attempt.manual .modal-header {
 	background-image: url('/img/ui/padlock_white.svg');
-	background-color: #b3ddff;
+	background-color: #00205c;
 	color: #000;
 }
 
@@ -942,7 +953,7 @@ td a:hover {
 
 .message-centered .submessage {
 	font-size: 18px;
-	color: #b3ddff;
+	color: #00205c;
 }
 
 /** Alerts **/
@@ -952,7 +963,7 @@ td a:hover {
 	border: none;
 	background: none;
 	padding: 0px;
-	font-family: Sans-serif;
+	font-family: Helvetica, Sans-serif;
 	font-size: 20px;
 	margin-bottom: 5px;
 	line-height: normal;
@@ -972,7 +983,7 @@ td a:hover {
 }
 
 .progress-bar-info, .progress-bar-success {
-	background-color: #b3ddff;
+	background-color: #00205c;
 }
 
 
@@ -1015,7 +1026,7 @@ td a:hover {
 
 .page-header {
 	margin: 15px 0px 10px 0px;
-	border-bottom: 2px solid #b3ddff;
+	border-bottom: 2px solid #00205c;
 }
 
 .ctfx-pager {
@@ -1034,7 +1045,7 @@ td a:hover {
 }
 
 .ctfx-pager .pager-arrow:hover {
-	color: #b3ddff;
+	color: #00205c;
 }
 
 .country-flag {
@@ -1086,7 +1097,7 @@ td a:hover {
 }
 
 .light-theme a:hover {
-	color: #b3ddff;
+	color: #00205c;
 }
 
 @media (max-width: 800px) {

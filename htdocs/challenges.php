@@ -163,13 +163,9 @@ foreach($challenges as $challenge) {
 
     echo '
     <div class="', get_submission_box_class($challenge, $has_remaining_submissions), ' ctfx-card">
-        <div class="ctfx-card-head ', (($position > 0 && $position <= 3)?('solver-' . $position):''),'">
+        <div class="ctfx-card-head">
             <h4><a href="challenge?id=',htmlspecialchars($challenge['id']),'">',htmlspecialchars($challenge['title']), '</a> <small>', number_format($challenge['points']), ' Points</small>';
     
-    if ($position > 0 && $position <= 3) {
-        echo ' ' . get_position_medal($solve_position['pos']);
-    }
-
     echo '</h4>';
 
     if ($challenge['correct_submission_added']) {
