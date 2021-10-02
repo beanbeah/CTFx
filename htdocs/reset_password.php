@@ -40,7 +40,7 @@ if (!isset($_GET['action'])) {
     }
 
         echo '
-        <button class="btn btn-lg btn-1" type="submit">',lang_get('reset_password'),'</button>
+        <button class="btn btn-lg btn-3" type="submit">',lang_get('reset_password'),'</button>
     </form>
     ';
 

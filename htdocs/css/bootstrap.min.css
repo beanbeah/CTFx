@@ -3814,7 +3814,7 @@ fieldset[disabled] .btn-default:hover {
 .btn-primary.active,
 .btn-primary:active,
 .open>.dropdown-toggle.btn-primary {
-	color: #fff;
+	color: #D2D2D9;
 	background-color: #286090;
 	border-color: #204d74
 }

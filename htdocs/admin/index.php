@@ -134,7 +134,7 @@ if (empty ($news)) {
 
 foreach($news as $item) {
     echo '<div class="ctfx-card">
-        <div class="ctfx-card-head">
+        <div class="news-card-head">
           <h4>',edit_link ('/admin/news.php?id=' . htmlspecialchars($item['id']), '✎ ' . htmlspecialchars($item['title'])),'</h4>
         </div>
         <div class="ctfx-card-body">

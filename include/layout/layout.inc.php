@@ -11,7 +11,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
-use League\CommonMark\GithubFlavoredMarkdownConverter;
+use League\CommonMark\MarkdownConverter;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 
@@ -150,7 +150,7 @@ function foot () {
 </html>';
 }
 
-function section_title ($title, $tagline = '', $decorator_color = "blue") {
+function section_title ($title, $tagline = '', $decorator_color = "yellow") {
     echo '
     <div class="row">
         <div class="col-lg-12 page-header">
@@ -162,7 +162,7 @@ function section_title ($title, $tagline = '', $decorator_color = "blue") {
     ';
 }
 
-function section_head ($title, $tagline = '', $decorator_color = "blue", $typewriter = true) {
+function section_head ($title, $tagline = '', $decorator_color = "yellow", $typewriter = true) {
     echo '
         <div class="row">
             <div class="col-lg-12" style="margin-bottom: 5px">
@@ -187,7 +187,7 @@ function section_subhead ($title, $tagline = '', $strip_html = true) {
 
 
 function title_decorator ($color, $rotation = "0deg", $img = "arrow.png") {
-    $colorcode = "#a0a0a0";
+    $colorcode = "#D2D2D9";
 
     switch ($color) {
         case "blue": $colorcode = "#00205c"; break;
@@ -248,10 +248,11 @@ function dropdown ($name, $options = null) {
     }
 }
 
-function edit_link ($url, $contents, $icon = "", $tooltip = "", $color = "white") {
+function edit_link ($url, $contents, $icon = "", $tooltip = "", $color = "black") {
     switch ($color) {
         case "white": $color = "#F5F5F5"; break;
         case "gray": $color = "#B0B0B0"; break;
+        case "black": $color = "#222222"; break;
         default: break;
     }
 
@@ -453,7 +454,8 @@ function parse_markdown($text) {
             $environment->addExtension(new CommonMarkCoreExtension());
             $environment->addRenderer(FencedCode::class, new FencedCodeRenderer());
             $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
-            $converter = new GithubFlavoredMarkdownConverter($environment);
+            $converter = new MarkdownConverter($environment);
         }
     return $converter->convertToHtml($text);
 }
+

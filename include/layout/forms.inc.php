@@ -74,7 +74,7 @@ function form_input_captcha($position = 'private') {
     }
 }
 
-function form_input_checkbox ($name, $checked = 0, $color = "blue") {
+function form_input_checkbox ($name, $checked = 0, $color = "yellow") {
     $colorcode = "#a0a0a0";
 
     switch ($color) {

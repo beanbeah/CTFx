@@ -38,7 +38,7 @@ $avatarURL = "https://www.gravatar.com/avatar/" . md5 ($user["email"]) . "?s=128
 echo '<div class="user-profile">
     <div class="user-image" style="background-image:url(\'', htmlspecialchars ($avatarURL), '\')"></div>',
     '<div class="user-description">
-        <h2><a style="color:#F7F7F7" href="/user.php?id=',htmlspecialchars($user['id']),'">',
+        <h2><a style="color:#222222" href="/user.php?id=',htmlspecialchars($user['id']),'">',
             htmlspecialchars ($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true), 
         '</a></h2>',
         spacer (),

@@ -43,10 +43,10 @@ form_end();
 
 section_subhead('Reset password');
 form_start('/admin/actions/user');
-form_input_checkbox('Reset confirmation', false, 'green');
+form_input_checkbox('Reset confirmation', false, 'red');
 form_hidden('action', 'reset_password');
 form_hidden('id', $_GET['id']);
-form_button_submit('Reset password', '2');
+form_button_submit('Reset password', '3');
 form_end();
 
 section_subhead('Delete user');

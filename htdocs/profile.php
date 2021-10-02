@@ -31,7 +31,7 @@ form_input_text('Team name', $user['team_name'], array('disabled'=>true));
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
-message_inline ("In order to add a profile picture, register yourself on <a href='https://en.gravatar.com/'>Gravatar</a>", "blue", false);
+message_inline ("In order to add a profile picture, register yourself on <a href='https://en.gravatar.com/'>Gravatar</a>", "yellow", false);
 
 form_hidden('action', 'edit');
 form_button_submit(lang_get('save_changes'));
@@ -67,7 +67,7 @@ form_input_password('New password');
 form_input_password('New password again');
 form_hidden('action', 'reset_password');
 form_input_captcha();
-form_button_submit(lang_get('reset_password'), '2');
+form_button_submit(lang_get('reset_password'), '3');
 form_end();
 
 foot();
