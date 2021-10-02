@@ -7,17 +7,25 @@ require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
 require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
 
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
+use League\CommonMark\MarkdownConverter;
+use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
+use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
+
 
 // set global head_sent variable
 $head_sent = false;
-// singleton bbcode instance
-$bbc = null;
-
+$converter = null;
 $staticVersion = "1.2.4";
+$highlightTheme = "github";
 
 function head($title = '') {
     global $head_sent;
     global $staticVersion;
+    global $highlightTheme;
 
     header('Content-Type: text/html; charset=utf-8');
     echo '<!DOCTYPE html>
@@ -31,6 +39,7 @@ function head($title = '') {
 
     <!-- CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/' . $highlightTheme . '.min.css">
     <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">';
 
     js_global_dict();
@@ -116,6 +125,7 @@ function head($title = '') {
 
 function foot () {
     global $staticVersion;
+    global $highlightTheme;
     
     echo '</div> <!-- / content container -->
 </div> <!-- /container -->
@@ -131,6 +141,7 @@ function foot () {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/mellivora.js?ver=' . $staticVersion . '"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
 </body>
 </html>';
 }
@@ -271,73 +282,6 @@ function menu_management () {
     dropdown ("Email Rules", [["Regex Rules", "/admin/list_restrict_email"],["Test Email","/admin/test_restrict_email"],["Email Whitelist", "/admin/list_email_whitelist"]]);
     dropdown ("Edit Site" ,[["Dynamic Menu","/admin/list_dynamic_menu"],["Dynamic Pages","/admin/list_dynamic_pages"]]);
     echo '</div>';
-}
-
-function bbcode_manual () {
-    echo '
-    <table>
-        <tr>
-        <td>
-            <ul>
-            <li><b>Text Styles:</b>
-                <ul>
-                <li>[b]<b>Bold</b>[/b]</li>
-                <li>[i]<i>Italics</i>[/i]</li>
-                <li>[u]<u>Underline</u>[/u]</li>
-                <li>[s]<strike>Strikethrough</strike>[/s]</li>
-                <li>[sup]<sup>Superscript</sup>[/sup]</li>
-                <li>[sub]<sub>Subscript</sub>[/sub]</li>
-                <li>[spoiler]<span class="bbcode_spoiler">Spoiler</span>[/spoiler]</li>
-                <li>[size=2]<span style="font-size:.83em">Custom Size</span>[/size]</li>
-                <li>[color=red]<span style="color:red">Custom Color</span>[/color]</li>
-                <li>[font=verdana]<span style="font-family:\'verdana\'">Custom Font</span>[/font]</li>
-                </ul>
-            </li>
-            <li><b>Links:</b>
-                <ul>
-                <li>[url]<a href="https://www.eff.org/">https://www.eff.org/</a>[/url]</li>
-                <li>[url=https://www.eff.org/]<a href="https://www.eff.org/">Named link</a>[/url]</li>
-                <li>[email]<a href="mailto:mail@mail.com" class="bbcode_email">mail@mail.com</a>[/email]</li>
-                </ul>
-            </li>
-            </ul>
-        </td>
-        <td>
-            <ul>
-            <li><b>Replaced Items:</b>
-                <ul>
-                <li>[img]/img/award_xenon.png[/img] => <img src="/img/award_xenon.png" alt="award_xenon.png" class="bbcode_img"></li>
-                <li>[br]</li>
-                </ul>
-            </li>
-            <li><b>Alignment:</b>
-                <ul>
-                <li>[center]...[/center]</li>
-                <li>[left]...[/left]</li>
-                <li>[right]...[/right]</li>
-                <li>[indent]...[/indent]</li>
-                </ul>
-            </li>
-            <li><b>Containers:</b>
-                <ul>
-                <li>[code]
-                <div class="bbcode_code">
-                    <div class="bbcode_code_head">Code:</div>
-                    <div class="bbcode_code_body" style="white-space:pre">',
-'for i in range (50):
-    print (i)',
-                '</div></div>[/code]</li>
-                <li>[quote]<div class="bbcode_quote">
-                    <div class="bbcode_quote_head">Quote:</div>
-                    <div class="bbcode_quote_body">Quoting Something</div>
-                </div>[/quote]</li>
-                </ul>
-            </li>
-            </ul>
-        </td>
-        </tr>
-    </table>
-    ';
 }
 
 function js_global_dict () {
@@ -496,13 +440,19 @@ function get_pager_from($val) {
     return 0;
 }
 
-function get_bbcode() {
-    global $bbc;
-
-    if ($bbc === null) {
-        $bbc = new BBCode();
-        $bbc->SetEnableSmileys(false);
-    }
-
-    return $bbc;
+function parse_markdown($text) {
+    global $converter;
+    if ($converter === null) {
+            $config = [
+                'html_input' => 'escape',
+                'allow_unsafe_links' => false,
+                'max_nesting_level' => 5
+            ];
+            $environment = new Environment($config);
+            $environment->addExtension(new CommonMarkCoreExtension());
+            $environment->addRenderer(FencedCode::class, new FencedCodeRenderer());
+            $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
+            $converter = new MarkdownConverter($environment);
+        }
+    return $converter->convertToHtml($text);
 }

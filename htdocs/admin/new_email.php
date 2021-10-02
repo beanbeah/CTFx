@@ -22,8 +22,6 @@ if (array_get($_GET, 'bcc') == 'all') {
 
 section_title ('New email');
 
-message_inline('Separate receiver emails with a comma and optional whitespace. You can use BBCode. If you do, you must send as HTML email.');
-
 form_start('/admin/actions/new_email');
 
 if(isset($bcc)) {

@@ -19,7 +19,6 @@ user_class_select();
 form_hidden('action', 'new');
 
 form_button_submit('Create');
-bbcode_manual();
 form_end();
 
 foot();

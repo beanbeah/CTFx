@@ -46,7 +46,7 @@ if (cache_start($content['id'], Config::get('MELLIVORA_CONFIG_CACHE_TIME_DYNAMIC
 
     section_head($content['title']);
 
-    echo get_bbcode()->parse($content['body']);
+    echo parse_markdown($content['body']);
 
     cache_end($content['id'], CONST_CACHE_DYNAMIC_PAGES_GROUP);
 }

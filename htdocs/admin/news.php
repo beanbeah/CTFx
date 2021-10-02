@@ -26,7 +26,7 @@ form_input_text('Title', $news['title']);
 form_textarea('Body', $news['body']);
 form_hidden('action', isset ($news)?'edit':'new');
 form_hidden('id', $_GET['id']);
-form_button_submit_bbcode ('Save changes');
+form_button_submit ('Save changes');
 form_end();
 
 if (!isset ($news))
@@ -37,7 +37,7 @@ form_start('/admin/actions/news');
 form_input_checkbox('Delete confirmation', false, 'red');
 form_hidden('action', 'delete');
 form_hidden('id', $_GET['id']);
-form_button_submit ('Delete news item', '3');
+form_button_submit('Delete news item', '3');
 form_end();
 
 foot();

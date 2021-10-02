@@ -975,51 +975,6 @@ td a:hover {
 	background-color: #b3ddff;
 }
 
-/** BBCode **/
-
-.bbcode_code_head, .bbcode_quote_head {
-	display: none;
-}
-
-.bbcode_code_body {
-	background: #FFF;
-	color: #000;
-	font-family: monospace;
-	padding: 5px;
-	line-height: 1.25;
-	overflow-x: auto;
-	margin-bottom: 5px;
-}
-
-.bbcode_code_body::selection {
-	background: #000;
-	color: #FFF;
-}
-
-.bbcode_quote_body {
-	background: #505050;
-	padding: 5px;
-	border-left: 5px solid #FFF;
-	margin-bottom: 5px;
-}
-
-.bbcode_spoiler {
-	background-color: #FFF;
-	color: #FFF;
-}
-
-.bbcode_spoiler::selection {
-	background-color: #FFF;
-	color: #FFF;
-}
-
-.bbcode_spoiler:hover {
-	color: #000;
-}
-
-.bbcode_img {
-    max-width: 100%;
-}
 
 /** Misc **/
 

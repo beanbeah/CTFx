@@ -1,3 +1,5 @@
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+
 USE mellivora;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 

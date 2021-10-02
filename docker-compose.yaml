@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  website:
+    container_name: web_interface
+    build:
+      context: ./
+    environment:
+      MELLIVORA_CONFIG_DB_ENGINE: mysql
+      MELLIVORA_CONFIG_DB_HOST: database
+      MELLIVORA_CONFIG_DB_PORT: 3306
+      MELLIVORA_CONFIG_DB_NAME: mellivora
+      MELLIVORA_CONFIG_DB_USER: meldbuser
+      MELLIVORA_CONFIG_DB_PASSWORD: password
+    restart: always
+    volumes:
+      - ./htdocs/:/var/www/ctfx/htdocs/
+    ports: 
+      - "8088:80"
+  database:
+    image: mysql
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci
+    container_name: database
+    restart: always
+    environment:
+      MYSQL_USER: mellivora
+      MYSQL_PASSWORD: mellivora
+      MYSQL_ROOT_PASSWORD: "seandontforgetmewhenyougetrichpls"
+      MYSQL_DATABASE: "mellivora"
+      MYSQL_USER: "meldbuser"
+      MYSQL_PASSWORD: "password"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./install/sql:/docker-entrypoint-initdb.d
+    ports: 
+      - "33060:3306"
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 18080:8080
+
+volumes:
+  dbdata:
