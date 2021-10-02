@@ -38,7 +38,7 @@ form_select($opts, 'Challenge', 'id', isset ($hint)?$hint['challenge']:array_get
 form_input_checkbox('Visible', $hint['visible']);
 form_hidden('action', isset ($hint)?'edit':'new');
 form_hidden('id', $_GET['id']);
-form_button_submit_bbcode('Save changes');
+form_button_submit('Save changes');
 form_end();
 
 if (!isset ($hint))

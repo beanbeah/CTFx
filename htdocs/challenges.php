@@ -88,7 +88,7 @@ foreach ($categories as $cat) {
 }
 
 echo '</div>
-<div id="category-description">', get_bbcode()->parse($current_category['description']), '</div>';
+<div id="category-description">', parse_markdown($current_category['description']), '</div>';
 
 // get all the challenges for the selected category
 $challenges = db_query_fetch_all('
@@ -226,7 +226,7 @@ foreach($challenges as $challenge) {
     else {
         // write out challenge description
         if ($challenge['description']) {
-            echo get_bbcode()->parse($challenge['description']);
+            echo parse_markdown($challenge['description']);
         }
 
         echo "</div>";

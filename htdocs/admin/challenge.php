@@ -31,7 +31,7 @@ form_select($opts, 'Category', 'id', isset ($challenge)?$challenge['category']:$
 form_input_checkbox('Exposed', $challenge['exposed']);
 form_hidden('action', isset ($challenge)?'edit':'new');
 
-form_button_submit_bbcode('Save changes');
+form_button_submit('Save changes');
 
 if (!isset ($challenge)) {
   form_end ();
@@ -84,7 +84,7 @@ $hints = db_select_all(
 
 foreach ($hints as $hint) {
   $msg = '<a style="margin: 0px; margin-right: 5px" href="hint.php?id=' . htmlspecialchars($hint['id']) . '" class="btn btn-xs btn-2">✎</a>';
-  $msg .= '<strong>Hint!</strong> ' . get_bbcode()->parse($hint['body']);
+  $msg .= '<strong>Hint!</strong> ' . parse_markdown($hint['body']);
 
   if ($hint["visible"] === 0) {
     $msg .= '<div class="inline-tag">(invisible)</div>';

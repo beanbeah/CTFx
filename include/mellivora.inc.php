@@ -17,7 +17,6 @@ require(CONST_PATH_INCLUDE . 'files.inc.php');
 require(CONST_PATH_INCLUDE . 'captcha.inc.php');
 require(CONST_PATH_INCLUDE . 'two_factor_auth.inc.php');
 require(CONST_PATH_LAYOUT . 'layout.inc.php');
-require(CONST_PATH_THIRDPARTY . 'nbbc/nbbc.php');
 
 set_exception_handler('log_exception');
 
