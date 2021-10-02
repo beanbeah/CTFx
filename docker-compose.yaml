@@ -22,6 +22,8 @@ services:
     container_name: database
     restart: always
     environment:
+      MYSQL_USER: mellivora
+      MYSQL_PASSWORD: mellivora
       MYSQL_ROOT_PASSWORD: "seandontforgetmewhenyougetrichpls"
       MYSQL_DATABASE: "mellivora"
       MYSQL_USER: "meldbuser"

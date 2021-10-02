@@ -21,7 +21,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN cp install/recommended_nginx_config /etc/nginx/nginx.conf
 RUN sed -i 's/phpVERSION.HERE-fpm/'$(ls /etc/init.d/ | grep php)'/g' /etc/nginx/nginx.conf
-
+RUN echo "clear_env = no" >> /etc/php/7.4/fpm/pool.d/www.conf
 RUN chmod 777 install/entrypoint.sh
 
 # COPY htdocs /var/www/ctfx/htdocs
