@@ -11,7 +11,7 @@ use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\IndentedCode;
-use League\CommonMark\MarkdownConverter;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
 use Spatie\CommonMarkHighlighter\IndentedCodeRenderer;
 
@@ -453,7 +453,7 @@ function parse_markdown($text) {
             $environment->addExtension(new CommonMarkCoreExtension());
             $environment->addRenderer(FencedCode::class, new FencedCodeRenderer());
             $environment->addRenderer(IndentedCode::class, new IndentedCodeRenderer());
-            $converter = new MarkdownConverter($environment);
+            $converter = new GithubFlavoredMarkdownConverter($environment);
         }
     return $converter->convertToHtml($text);
 }
