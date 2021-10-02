@@ -47,7 +47,7 @@ function message_generic ($title, $message, $head = true, $foot = true, $exit = 
 function message_inline ($message, $color = "blue", $strip_html = true, $extra_style = "") {
     switch ($color) {
         case "green": $textcolor = "#CFFF42"; break;
-        case "red": $textcolor = "#FF4242"; break;
+        case "red": $textcolor = "#ce0e2d"; break;
         default: $textcolor = "";
     }
 

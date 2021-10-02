@@ -119,7 +119,7 @@ function print_graph(){
         console.log(error);
     });
     </script>
-    <button id="reset-zoom" class="reset-zoom">Reset zoom</button>
+    <button id="reset-zoom" class="btn btn-1 btn-zoom">Reset zoom</button>
     <div class="chartjs-note">Pan is activated by keeping ctrl pressed.</div>
     <br>';
 }

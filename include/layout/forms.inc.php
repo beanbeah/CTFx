@@ -74,13 +74,13 @@ function form_input_captcha($position = 'private') {
     }
 }
 
-function form_input_checkbox ($name, $checked = 0, $color = "lightblue") {
-    $colorcode = "#808080";
+function form_input_checkbox ($name, $checked = 0, $color = "blue") {
+    $colorcode = "#a0a0a0";
 
     switch ($color) {
-        case "lightblue": $colorcode = "#00205c"; break;
-        case "darkishblue": $colorcode = "#82ABCC"; break;
-        case "red": $colorcode = "#F2542D"; break;
+        case "blue": $colorcode = "#00205c"; break;
+        case "yellow": $colorcode = "#ffc629"; break;
+        case "red": $colorcode = "#ce0e2d"; break;
         default: break;
     }
 

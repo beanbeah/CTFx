@@ -39,8 +39,8 @@ body {
 }
 
 ::selection {
-	background-color: #fffffffe;
-	color: #222;
+	background-color: #00205c;
+	color: #fff;
 }
 
 .page {
@@ -50,6 +50,29 @@ body {
 
 .container {
 	padding: 5px 40px 80px 40px;
+}
+
+
+.nav>li>a {
+	position: relative;
+	display: block;
+	padding: 10px 15px
+}
+
+.nav>li>a:focus,
+.nav>li>a:hover {
+	text-decoration: none;
+	background-color: #ffc629
+}
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:focus,
+.nav-pills>li.active>a:hover {
+	color: #fff;
+	background-color: #ffc629
+}
+
+.pull-right {
+	float: right!important
 }
 
 /* Stylized Elements */
@@ -63,7 +86,7 @@ body {
 	height: 34px;
 	display: inline-block;
 	vertical-align: middle;
-	background-color: #505050;
+	background-color: #a0a0a0;
 	margin-right: 5px;
 	border-radius: 5px;
 }
@@ -86,7 +109,7 @@ body {
 }
 
 .title-decorator-gray {
-	background-color: #505050;
+	background-color: #909090;
 	animation: maskdown-second 3s infinite ease-out;
 }
 
@@ -104,7 +127,7 @@ body {
 }
 
 .inline-tag {
-	background-color: #505050;
+	background-color: #a0a0a0;
 	color: #fff;
 	display: inline;
 	font-size: 12px;
@@ -126,7 +149,7 @@ body {
 	color: #00205c;
 	/* border: solid 2px #0675b4; */
 	border-radius: 10px;
-	box-shadow: 0px 0px 5px 0px #00000020;
+	box-shadow: 0px 0px 3px 0px #00000020;
 	margin-bottom: 10px;
 }
 
@@ -163,7 +186,7 @@ body {
 
 .ctfx-simple-card {
 	display: inline-block;
-	background-color: #505050;
+	background-color: #a0a0a0;
 	color: #fff;
 	font-weight: bold;
 	max-width: 45%;
@@ -198,7 +221,7 @@ body {
 }
 
 .dropdown-menu li a {
-	background-color: #505050;
+	background-color: #a0a0a0;
 	color: #fff;
 	transition: none;
 	padding: 5px 20px;
@@ -234,7 +257,7 @@ body {
 }
 
 .btn-xs {
-	background-color: #505050;
+	background-color: #a0a0a0;
 	box-shadow: none !important;
 	color: #fff;
 	padding: 5px 10px;
@@ -317,7 +340,7 @@ small .btn-xs {
 }
 
 .btn-4:focus, .btn-4:active {
-	background-color: #505050;
+	background-color: #a0a0a0;
 	color: #fff;
 }
 
@@ -338,7 +361,7 @@ small .btn-xs {
 }
 
 .btn-4::before {
-	background-color: #505050;
+	background-color: #a0a0a0;
 }
 
 /** Default HTML Elements **/
@@ -442,7 +465,7 @@ textarea {
     margin-top: 0px;
     margin-right: 5px;
     float: left;
-    background-color: #505050;
+    background-color: #a0a0a0;
     border-style: solid;
     border-width: 0px;
 	transition: border-bottom 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -586,15 +609,10 @@ td a:hover {
 	text-align: center;
 	margin-bottom: 1.5px;
 }
-.reset-zoom {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.btn-zoom {
+	background-color: #ffc629;
+  	color: #00205c;
+	font-weight: bold;
 }
 .chartjs-note {
 	font-size:  20px;
@@ -797,7 +815,7 @@ td a:hover {
 
 .team-table .team-number {
 	display: inline;
-	color: #505050;
+	color: #a0a0a0;
 }
 
 .team-table .team-name {
@@ -818,7 +836,7 @@ td a:hover {
 .team-table .team-progress-bar {
 	float: left;
 	width: 100%;
-	border-bottom: 5px solid #505050;
+	border-bottom: 5px solid #a0a0a0;
 	padding-left: 0px;
 	padding-right: 0px;
 	padding-bottom: 2px;
@@ -1036,7 +1054,7 @@ td a:hover {
 }
 
 .ctfx-pager .pager-arrow {
-	color: #505050;
+	color: #a0a0a0;
 	text-decoration: none !important;
 	position: relative;
 	font-size: 42px;
