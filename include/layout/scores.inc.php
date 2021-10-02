@@ -82,12 +82,12 @@ function print_graph(){
                     x: {
                         type: "time",
                         ticks: {
-                            color: "#ffffff"
+                            color: "#222222"
                         }
                     },
                     y: {
                         ticks: {
-                            color: "#ffffff"
+                            color: "#222222"
                         }
                     }
                 },
@@ -96,7 +96,7 @@ function print_graph(){
                     legend: {
                         position: "bottom",
                         labels: {
-                            color: "#ffffff"
+                            color: "#222222"
                         }
                     },
 
@@ -110,7 +110,7 @@ function print_graph(){
 
     //fetch data + plot
     echo'
-    fetch("https://ctf.8059blank.tk/json?view=graph")
+    fetch("' . Config::get("MELLIVORA_CONFIG_SITE_URL") .'")
     .then((resp) => resp.json())
     .then(function(data) {
         plot_graph({"datasets": data});
