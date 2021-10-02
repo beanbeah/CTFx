@@ -566,15 +566,6 @@ function empty_to_zero($val) {
     return $val;
 }
 
-function dynamicScoringFormula_old ($initial, $min, $decay, $solves) {
-    if ($decay == 0)
-        return $initial; // Avoid divide by 0 exception
-    else if ($solves >= $decay)
-        return $min; // Clamp at minimum solves
-    else
-        return $initial - (($initial - $min) / ($decay * $decay)) * ($solves * $solves);
-}
-
 function dynamicScoringFormula($initial, $min, $solves) {
     $lb = Config::get('MELLIVORA_CONFIG_CHALL_LOWER_BOUND');
     $ub = Config::get('MELLIVORA_CONFIG_CHALL_UPPER_BOUND');
