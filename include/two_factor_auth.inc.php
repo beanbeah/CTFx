@@ -1,10 +1,11 @@
 <?php
 
-function get_two_factor_auth_qr_url() {
-    require_once(CONST_PATH_THIRDPARTY.'Google2FA/Google2FA.php');
+function get_two_factor_auth_qr_url()
+{
+	require_once(CONST_PATH_THIRDPARTY . 'Google2FA/Google2FA.php');
 
-    $user = db_query_fetch_one(
-        'SELECT
+	$user = db_query_fetch_one(
+		'SELECT
             u.id,
             u.team_name,
             t.secret
@@ -12,42 +13,44 @@ function get_two_factor_auth_qr_url() {
         JOIN two_factor_auth AS t ON t.user_id = u.id
         WHERE
           u.id = :user_id',
-        array(
-            'user_id'=>$_SESSION['id']
-        )
-    );
+		array(
+			'user_id' => $_SESSION['id']
+		)
+	);
 
-    if (empty($user['id']) || empty($user['secret'])) {
-        message_error('No two-factor authentication tokens found for this user.');
-    }
+	if (empty($user['id']) || empty($user['secret'])) {
+		message_error('No two-factor authentication tokens found for this user.');
+	}
 
-    return Google2FA::get_qr_code_url($user['team_name'], $user['secret']);
+	return Google2FA::get_qr_code_url($user['team_name'], $user['secret']);
 }
 
-function validate_two_factor_auth_code($code) {
-    require_once(CONST_PATH_THIRDPARTY.'Google2FA/Google2FA.php');
+function validate_two_factor_auth_code($code)
+{
+	require_once(CONST_PATH_THIRDPARTY . 'Google2FA/Google2FA.php');
 
-    $valid = false;
+	$valid = false;
 
-    $secret = db_select_one(
-        'two_factor_auth',
-        array(
-            'secret'
-        ),
-        array(
-            'user_id'=>$_SESSION['id']
-        )
-    );
+	$secret = db_select_one(
+		'two_factor_auth',
+		array(
+			'secret'
+		),
+		array(
+			'user_id' => $_SESSION['id']
+		)
+	);
 
-    try {
-        $valid = Google2FA::verify_key($secret['secret'], $code);
-    } catch (Exception $e) {
-        message_error('Could not verify key.');
-    }
+	try {
+		$valid = Google2FA::verify_key($secret['secret'], $code);
+	} catch (Exception $e) {
+		message_error('Could not verify key.');
+	}
 
-    return $valid;
+	return $valid;
 }
 
-function generate_two_factor_auth_secret($length) {
-    return generate_random_string($length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567');
+function generate_two_factor_auth_secret($length)
+{
+	return generate_random_string($length, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567');
 }

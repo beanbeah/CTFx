@@ -9,7 +9,7 @@ validate_id(array_get($_GET, 'id'));
 head(lang_get('user_details'));
 
 menu_management();
-spacer ();
+spacer();
 
 $user = db_query_fetch_one('
     SELECT
@@ -23,30 +23,30 @@ $user = db_query_fetch_one('
     LEFT JOIN countries AS co ON co.id = u.country_id
     WHERE
       u.id = :user_id',
-    array('user_id' => $_GET['id'])
+	array('user_id' => $_GET['id'])
 );
 
 if (empty($user)) {
-    message_generic(
-        lang_get('sorry'),
-        lang_get('no_user_found'),
-        false);
+	message_generic(
+		lang_get('sorry'),
+		lang_get('no_user_found'),
+		false);
 }
 
-$avatarURL = "https://www.gravatar.com/avatar/" . md5 ($user["email"]) . "?s=128&d=mp";
+$avatarURL = "https://www.gravatar.com/avatar/" . md5($user["email"]) . "?s=128&d=mp";
 
 echo '<div class="user-profile">
-    <div class="user-image" style="background-image:url(\'', htmlspecialchars ($avatarURL), '\')"></div>',
-    '<div class="user-description">
-        <h2><a style="color:#222222" href="/user.php?id=',htmlspecialchars($user['id']),'">',
-            htmlspecialchars ($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true), 
-        '</a></h2>',
-        spacer (),
-        '<h4>',button_link('Edit user', 'edit_user?id='.htmlspecialchars($user['id'])), button_link('Email user', 'new_email?to='.htmlspecialchars($user['email'])),'</h4>';
+    <div class="user-image" style="background-image:url(\'', htmlspecialchars($avatarURL), '\')"></div>',
+'<div class="user-description">
+        <h2><a style="color:#222222" href="/user.php?id=', htmlspecialchars($user['id']), '">',
+htmlspecialchars($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true),
+'</a></h2>',
+spacer(),
+'<h4>', button_link('Edit user', 'edit_user?id=' . htmlspecialchars($user['id'])), button_link('Email user', 'new_email?to=' . htmlspecialchars($user['email'])), '</h4>';
 
 if (!$user['competing']) {
-    spacer ();
-    message_inline(lang_get('non_competing_user'));
+	spacer();
+	message_inline(lang_get('non_competing_user'));
 }
 
 echo '</div>

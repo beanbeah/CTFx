@@ -1,86 +1,97 @@
 <?php
 
-function message_generic_error($head = true, $foot = true, $exit = true) {
-    message_error(lang_get('generic_error'), $head, $foot, $exit);
+function message_generic_error($head = true, $foot = true, $exit = true)
+{
+	message_error(lang_get('generic_error'), $head, $foot, $exit);
 }
 
-function message_error ($message, $head = true, $foot = true, $exit = true) {
-    global $head_sent;
+function message_error($message, $head = true, $foot = true, $exit = true)
+{
+	global $head_sent;
 
-    if ($head && !$head_sent) {
-        head(lang_get('error'));
-    }
+	if ($head && !$head_sent) {
+		head(lang_get('error'));
+	}
 
-    echo '<h2 class="typewriter" style="margin-bottom:5px">', lang_get('error'), '</h2>';
+	echo '<h2 class="typewriter" style="margin-bottom:5px">', lang_get('error'), '</h2>';
 
-    message_inline ($message, "red");
+	message_inline($message, "red");
 
-    if ($foot) {
-        foot();
-    }
+	if ($foot) {
+		foot();
+	}
 
-    if ($exit) {
-        exit;
-    }
+	if ($exit) {
+		exit;
+	}
 }
 
-function message_generic ($title, $message, $head = true, $foot = true, $exit = true) {
-    global $head_sent;
+function message_generic($title, $message, $head = true, $foot = true, $exit = true)
+{
+	global $head_sent;
 
-    if ($head && !$head_sent) {
-        head($title);
-    }
+	if ($head && !$head_sent) {
+		head($title);
+	}
 
-    echo '<h2 class="typewriter" style="margin-bottom:5px">', htmlspecialchars($title), '</h2>';
+	echo '<h2 class="typewriter" style="margin-bottom:5px">', htmlspecialchars($title), '</h2>';
 
-    message_inline ($message);
+	message_inline($message);
 
-    if ($foot) {
-        foot();
-    }
+	if ($foot) {
+		foot();
+	}
 
-    if ($exit) {
-        exit;
-    }
+	if ($exit) {
+		exit;
+	}
 }
 
-function message_inline ($message, $color = "yellow", $strip_html = true, $extra_style = "") {
-    switch ($color) {
-        case "green": $textcolor = "#56B875"; break;
-        case "red": $textcolor = "#ce0e2d"; break;
-        default: $textcolor = "";
-    }
+function message_inline($message, $color = "yellow", $strip_html = true, $extra_style = "")
+{
+	switch ($color) {
+		case "green":
+			$textcolor = "#56B875";
+			break;
+		case "red":
+			$textcolor = "#ce0e2d";
+			break;
+		default:
+			$textcolor = "";
+	}
 
-    echo '<div class="alert" style="', isset ($textcolor)?'color:' . $textcolor . ';':'',
-    $extra_style, '">', title_decorator ($color, "270deg"), ($strip_html ? htmlspecialchars($message) : $message), '</div>';
+	echo '<div class="alert" style="', isset ($textcolor) ? 'color:' . $textcolor . ';' : '',
+	$extra_style, '">', title_decorator($color, "270deg"), ($strip_html ? htmlspecialchars($message) : $message), '</div>';
 }
 
-function message_center ($message, $submessage = "", $img = "warn.png") {
-    echo '<div class="message-centered">
+function message_center($message, $submessage = "", $img = "warn.png")
+{
+	echo '<div class="message-centered">
         <img src="/img/ui/', htmlspecialchars($img), '">',
-        '<span>
-        <div class="message">', htmlspecialchars ($message),'</div>';
+	'<span>
+        <div class="message">', htmlspecialchars($message), '</div>';
 
-    if (!empty ($submessage))
-        echo '<div class="submessage">', title_decorator ("green", "270deg"), htmlspecialchars($submessage), '</div>';
+	if (!empty ($submessage))
+		echo '<div class="submessage">', title_decorator("green", "270deg"), htmlspecialchars($submessage), '</div>';
 
-    echo '</span></div>';
+	echo '</span></div>';
 
-    foot();
-    exit;
+	foot();
+	exit;
 }
 
-function message_dialog ($message, $title, $closeText, $class, $buttonType = "1") {
-    echo '
-    <div class="modal fade ',$class,'">
+function message_dialog($message, $title, $closeText, $class, $buttonType = "1")
+{
+	echo '
+    <div class="modal fade ', $class, '">
         <div class="modal-dialog light-theme">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">',$title,'</h4>
+                    <h4 class="modal-title">', $title, '</h4>
                 </div>
                 <div class="modal-body">
-                    <p>',$message,'</p>
-                    <button type="button" class="btn btn-lg btn-',$buttonType,'" data-dismiss="modal">',$closeText,'</button>
+                    <p>', $message, '</p>
+                    <button type="button" class="btn btn-lg btn-', $buttonType, '" data-dismiss="modal">', $closeText, '</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

@@ -5,32 +5,32 @@ require('../include/mellivora.inc.php');
 login_session_refresh();
 
 if (strlen(array_get($_GET, 'code')) != 2) {
-    message_error(lang_get('please_supply_country_code'));
+	message_error(lang_get('please_supply_country_code'));
 }
 
 $country = db_select_one(
-    'countries',
-    array(
-        'id',
-        'country_name',
-        'country_code'
-    ),
-    array(
-        'country_code'=>$_GET['code']
-    )
+	'countries',
+	array(
+		'id',
+		'country_name',
+		'country_code'
+	),
+	array(
+		'country_code' => $_GET['code']
+	)
 );
 
 if (!$country) {
-    message_error(lang_get('please_supply_country_code'));
+	message_error(lang_get('please_supply_country_code'));
 }
 
 head($country['country_name']);
 
 if (cache_start(CONST_CACHE_NAME_COUNTRY . $_GET['code'], Config::get('MELLIVORA_CONFIG_CACHE_TIME_COUNTRIES'))) {
 
-    section_head (htmlspecialchars($country['country_name']), country_flag_link($country['country_name'], $country['country_code'], true));
+	section_head(htmlspecialchars($country['country_name']), country_flag_link($country['country_name'], $country['country_code'], true));
 
-    $scores = db_query_fetch_all('
+	$scores = db_query_fetch_all('
             SELECT
                u.id AS user_id,
                u.team_name,
@@ -48,14 +48,14 @@ if (cache_start(CONST_CACHE_NAME_COUNTRY . $_GET['code'], Config::get('MELLIVORA
             WHERE u.competing = 1 AND co.id = :country_id
             GROUP BY u.id
             ORDER BY score DESC, tiebreaker ASC',
-        array(
-            'country_id'=>$country['id']
-        )
-    );
+		array(
+			'country_id' => $country['id']
+		)
+	);
 
-    scoreboard($scores);
+	scoreboard($scores);
 
-    cache_end(CONST_CACHE_NAME_COUNTRY . $_GET['code']);
+	cache_end(CONST_CACHE_NAME_COUNTRY . $_GET['code']);
 }
 
 foot();

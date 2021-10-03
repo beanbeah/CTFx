@@ -8,7 +8,7 @@ head('Dynamic menu items');
 menu_management();
 section_title('Dynamic menu items', button_link('New menu item', 'new_dynamic_menu_item'));
 $menu_items = db_query_fetch_all(
-    'SELECT
+	'SELECT
         dm.id,
         dm.title,
         dm.permalink,
@@ -37,19 +37,19 @@ echo '
       <tbody>
     ';
 
-foreach($menu_items as $item) {
-    echo '
+foreach ($menu_items as $item) {
+	echo '
     <tr>
-        <td>',htmlspecialchars($item['title']),'</td>
+        <td>', htmlspecialchars($item['title']), '</td>
         <td>',
-        ($item['link_title'] ?
-                '<a href="'.Config::get('MELLIVORA_CONFIG_SITE_URL').'content?show='.htmlspecialchars($item['permalink']).'">'.htmlspecialchars($item['link_title']).'</a>' :
-                '<a href="'.htmlspecialchars($item['url']).'">'.short_description($item['url'], 20).'</a>'
-        ),'
+	($item['link_title'] ?
+		'<a href="' . Config::get('MELLIVORA_CONFIG_SITE_URL') . 'content?show=' . htmlspecialchars($item['permalink']) . '">' . htmlspecialchars($item['link_title']) . '</a>' :
+		'<a href="' . htmlspecialchars($item['url']) . '">' . short_description($item['url'], 20) . '</a>'
+	), '
         </td>
-        <td>',visibility_enum_to_name($item['visibility']), '</td>
-        <td>',user_class_name($item['min_user_class']), '</td>
-        <td><a href="'.Config::get('MELLIVORA_CONFIG_SITE_ADMIN_URL').'edit_dynamic_menu_item?id=',$item['id'],'" class="btn btn-xs btn-primary">Edit</a></td>
+        <td>', visibility_enum_to_name($item['visibility']), '</td>
+        <td>', user_class_name($item['min_user_class']), '</td>
+        <td><a href="' . Config::get('MELLIVORA_CONFIG_SITE_ADMIN_URL') . 'edit_dynamic_menu_item?id=', $item['id'], '" class="btn btn-xs btn-primary">Edit</a></td>
     </tr>
     ';
 }

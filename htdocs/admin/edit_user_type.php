@@ -8,12 +8,12 @@ validate_id($_GET['id']);
 
 head('Site management');
 menu_management();
-section_title ('Edit user type');
+section_title('Edit user type');
 
 $user_type = db_select_one(
-    'user_types',
-    array('*'),
-    array('id' => $_GET['id'])
+	'user_types',
+	array('*'),
+	array('id' => $_GET['id'])
 );
 
 form_start('/admin/actions/edit_user_type');

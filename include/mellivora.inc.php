@@ -21,10 +21,10 @@ require(CONST_PATH_LAYOUT . 'layout.inc.php');
 set_exception_handler('log_exception');
 
 session_set_cookie_params(
-    Config::get('MELLIVORA_CONFIG_SESSION_TIMEOUT'),
-    '/',
-    null,
-    Config::get('MELLIVORA_CONFIG_SSL_COMPAT'),
-    true
+	Config::get('MELLIVORA_CONFIG_SESSION_TIMEOUT'),
+	'/',
+	null,
+	Config::get('MELLIVORA_CONFIG_SSL_COMPAT'),
+	true
 );
 session_start();

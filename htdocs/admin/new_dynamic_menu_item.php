@@ -16,13 +16,13 @@ form_input_text('Permalink');
 dynamic_visibility_select();
 
 $pages = db_select_all(
-    'dynamic_pages',
-    array(
-        'id',
-        'title'
-    )
+	'dynamic_pages',
+	array(
+		'id',
+		'title'
+	)
 );
-array_unshift($pages, array('id'=>0,'title'=>'--- No internal link ---'));
+array_unshift($pages, array('id' => 0, 'title' => '--- No internal link ---'));
 form_select($pages, 'Internal page', 'id', null, 'title');
 
 user_class_select();

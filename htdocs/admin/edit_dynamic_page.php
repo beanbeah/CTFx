@@ -7,9 +7,9 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 validate_id($_GET['id']);
 
 $page = db_select_one(
-    'dynamic_pages',
-    array('*'),
-    array('id' => $_GET['id'])
+	'dynamic_pages',
+	array('*'),
+	array('id' => $_GET['id'])
 );
 
 head('Site management');

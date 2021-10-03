@@ -7,29 +7,29 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 validate_id($_GET['id']);
 
 $user = db_select_one(
-    'users',
-    array(
-        'team_name',
-        'email',
-        'enabled',
-        'competing',
-        'class',
-        'user_type',
-        'country_id'
-    ),
-    array('id' => $_GET['id'])
+	'users',
+	array(
+		'team_name',
+		'email',
+		'enabled',
+		'competing',
+		'class',
+		'user_type',
+		'country_id'
+	),
+	array('id' => $_GET['id'])
 );
 
 head('Site management');
 menu_management();
 
-section_title ('Edit user: ' . $user['team_name']);
+section_title('Edit user: ' . $user['team_name']);
 
 form_start('/admin/actions/user');
 form_input_text('Email', $user['email']);
 form_input_text('Team name', $user['team_name']);
 $types = db_query_fetch_all('SELECT * FROM user_types ORDER BY title ASC');
-form_select($types, 'user_type', 'id' ,$user['user_type'], 'title');
+form_select($types, 'user_type', 'id', $user['user_type'], 'title');
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
 

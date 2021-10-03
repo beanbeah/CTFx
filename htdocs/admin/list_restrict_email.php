@@ -44,21 +44,21 @@ $rules = db_query_fetch_all('
     ORDER BY re.priority ASC'
 );
 
-foreach($rules as $rule) {
-    echo '
+foreach ($rules as $rule) {
+	echo '
     <tr>
-        <td>',htmlspecialchars($rule['rule']),'</td>
-        <td>',date_time($rule['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),'</td>
-        <td>',htmlspecialchars($rule['team_name']),'</td>
+        <td>', htmlspecialchars($rule['rule']), '</td>
+        <td>', date_time($rule['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td>', htmlspecialchars($rule['team_name']), '</td>
         <td>
-            ',($rule['white'] ?
-            '<img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/accept.png" alt="Whitelisted" title="Whitelisted" />' :
-            '<img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/stop.png" alt="Blacklisted" title="Blacklisted" />'),'
+            ', ($rule['white'] ?
+		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/accept.png" alt="Whitelisted" title="Whitelisted" />' :
+		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/stop.png" alt="Blacklisted" title="Blacklisted" />'), '
         </td>
-        <td>',number_format($rule['priority']),'</td>
-        <td>',($rule['enabled'] ? 'Yes' : 'No'), '</td>
+        <td>', number_format($rule['priority']), '</td>
+        <td>', ($rule['enabled'] ? 'Yes' : 'No'), '</td>
         <td>
-            <a href="edit_restrict_email.php?id=',htmlspecialchars($rule['id']),'" class="btn btn-xs btn-primary">Edit</a>
+            <a href="edit_restrict_email.php?id=', htmlspecialchars($rule['id']), '" class="btn btn-xs btn-primary">Edit</a>
         </td>
     </tr>
     ';

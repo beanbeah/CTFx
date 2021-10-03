@@ -9,22 +9,23 @@ send_cache_headers('scores', Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'));
 
 head(lang_get('scoreboard'));
 
-function show_score($selective_scoreboard_display=false){
-    if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
+function show_score($selective_scoreboard_display = false)
+{
+	if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIME_SCORES'))) {
 
-    $now = time();
+		$now = time();
 
-    $user_types = db_select_all(
-        'user_types',
-        array(
-            'id',
-            'title'
-        )
-    );
+		$user_types = db_select_all(
+			'user_types',
+			array(
+				'id',
+				'title'
+			)
+		);
 
-    // no user types
-    if (empty($user_types)) {
-        $scores = db_query_fetch_all('
+		// no user types
+		if (empty($user_types)) {
+			$scores = db_query_fetch_all('
             SELECT
                u.id AS user_id,
                u.team_name,
@@ -41,21 +42,22 @@ function show_score($selective_scoreboard_display=false){
             WHERE u.competing = 1
             GROUP BY u.id
             ORDER BY score DESC, tiebreaker ASC'
-        );
+			);
 
-        scoreboard($scores);
-    }
-    
-    // at least one ser type
-    else {
-        foreach ($user_types as $user_type) {
-            if (user_is_staff() || get_user_type() == $user_type['id'] || $selective_scoring){
-                if(user_is_staff()){section_head(htmlspecialchars($user_type['title']) . ' ' . lang_get('scoreboard'),
-                    '<a href="/json?view=scoreboard&user_type='.$user_type['id'].'"></a>'
-                );}
-                else {section_head(lang_get('scoreboard'),'<a href="/json?view=scoreboard&user_type='.$user_type['id'].'"></a>');}
+			scoreboard($scores);
+		} // at least one ser type
+		else {
+			foreach ($user_types as $user_type) {
+				if (user_is_staff() || get_user_type() == $user_type['id'] || $selective_scoring) {
+					if (user_is_staff()) {
+						section_head(htmlspecialchars($user_type['title']) . ' ' . lang_get('scoreboard'),
+							'<a href="/json?view=scoreboard&user_type=' . $user_type['id'] . '"></a>'
+						);
+					} else {
+						section_head(lang_get('scoreboard'), '<a href="/json?view=scoreboard&user_type=' . $user_type['id'] . '"></a>');
+					}
 
-                $scores = db_query_fetch_all('
+					$scores = db_query_fetch_all('
                 SELECT
                    u.id AS user_id,
                    u.team_name,
@@ -73,34 +75,31 @@ function show_score($selective_scoreboard_display=false){
                   u.user_type = :user_type
                 GROUP BY u.id
                 ORDER BY score DESC, tiebreaker ASC',
-                    array(
-                        'user_type'=>$user_type['id']
-                    )
-                );
+						array(
+							'user_type' => $user_type['id']
+						)
+					);
 
-                scoreboard($scores);
-            }
-        }
-    }
+					scoreboard($scores);
+				}
+			}
+		}
 
-    echo '</div></div>';
+		echo '</div></div>';
 
-    cache_end(CONST_CACHE_NAME_SCORES);
-    }
+		cache_end(CONST_CACHE_NAME_SCORES);
+	}
 }
 
 if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
-    show_score(true);
-}
-
-else{
-    if (user_is_staff()){
-        message_inline('Scoreboard is currently frozen for all players');
-        show_score();
-    }
-    else {
-        message_inline('Scoreboard is frozen');
-    }
+	show_score(true);
+} else {
+	if (user_is_staff()) {
+		message_inline('Scoreboard is currently frozen for all players');
+		show_score();
+	} else {
+		message_inline('Scoreboard is frozen');
+	}
 }
 
 foot();

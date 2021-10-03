@@ -1,9 +1,10 @@
 <?php
 
-function print_solved_graph($user_id) {
-    validate_id($user_id);
+function print_solved_graph($user_id)
+{
+	validate_id($user_id);
 
-    $challenges = db_query_fetch_all('
+	$challenges = db_query_fetch_all('
         SELECT
            ca.title,
            (SELECT SUM(ch.points) FROM challenges AS ch JOIN submissions AS s ON s.challenge = ch.id AND s.user_id = :user_id AND s.correct = 1 WHERE ch.category = ca.id GROUP BY ch.category) AS points,
@@ -12,33 +13,34 @@ function print_solved_graph($user_id) {
         WHERE
           ca.exposed = 1
         ORDER BY ca.title ASC',
-        array(
-            'user_id'=>$user_id
-        )
-    );
+		array(
+			'user_id' => $user_id
+		)
+	);
 
-    if (empty($challenges)) {
-        return;
-    }
+	if (empty($challenges)) {
+		return;
+	}
 
-    $user_total = 0;
-    $ctf_total = 0;
-    foreach($challenges as $challenge) {
-        echo '<strong>',htmlspecialchars($challenge['title']), '</strong>, ', number_format($challenge['points']) ,' / ', number_format($challenge['category_total']), ' (', round(($challenge['points']/max(1, $challenge['category_total']))*100), '%)';
+	$user_total = 0;
+	$ctf_total = 0;
+	foreach ($challenges as $challenge) {
+		echo '<strong>', htmlspecialchars($challenge['title']), '</strong>, ', number_format($challenge['points']), ' / ', number_format($challenge['category_total']), ' (', round(($challenge['points'] / max(1, $challenge['category_total'])) * 100), '%)';
 
-        progress_bar(($challenge['points']/max(1, $challenge['category_total'])) * 100);
+		progress_bar(($challenge['points'] / max(1, $challenge['category_total'])) * 100);
 
-        $user_total += $challenge['points'];
-        $ctf_total += $challenge['category_total'];
-    }
+		$user_total += $challenge['points'];
+		$ctf_total += $challenge['category_total'];
+	}
 }
 
-function print_solved_challenges($user_id) {
-    validate_id($user_id);
+function print_solved_challenges($user_id)
+{
+	validate_id($user_id);
 
-    section_head(lang_get('solved_challenges'));
+	section_head(lang_get('solved_challenges'));
 
-    $submissions = db_query_fetch_all('
+	$submissions = db_query_fetch_all('
         SELECT
            s.added,
            ((SELECT COUNT(*) FROM submissions AS ss WHERE ss.correct = 1 AND ss.added < s.added AND ss.challenge=s.challenge)+1) AS pos,
@@ -56,13 +58,13 @@ function print_solved_challenges($user_id) {
            ch.exposed = 1 AND
            ca.exposed = 1
         ORDER BY s.added DESC',
-        array(
-            'user_id'=>$user_id
-        )
-    );
+		array(
+			'user_id' => $user_id
+		)
+	);
 
-    if (count($submissions)) {
-        echo '
+	if (count($submissions)) {
+		echo '
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -74,47 +76,46 @@ function print_solved_challenges($user_id) {
         <tbody>
        ';
 
-        foreach ($submissions as $submission) {
+		foreach ($submissions as $submission) {
 
-            echo '
+			echo '
               <tr>
                 <td>
-                    <a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'challenge?id=', htmlspecialchars($submission['challenge_id']), '">
+                    <a href="', Config::get('MELLIVORA_CONFIG_SITE_URL'), 'challenge?id=', htmlspecialchars($submission['challenge_id']), '">
                     ', htmlspecialchars($submission['title']), '
                     </a> (', htmlspecialchars($submission['category_title']), ')
                 </td>
 
                 <td>
-                    ', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
+                    ', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
                 </td>
 
                 <td>', get_position_medal($submission['pos'], true), '
                 <b style="vertical-align: sub">', number_format($submission['points']), '</b></td>
               </tr>
               ';
-        }
+		}
 
-        echo '
+		echo '
         </tbody>
       </table>
           ';
-    }
-
-    else {
-        message_inline(lang_get('no_challenges_solved'));
-    }
+	} else {
+		message_inline(lang_get('no_challenges_solved'));
+	}
 }
 
-function print_user_submissions($user_id, $limit = false) {
-    validate_id($user_id);
+function print_user_submissions($user_id, $limit = false)
+{
+	validate_id($user_id);
 
-    section_subhead(
-        'Submissions',
-        ($limit ? 'Limited to ' . $limit . ' results ': '') . button_link('Show all for user', '/admin/submissions?user_id=' . $user_id),
-        false
-    );
+	section_subhead(
+		'Submissions',
+		($limit ? 'Limited to ' . $limit . ' results ' : '') . button_link('Show all for user', '/admin/submissions?user_id=' . $user_id),
+		false
+	);
 
-    $submissions = db_query_fetch_all('
+	$submissions = db_query_fetch_all('
         SELECT
            s.id,
            u.id AS user_id,
@@ -129,18 +130,18 @@ function print_user_submissions($user_id, $limit = false) {
         LEFT JOIN challenges AS c ON c.id = s.challenge
         WHERE user_id = :user_id
         ORDER BY s.added DESC
-        LIMIT '.$limit,
-        array(
-            'user_id' => $user_id
-        )
-    );
+        LIMIT ' . $limit,
+		array(
+			'user_id' => $user_id
+		)
+	);
 
-    if (empty ($submissions)) {
-      message_inline("No submissions");
-      return;
-    }
+	if (empty ($submissions)) {
+		message_inline("No submissions");
+		return;
+	}
 
-    echo '
+	echo '
     <table id="files" class="table table-striped table-hover">
       <thead>
         <tr>
@@ -153,54 +154,55 @@ function print_user_submissions($user_id, $limit = false) {
       <tbody>
     ';
 
-  foreach($submissions as $submission) {
-      echo '<tr>
-        <td><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'challenge.php?id=',htmlspecialchars($submission['challenge_id']),'">',htmlspecialchars($submission['challenge_title']),'</a></td>
-        <td>',time_elapsed($submission['added']),' ago</td>
+	foreach ($submissions as $submission) {
+		echo '<tr>
+        <td><a href="', Config::get('MELLIVORA_CONFIG_SITE_URL'), 'challenge.php?id=', htmlspecialchars($submission['challenge_id']), '">', htmlspecialchars($submission['challenge_title']), '</a></td>
+        <td>', time_elapsed($submission['added']), ' ago</td>
         <td>
         <form method="post" action="/admin/actions/submissions" class="discreet-inline">
-          <input type="hidden" name="action" value="',($submission['correct'] ? 'mark_incorrect' : 'mark_correct'),'" />
-          <input type="hidden" name="id" value="',htmlspecialchars($submission['id']),'" />';
-        form_xsrf_token();
+          <input type="hidden" name="action" value="', ($submission['correct'] ? 'mark_incorrect' : 'mark_correct'), '" />
+          <input type="hidden" name="id" value="', htmlspecialchars($submission['id']), '" />';
+		form_xsrf_token();
 
-      if ($submission['correct']) {
-        echo '<button type="submit" style="color: #CFFF42" title="Click to mark incorrect"
+		if ($submission['correct']) {
+			echo '<button type="submit" style="color: #CFFF42" title="Click to mark incorrect"
           class="has-tooltip" data-toggle="tooltip" data-placement="top">
-          ',htmlspecialchars($submission['flag']),' <img src="/img/ui/correct.png">
+          ', htmlspecialchars($submission['flag']), ' <img src="/img/ui/correct.png">
           </button>';
-      } else {
-        echo '<button type="submit" style="color: #FF4242" title="Click to mark correct"
+		} else {
+			echo '<button type="submit" style="color: #FF4242" title="Click to mark correct"
           class="has-tooltip" data-toggle="tooltip" data-placement="top">
-          ',htmlspecialchars($submission['flag']),' <img src="/img/ui/wrong.png">
+          ', htmlspecialchars($submission['flag']), ' <img src="/img/ui/wrong.png">
           </button>';
-      }
-      
-      echo '</form></td>
+		}
+
+		echo '</form></td>
       <td>
       <form method="post" action="/admin/actions/submissions">';
-      form_xsrf_token();
-      echo '<input type="hidden" name="action" value="delete" />
-            <input type="hidden" name="id" value="',htmlspecialchars($submission['id']),'" />
+		form_xsrf_token();
+		echo '<input type="hidden" name="action" value="delete" />
+            <input type="hidden" name="id" value="', htmlspecialchars($submission['id']), '" />
             <button type="submit" class="btn btn-xs btn-3">Delete</button>
           </form>
         </td>
       </tr>';
-  }
+	}
 
-  echo '</tbody>
+	echo '</tbody>
     </table>';
 }
 
-function print_user_exception_log($user_id, $limit = false) {
-    validate_id($user_id);
+function print_user_exception_log($user_id, $limit = false)
+{
+	validate_id($user_id);
 
-    section_subhead(
-        'Exception log',
-        ($limit ? 'Limited to ' . $limit . ' results ': '') . button_link('Show all for user', 'exceptions?user_id=' . $user_id),
-        false
-    );
+	section_subhead(
+		'Exception log',
+		($limit ? 'Limited to ' . $limit . ' results ' : '') . button_link('Show all for user', 'exceptions?user_id=' . $user_id),
+		false
+	);
 
-    $exceptions = db_query_fetch_all('
+	$exceptions = db_query_fetch_all('
         SELECT
            e.id,
            e.message,
@@ -213,18 +215,18 @@ function print_user_exception_log($user_id, $limit = false) {
         LEFT JOIN users AS u ON u.id = e.added_by
         WHERE e.added_by = :user_id
         ORDER BY e.id DESC
-        '.($limit ? 'LIMIT '.$limit : ''),
-        array(
-            'user_id'=>$user_id
-        )
-    );
+        ' . ($limit ? 'LIMIT ' . $limit : ''),
+		array(
+			'user_id' => $user_id
+		)
+	);
 
-    if (empty ($exceptions)) {
-      message_inline("No exceptions");
-      return;
-    }
+	if (empty ($exceptions)) {
+		message_inline("No exceptions");
+		return;
+	}
 
-    echo '
+	echo '
     <table id="hints" class="table table-striped table-hover">
       <thead>
         <tr>
@@ -237,32 +239,33 @@ function print_user_exception_log($user_id, $limit = false) {
       <tbody>
     ';
 
-    foreach ($exceptions as $exception) {
-            echo '
+	foreach ($exceptions as $exception) {
+		echo '
     <tr>
         <td>', htmlspecialchars($exception['message']), '</td>
-        <td>', date_time($exception['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td>', date_time($exception['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td><a href="/admin/ip_log.php?ip=', htmlspecialchars($exception['user_ip']), '">', htmlspecialchars($exception['user_ip']), '</a></td>
         <td>', htmlspecialchars($exception['trace']), '</td>
     </tr>
     ';
-    }
+	}
 
-    echo '</tbody>
+	echo '</tbody>
     </table>';
 }
 
-function print_user_ip_log($user_id, $limit = 0) {
+function print_user_ip_log($user_id, $limit = 0)
+{
 
-    validate_id($user_id);
+	validate_id($user_id);
 
-    section_subhead(
-        'IP address usage',
-        ($limit ? 'Limited to ' . $limit . ' results ': '') . button_link('Show all for user', '/admin/ip_log?user_id=' . htmlspecialchars($user_id)),
-        false
-    );
+	section_subhead(
+		'IP address usage',
+		($limit ? 'Limited to ' . $limit . ' results ' : '') . button_link('Show all for user', '/admin/ip_log?user_id=' . htmlspecialchars($user_id)),
+		false
+	);
 
-    echo '
+	echo '
         <table id="files" class="table table-striped table-hover">
           <thead>
             <tr>
@@ -276,7 +279,7 @@ function print_user_ip_log($user_id, $limit = 0) {
           <tbody>
         ';
 
-    $entries = db_query_fetch_all('
+	$entries = db_query_fetch_all('
         SELECT
             INET_NTOA(ip) AS ip,
             added,
@@ -285,25 +288,25 @@ function print_user_ip_log($user_id, $limit = 0) {
         FROM ip_log
         WHERE user_id = :user_id
         ORDER BY last_used DESC
-        '.($limit ? 'LIMIT '.$limit : ''),
-        array(
-            'user_id'=>$user_id
-        )
-    );
+        ' . ($limit ? 'LIMIT ' . $limit : ''),
+		array(
+			'user_id' => $user_id
+		)
+	);
 
-    foreach($entries as $entry) {
-        echo '
+	foreach ($entries as $entry) {
+		echo '
         <tr>
-            <td><a href="/admin/ip_log.php?ip=',htmlspecialchars($entry['ip']),'">',htmlspecialchars($entry['ip']),'</a></td>
-            <td>',(Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? htmlspecialchars(gethostbyaddr($entry['ip'])) : '<i>Lookup disabled in config</i>'),'</td>
-            <td>',date_time($entry['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),'</td>
-            <td>',date_time($entry['last_used'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),'</td>
-            <td>',number_format($entry['times_used']),'</td>
+            <td><a href="/admin/ip_log.php?ip=', htmlspecialchars($entry['ip']), '">', htmlspecialchars($entry['ip']), '</a></td>
+            <td>', (Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? htmlspecialchars(gethostbyaddr($entry['ip'])) : '<i>Lookup disabled in config</i>'), '</td>
+            <td>', date_time($entry['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+            <td>', date_time($entry['last_used'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+            <td>', number_format($entry['times_used']), '</td>
         </tr>
         ';
-    }
+	}
 
-    echo '
+	echo '
           </tbody>
         </table>
          ';
