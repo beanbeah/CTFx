@@ -50,7 +50,7 @@ function json_score_graph()
 	$export = array();
 
 	//first retrieve position/ranking
-	$consolidated_scores = db_query_fetch_all('
+    $consolidated_scores = db_query_fetch_all('
         SELECT
            u.id AS user_id,
            u.team_name,
@@ -66,14 +66,14 @@ function json_score_graph()
 
 	$user_number = 10;
 
-	for ($i = 0; $i < $user_number; $i++) {
-		$challenges_solved = db_query_fetch_all('
+    for ($i =0; $i < $user_number; $i++){
+        $challenges_solved = db_query_fetch_all('
             SELECT 
                 submissions.added AS time_solve, 
                 challenges.points
             FROM submissions INNER JOIN challenges 
             ON
-                submissions.user_id = ' . $consolidated_scores[$i]['user_id'] . ' AND
+                submissions.user_id = ' . $consolidated_scores[$i]['user_id'] .' AND
                 submissions.correct = 1 AND
                 submissions.challenge = challenges.id
             ORDER BY time_solve ASC');
@@ -82,13 +82,13 @@ function json_score_graph()
 
 		//consolidate scores
 		$sum = 0;
-		for ($j = 0; $j < count($challenges_solved); $j++) {
-			$sum += $challenges_solved[$j]['points'];
-			//chartJS requires ms
-			$time = ($challenges_solved[$j]['time_solve']) * 1000;
-			$export[$i]['data'][$j] = array("x" => $time, "y" => $sum);
-		}
-		$export[$i]['data'][count($challenges_solved)] = array("x" => time() * 1000, "y" => $sum);
+        for ($j = 0; $j<count($challenges_solved); $j++){
+            $sum += $challenges_solved[$j]['points'];
+            //chartJS requires ms
+            $time = ($challenges_solved[$j]['time_solve']) * 1000;
+            $export[$i]['data'][$j] = array("x"=>$time,"y"=>$sum);
+        }
+        $export[$i]['data'][count($challenges_solved)] = array("x"=>time()*1000,"y"=>$sum);
 	}
 	echo json_encode($export);
 }

@@ -702,7 +702,7 @@ td a:hover {
     color: #22222270;
 }
 
-/* /* .challenge-solved .solver-1 {
+/*.challenge-solved .solver-1 {
 	background: url('/img/ui/xenon.gif');
 	background-size: cover;
 }
@@ -724,13 +724,10 @@ td a:hover {
 .solver-1 .challenge-solved-icon {
 	filter: none;
 } */
-*
-
-/
 
 .ctfx-card-head .time-left {
     float: right;
-    color: #FFF;
+    color: #222222;
     margin-top: 2px;
 }
 
