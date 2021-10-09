@@ -242,20 +242,21 @@ body {
     border-radius: 5px;
     margin-top: 3px;
     background-color: #f4f4f6;
-    padding: 10px;
-    min-width: 190px;
+    padding: 0px;
+    min-width: 180px;
 }
 
 .dropdown-menu li a {
     background-color: #f4f4f6;
-    display: inline-block;
     color: #222222;
-    transition: none;
+    padding-left: 5px;
 }
 
-.dropdown-menu li a:hover {
-    /* background-color: #ffc629; */
-    /* color: #000; */
+.dropdown-menu li:hover a, .dropdown-menu li:hover {
+    background-color: #d2d2d9;
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
 }
 
 .dropdown-header {
@@ -1083,11 +1084,12 @@ td a:hover {
 }
 
 .typewriter small {
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .page-header {
-    margin: 15px 0px 10px 0px;
+    margin: 15px 0px 15px 0px;
+    padding-bottom: 5px;
     border-bottom: 2px solid #222222;
 }
 

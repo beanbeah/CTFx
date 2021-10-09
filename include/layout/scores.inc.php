@@ -41,8 +41,8 @@ function print_graph()
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
-    <script src="/js/chartjs-plugin-zoom.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="/js/chartjs-plugin-zoom.min.js"></script>
     <div class="score-graph">Top 10 Teams</div>
     <canvas></canvas>
     <script>';
@@ -50,7 +50,6 @@ function print_graph()
 	//plot graph function
 	echo '
     function plot_graph(raw_data){
-        //Colors from https://bl.ocks.org/emeeks/8cdec64ed6daf955830fa723252a4ab3
         const colors = ["#2c6378", "#88c390", "#f8f1ad", "#f1513d", "#ba2f66", "#4d685a", "#40caa5", "#f5c92f", "#faa62a", "#d9492d"];
         const zoomOptions = {
           pan: {
