@@ -243,19 +243,20 @@ body {
     margin-top: 3px;
     background-color: #f4f4f6;
     padding: 10px;
-    min-width: 190px;
+    min-width: 195px;
 }
 
 .dropdown-menu li a {
     background-color: #f4f4f6;
-    display: inline-block;
     color: #222222;
     transition: none;
+    padding-left: 5px;
 }
 
 .dropdown-menu li:hover a, .dropdown-menu li:hover {
     background-color: #ffc629;
     color: #000;
+    text-decoration: none;
 }
 
 .dropdown-header {
