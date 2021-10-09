@@ -137,7 +137,7 @@ function print_hints($challenge, $is_id)
 			);
 
 			foreach ($hints as $hint) {
-				message_inline('<strong>Hint!</strong> ' . parse_markdown($hint['body']), "green", false);
+				message_inline('<strong>Hint!</strong> ' . parse_markdown($hint['body']), "blue", false);
 			}
 
 			cache_end(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge);
@@ -155,7 +155,7 @@ function print_hints($challenge, $is_id)
 			);
 
 			foreach ($hints as $hint) {
-				message_inline('<strong>Hint!</strong> ' . parse_markdown($hint['body']), "green", false);
+				message_inline('<strong>Hint!</strong> ' . parse_markdown($hint['body']), "blue", false);
 			}
 
 			cache_end(CONST_CACHE_NAME_CHALLENGE_HINTS . $challenge['id']);
