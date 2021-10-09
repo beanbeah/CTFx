@@ -316,7 +316,7 @@ small .btn-xs {
     background-color: #fff;
     color: #000;
     z-index: 1;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     transition: color 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 200ms ease-in-out;
 }
 
@@ -772,7 +772,7 @@ td a:hover {
 }
 
 .challenge-filename:not(.btn) {
-    color: #00205cc0;
+    color: #ce0e2dc0;
     padding: 5px;
     vertical-align: middle;
     background-position: right;
@@ -782,7 +782,7 @@ td a:hover {
 
 .challenge-filename:hover {
     text-decoration: none;
-    color: #00205c;
+    color: #ce0e2d;
     font-weight: bold;
     background-position: left;
 }
