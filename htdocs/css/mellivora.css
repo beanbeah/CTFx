@@ -253,9 +253,9 @@ body {
     transition: none;
 }
 
-.dropdown-menu li a:hover {
-    /* background-color: #ffc629; */
-    /* color: #000; */
+.dropdown-menu li:hover, .dropdown-menu li a:hover {
+    background-color: #ffc629;
+    color: #000;
 }
 
 .dropdown-header {
@@ -1083,12 +1083,12 @@ td a:hover {
 }
 
 .typewriter small {
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 .page-header {
-    margin: 15px 0px 10px 0px;
-    border-bottom: 2px solid #222222;
+    margin: 15px 0px 15px 0px;
+    /* border-bottom: 2px solid #222222; */
 }
 
 .ctfx-pager {
