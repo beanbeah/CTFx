@@ -195,7 +195,7 @@ function title_decorator($color, $rotation = "0deg", $img = "arrow.png")
 
 	switch ($color) {
 		case "blue":
-			$colorcode = "#00205c";
+			$colorcode = "#00205cc0";
 			break;
 		case "yellow":
 			$colorcode = "#ffc629";

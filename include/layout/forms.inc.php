@@ -87,7 +87,7 @@ function form_input_checkbox($name, $checked = 0, $color = "yellow")
 
 	switch ($color) {
 		case "blue":
-			$colorcode = "#00205c";
+			$colorcode = "#00205cc0";
 			break;
 		case "yellow":
 			$colorcode = "#ffc629";
