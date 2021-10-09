@@ -51,7 +51,7 @@ function print_graph()
 	echo '
     function plot_graph(raw_data){
         //Colors from https://bl.ocks.org/emeeks/8cdec64ed6daf955830fa723252a4ab3
-        const colors = ["#a6cee3","#1f78b4","#b2df8a","#33a02c","#fb9a99","#e31a1c","#fdbf6f","#ff7f00","#cab2d6","#6a3d9a","#ffff99","#b15928"];
+        const colors = ["#2c6378", "#88c390", "#f8f1ad", "#f1513d", "#ba2f66", "4d6845a", "40caa5", "f5c92f", "faa62a", "d9492d"];
         const zoomOptions = {
           pan: {
             enabled: true,
