@@ -45,7 +45,7 @@ function json_scoreboard($user_type = null)
 	echo json_encode($scoreboard);
 }
 
-function json_score_dump($all_users = false)
+function json_score_graph()
 {
 	$export = array();
 
@@ -64,7 +64,7 @@ function json_score_dump($all_users = false)
         GROUP BY u.id
         ORDER BY score DESC, tiebreaker ASC');
 
-	$user_number = ($all_users ? Config::get('MELLIVORA_CONFIG_CHALL_PARTICIPANTS') : 10);
+	$user_number = 10;
 
 	for ($i = 0; $i < $user_number; $i++) {
 		$challenges_solved = db_query_fetch_all('

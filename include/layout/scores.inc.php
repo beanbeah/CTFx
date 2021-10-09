@@ -112,7 +112,7 @@ function print_graph()
 
 	//fetch data + plot
 	echo '
-    fetch("' . Config::get("MELLIVORA_CONFIG_SITE_URL") . '")
+    fetch("' . Config::get("MELLIVORA_CONFIG_SITE_URL") . 'json?view=graph")
     .then((resp) => resp.json())
     .then(function(data) {
         plot_graph({"datasets": data});
