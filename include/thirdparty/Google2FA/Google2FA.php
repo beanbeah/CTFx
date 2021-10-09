@@ -24,161 +24,163 @@
 class Google2FA
 {
 
-    const keyRegeneration = 30; // Interval between key regeneration
-    const otpLength = 6; // Length of the Token generated
-    const googleChartsBaseURL = 'https://chart.googleapis.com/';
+	const keyRegeneration = 30; // Interval between key regeneration
+	const otpLength = 6; // Length of the Token generated
+	const googleChartsBaseURL = 'https://chart.googleapis.com/';
 
-    private static $lut = array( // Lookup needed for Base32 encoding
-        "A" => 0, "B" => 1,
-        "C" => 2, "D" => 3,
-        "E" => 4, "F" => 5,
-        "G" => 6, "H" => 7,
-        "I" => 8, "J" => 9,
-        "K" => 10, "L" => 11,
-        "M" => 12, "N" => 13,
-        "O" => 14, "P" => 15,
-        "Q" => 16, "R" => 17,
-        "S" => 18, "T" => 19,
-        "U" => 20, "V" => 21,
-        "W" => 22, "X" => 23,
-        "Y" => 24, "Z" => 25,
-        "2" => 26, "3" => 27,
-        "4" => 28, "5" => 29,
-        "6" => 30, "7" => 31
-    );
+	private static $lut = array( // Lookup needed for Base32 encoding
+		"A" => 0, "B" => 1,
+		"C" => 2, "D" => 3,
+		"E" => 4, "F" => 5,
+		"G" => 6, "H" => 7,
+		"I" => 8, "J" => 9,
+		"K" => 10, "L" => 11,
+		"M" => 12, "N" => 13,
+		"O" => 14, "P" => 15,
+		"Q" => 16, "R" => 17,
+		"S" => 18, "T" => 19,
+		"U" => 20, "V" => 21,
+		"W" => 22, "X" => 23,
+		"Y" => 24, "Z" => 25,
+		"2" => 26, "3" => 27,
+		"4" => 28, "5" => 29,
+		"6" => 30, "7" => 31
+	);
 
-    /**
-     * Returns the current Unix Timestamp devided by the keyRegeneration
-     * period.
-     * @return integer
-     **/
-    public static function get_timestamp()
-    {
-        return floor(microtime(true) / self::keyRegeneration);
-    }
+	/**
+	 * Verifys a user inputted key against the current timestamp. Checks $window
+	 * keys either side of the timestamp.
+	 *
+	 * @param string $b32seed
+	 * @param string $key - User specified key
+	 * @param integer $window
+	 * @param boolean $useTimeStamp
+	 * @return boolean
+	 **/
+	public static function verify_key($b32seed, $key, $window = 4, $useTimeStamp = true)
+	{
 
-    /**
-     * Decodes a base32 string into a binary string.
-     **/
-    public static function base32_decode($b32)
-    {
+		$timeStamp = self::get_timestamp();
 
-        $b32 = strtoupper($b32);
+		if ($useTimeStamp !== true) $timeStamp = (int)$useTimeStamp;
 
-        if (!preg_match('/^[ABCDEFGHIJKLMNOPQRSTUVWXYZ234567]+$/', $b32, $match))
-            throw new Exception('Invalid characters in the base32 string.');
+		$binarySeed = self::base32_decode($b32seed);
 
-        $l = strlen($b32);
-        $n = 0;
-        $j = 0;
-        $binary = "";
+		for ($ts = $timeStamp - $window; $ts <= $timeStamp + $window; $ts++)
+			if (self::oath_hotp($binarySeed, $ts) == $key)
+				return true;
 
-        for ($i = 0; $i < $l; $i++) {
+		return false;
 
-            $n = $n << 5; // Move buffer left by 5 to make room
-            $n = $n + self::$lut[$b32[$i]]; // Add value into buffer
-            $j = $j + 5; // Keep track of number of bits in buffer
+	}
 
-            if ($j >= 8) {
-                $j = $j - 8;
-                $binary .= chr(($n & (0xFF << $j)) >> $j);
-            }
-        }
+	/**
+	 * Returns the current Unix Timestamp devided by the keyRegeneration
+	 * period.
+	 *
+	 * @return integer
+	 **/
+	public static function get_timestamp()
+	{
+		return floor(microtime(true) / self::keyRegeneration);
+	}
 
-        return $binary;
-    }
+	/**
+	 * Decodes a base32 string into a binary string.
+	 **/
+	public static function base32_decode($b32)
+	{
 
-    /**
-     * Takes the secret key and the timestamp and returns the one time
-     * password.
-     *
-     * @param binary $key - Secret key in binary form.
-     * @param integer $counter - Timestamp as returned by get_timestamp.
-     * @return string
-     **/
-    public static function oath_hotp($key, $counter)
-    {
-        if (strlen($key) < 8)
-            throw new Exception('Secret key is too short. Must be at least 16 base 32 characters');
+		$b32 = strtoupper($b32);
 
-        $bin_counter = pack('N*', 0) . pack('N*', $counter); // Counter must be 64-bit int
-        $hash = hash_hmac('sha1', $bin_counter, $key, true);
+		if (!preg_match('/^[ABCDEFGHIJKLMNOPQRSTUVWXYZ234567]+$/', $b32, $match))
+			throw new Exception('Invalid characters in the base32 string.');
 
-        return str_pad(self::oath_truncate($hash), self::otpLength, '0', STR_PAD_LEFT);
-    }
+		$l = strlen($b32);
+		$n = 0;
+		$j = 0;
+		$binary = "";
 
-    /**
-     * Verifys a user inputted key against the current timestamp. Checks $window
-     * keys either side of the timestamp.
-     *
-     * @param string $b32seed
-     * @param string $key - User specified key
-     * @param integer $window
-     * @param boolean $useTimeStamp
-     * @return boolean
-     **/
-    public static function verify_key($b32seed, $key, $window = 4, $useTimeStamp = true)
-    {
+		for ($i = 0; $i < $l; $i++) {
 
-        $timeStamp = self::get_timestamp();
+			$n = $n << 5; // Move buffer left by 5 to make room
+			$n = $n + self::$lut[$b32[$i]]; // Add value into buffer
+			$j = $j + 5; // Keep track of number of bits in buffer
 
-        if ($useTimeStamp !== true) $timeStamp = (int)$useTimeStamp;
+			if ($j >= 8) {
+				$j = $j - 8;
+				$binary .= chr(($n & (0xFF << $j)) >> $j);
+			}
+		}
 
-        $binarySeed = self::base32_decode($b32seed);
+		return $binary;
+	}
 
-        for ($ts = $timeStamp - $window; $ts <= $timeStamp + $window; $ts++)
-            if (self::oath_hotp($binarySeed, $ts) == $key)
-                return true;
+	/**
+	 * Takes the secret key and the timestamp and returns the one time
+	 * password.
+	 *
+	 * @param binary $key - Secret key in binary form.
+	 * @param integer $counter - Timestamp as returned by get_timestamp.
+	 * @return string
+	 **/
+	public static function oath_hotp($key, $counter)
+	{
+		if (strlen($key) < 8)
+			throw new Exception('Secret key is too short. Must be at least 16 base 32 characters');
 
-        return false;
+		$bin_counter = pack('N*', 0) . pack('N*', $counter); // Counter must be 64-bit int
+		$hash = hash_hmac('sha1', $bin_counter, $key, true);
 
-    }
+		return str_pad(self::oath_truncate($hash), self::otpLength, '0', STR_PAD_LEFT);
+	}
 
-    /**
-     * Extracts the OTP from the SHA1 hash.
-     * @param binary $hash
-     * @return integer
-     **/
-    public static function oath_truncate($hash)
-    {
-        $offset = ord($hash[19]) & 0xf;
+	/**
+	 * Extracts the OTP from the SHA1 hash.
+	 *
+	 * @param binary $hash
+	 * @return integer
+	 **/
+	public static function oath_truncate($hash)
+	{
+		$offset = ord($hash[19]) & 0xf;
 
-        return (
-            ((ord($hash[$offset + 0]) & 0x7f) << 24) |
-            ((ord($hash[$offset + 1]) & 0xff) << 16) |
-            ((ord($hash[$offset + 2]) & 0xff) << 8) |
-            (ord($hash[$offset + 3]) & 0xff)
-        ) % pow(10, self::otpLength);
-    }
+		return (
+				((ord($hash[$offset + 0]) & 0x7f) << 24) |
+				((ord($hash[$offset + 1]) & 0xff) << 16) |
+				((ord($hash[$offset + 2]) & 0xff) << 8) |
+				(ord($hash[$offset + 3]) & 0xff)
+			) % pow(10, self::otpLength);
+	}
 
-    public static function get_qr_code_url($username, $secret, $size = 200)
-    {
-        return self::googleChartsBaseURL . 'chart?chs=' . $size . 'x' . $size .
-        '&chld=M|0&cht=qr&chl=' . urlencode('otpauth://totp/' . $username . '@' . Config::get('MELLIVORA_CONFIG_SITE_NAME') . '?secret=' . $secret);
-    }
+	public static function curl_qr_code_to_image($username, $secret)
+	{
+		if (FALSE === $secret) {
+			return FALSE;
+		}
+		$url = self::get_qr_code_url($username, $secret);
+		$curl_handle = curl_init();
+		$headers = array('Expect:');
+		$options = array(
+			CURLOPT_URL => $url,
+			CURLOPT_CONNECTTIMEOUT => 2,
+			CURLOPT_RETURNTRANSFER => 1,
+			CURLOPT_USERAGENT => 'My-Google-Auth',
+			CURLOPT_HTTPHEADER => $headers
+		);
+		curl_setopt_array($curl_handle, $options);
 
-    public static function curl_qr_code_to_image($username, $secret)
-    {
-        if (FALSE === $secret) {
-            return FALSE;
-        }
-        $url = self::get_qr_code_url($username, $secret);
-        $curl_handle = curl_init();
-        $headers = array('Expect:');
-        $options = array(
-            CURLOPT_URL => $url,
-            CURLOPT_CONNECTTIMEOUT => 2,
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_USERAGENT => 'My-Google-Auth',
-            CURLOPT_HTTPHEADER => $headers
-        );
-        curl_setopt_array($curl_handle, $options);
+		$query = curl_exec($curl_handle);
+		curl_close($curl_handle);
 
-        $query = curl_exec($curl_handle);
-        curl_close($curl_handle);
+		$base_64 = chunk_split(base64_encode($query));
 
-        $base_64 = chunk_split(base64_encode($query));
+		return '<img class="google_qrcode" src="data:image/gif;base64,' . $base_64 . '" alt="QR Code" />';
+	}
 
-        return '<img class="google_qrcode" src="data:image/gif;base64,' . $base_64 . '" alt="QR Code" />';
-    }
+	public static function get_qr_code_url($username, $secret, $size = 200)
+	{
+		return self::googleChartsBaseURL . 'chart?chs=' . $size . 'x' . $size .
+			'&chld=M|0&cht=qr&chl=' . urlencode('otpauth://totp/' . $username . '@' . Config::get('MELLIVORA_CONFIG_SITE_NAME') . '?secret=' . $secret);
+	}
 }

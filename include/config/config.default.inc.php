@@ -152,10 +152,10 @@ Config::set('MELLIVORA_CONFIG_SEGMENT_IO_KEY', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_KEY_ID', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_SECRET', '');
 Config::set('MELLIVORA_CONFIG_AWS_S3_BUCKET', '');
-Config::set('MELLIVORA_CONFIG_AWS_S3_REGION','');
+Config::set('MELLIVORA_CONFIG_AWS_S3_REGION', '');
 //Digital Ocean S3-like storage 
-Config::set('MELLIVORA_CONFIG_DO_S3',true);
+Config::set('MELLIVORA_CONFIG_DO_S3', true);
 //include https:// for endpoint
-Config::set('MELLIVORA_CONFIG_DO_S3_ENDPOINT','');
+Config::set('MELLIVORA_CONFIG_DO_S3_ENDPOINT', '');
 
 

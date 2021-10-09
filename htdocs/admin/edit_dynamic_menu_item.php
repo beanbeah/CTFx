@@ -11,9 +11,9 @@ menu_management();
 section_title('Edit dynamic menu item');
 
 $menu_item = db_select_one(
-    'dynamic_menu',
-    array('*'),
-    array('id' => $_GET['id'])
+	'dynamic_menu',
+	array('*'),
+	array('id' => $_GET['id'])
 );
 
 form_start('/admin/actions/edit_dynamic_menu_item');
@@ -24,13 +24,13 @@ form_input_text('Permalink', $menu_item['permalink']);
 dynamic_visibility_select($menu_item['visibility']);
 
 $pages = db_select_all(
-    'dynamic_pages',
-    array(
-        'id',
-        'title'
-    )
+	'dynamic_pages',
+	array(
+		'id',
+		'title'
+	)
 );
-array_unshift($pages, array('id'=>0,'title'=>'--- No internal link ---'));
+array_unshift($pages, array('id' => 0, 'title' => '--- No internal link ---'));
 form_select($pages, 'Internal page', 'id', $menu_item['internal_page'], 'title');
 
 user_class_select($menu_item['min_user_class']);

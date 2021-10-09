@@ -10,13 +10,13 @@ menu_management();
 $where = array();
 
 if (is_valid_ip(array_get($_GET, 'ip'))) {
-    section_title ('Teams using IP ' . $_GET['ip']);
-    $where['ip'] = ip2long($_GET['ip']);
+	section_title('Teams using IP ' . $_GET['ip']);
+	$where['ip'] = ip2long($_GET['ip']);
 } else if (is_valid_id(array_get($_GET, 'user_id'))) {
-    section_title ('IP log for user');
-    $where['user_id'] = $_GET['user_id'];
+	section_title('IP log for user');
+	$where['user_id'] = $_GET['user_id'];
 } else {
-    message_error('Must supply either IP or user ID');
+	message_error('Must supply either IP or user ID');
 }
 
 echo '
@@ -45,25 +45,25 @@ $query = 'SELECT
         ';
 
 if (!empty($where)) {
-    $query .= 'WHERE '.implode('=? AND ', array_keys($where)).'=? ';
+	$query .= 'WHERE ' . implode('=? AND ', array_keys($where)) . '=? ';
 }
 
 $entries = db_query_fetch_all(
-    $query,
-    array_values($where)
+	$query,
+	array_values($where)
 );
 
 foreach ($entries as $entry) {
-    echo '
+	echo '
     <tr>
         <td>
             <a href="/admin/user.php?id=', htmlspecialchars($entry['user_id']), '">
                 ', htmlspecialchars($entry['team_name']), '
             </a>
         </td>
-        <td><a href="/admin/ip_log?ip=',htmlspecialchars($entry['ip']),'">', htmlspecialchars(Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? gethostbyaddr($entry['ip']) : $entry['ip']), '</a></td>
-        <td>', date_time($entry['added'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
-        <td>', date_time($entry['last_used'],Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td><a href="/admin/ip_log?ip=', htmlspecialchars($entry['ip']), '">', htmlspecialchars(Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? gethostbyaddr($entry['ip']) : $entry['ip']), '</a></td>
+        <td>', date_time($entry['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td>', date_time($entry['last_used'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td>', number_format($entry['times_used']), '</td>
     </tr>
     ';

@@ -24,10 +24,10 @@ services:
     environment:
       MYSQL_USER: mellivora
       MYSQL_PASSWORD: mellivora
-      MYSQL_ROOT_PASSWORD: "seandontforgetmewhenyougetrichpls"
-      MYSQL_DATABASE: "mellivora"
-      MYSQL_USER: "meldbuser"
-      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: seandontforgetmewhenyougetrichpls
+      MYSQL_DATABASE: mellivora
+      MYSQL_USER: meldbuser
+      MYSQL_PASSWORD: password
     volumes:
       - dbdata:/var/lib/mysql
       - ./install/sql:/docker-entrypoint-initdb.d
@@ -41,3 +41,4 @@ services:
 
 volumes:
   dbdata:
+

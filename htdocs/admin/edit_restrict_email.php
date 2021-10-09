@@ -7,14 +7,14 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 validate_id($_GET['id']);
 
 $rule = db_select_one(
-    'restrict_email',
-    array(
-        'rule',
-        'enabled',
-        'white',
-        'priority'
-    ),
-    array('id' => $_GET['id'])
+	'restrict_email',
+	array(
+		'rule',
+		'enabled',
+		'white',
+		'priority'
+	),
+	array('id' => $_GET['id'])
 );
 
 head('Site management');

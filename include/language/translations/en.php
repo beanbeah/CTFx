@@ -61,22 +61,21 @@ $lang['your_password_was_set'] = 'Your password was chosen by you on signup.';
 
 $lang['signup_email_subject'] = '{site_name} account details';
 $lang['signup_email_success'] =
-    '{team_name}, your registration at {site_name} was successful.' .
-    "\r\n" .
-    "\r\n" .
-    '{signup_email_availability}' .
-    "\r\n" .
-    "\r\n" .
-    '{signup_email_password}' .
-    "\r\n" .
-    "\r\n" .
-    'Please stay tuned for updates!' .
-    "\r\n" .
-    "\r\n" .
-    'Regards,' .
-    "\r\n" .
-    '{site_name}'
-;
+	'{team_name}, your registration at {site_name} was successful.' .
+	"\r\n" .
+	"\r\n" .
+	'{signup_email_availability}' .
+	"\r\n" .
+	"\r\n" .
+	'{signup_email_password}' .
+	"\r\n" .
+	"\r\n" .
+	'Please stay tuned for updates!' .
+	"\r\n" .
+	"\r\n" .
+	'Regards,' .
+	"\r\n" .
+	'{site_name}';
 $lang['signup_email_account_availability_message_login_now'] = 'You can now log in using your email and chosen password.';
 $lang['signup_email_account_availability_message_login_later'] = 'Once the competition starts, please use this email address to log in.';
 

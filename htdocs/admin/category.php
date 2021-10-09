@@ -5,33 +5,33 @@ require('../../include/mellivora.inc.php');
 enforce_authentication(CONST_USER_CLASS_MODERATOR);
 
 if (isset ($_GET['id'])) {
-    validate_id($_GET['id']);
+	validate_id($_GET['id']);
 
-    $category = db_select_one(
-	    'categories',
-	    array('*'),
-	    array('id' => $_GET['id'])
+	$category = db_select_one(
+		'categories',
+		array('*'),
+		array('id' => $_GET['id'])
 	);
 
-    if ($category === false)
-        unset ($category);
+	if ($category === false)
+		unset ($category);
 }
 
 head('Site management');
 menu_management();
 
-section_title (isset ($category)?'Edit category: ' . $category['title']:"New category");
+section_title(isset ($category) ? 'Edit category: ' . $category['title'] : "New category");
 form_start('/admin/actions/category');
 form_input_text('Title', $category['title']);
 form_textarea('Description', $category['description']);
 form_input_checkbox('Exposed', $category['exposed']);
-form_hidden('action', isset ($category)?'edit':'new');
+form_hidden('action', isset ($category) ? 'edit' : 'new');
 form_hidden('id', $_GET['id']);
 form_button_submit('Save changes');
-form_end ();
+form_end();
 
 if (!isset ($category)) {
-    die (foot ());
+	die (foot());
 }
 
 section_subhead('Delete category: ' . $category['title']);

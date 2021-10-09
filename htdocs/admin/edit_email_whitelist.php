@@ -7,13 +7,13 @@ enforce_authentication(CONST_USER_CLASS_MODERATOR);
 validate_id($_GET['id']);
 
 $email = db_select_one(
-    'email_list',
-    array(
-        'email',
-        'enabled',
-        'white',
-    ),
-    array('id' => $_GET['id'])
+	'email_list',
+	array(
+		'email',
+		'enabled',
+		'white',
+	),
+	array('id' => $_GET['id'])
 );
 
 head('Site management');
