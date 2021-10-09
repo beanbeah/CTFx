@@ -27,7 +27,7 @@ function print_time_left($challenge)
 function print_time_left_tooltip($challenge)
 {
 	print_time_left($challenge);
-	echo ' <span class="time-left glyphicon glyphicon-time"></span> ';
+	echo ' <span class="time-left bi bi-clock"></span> ';
 }
 
 function print_submit_metadata($challenge)

@@ -731,9 +731,9 @@ td a:hover {
     margin-top: 2px;
 }
 
-.ctfx-card-head .glyphicon-time {
+.ctfx-card-head .bi-clock {
     margin-right: 5px;
-    margin-top: 4px;
+    margin-top: 2px;
 }
 
 .challenge-solved-text {
