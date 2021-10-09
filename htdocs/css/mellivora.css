@@ -253,7 +253,7 @@ body {
     transition: none;
 }
 
-.dropdown-menu li:hover, .dropdown-menu li a:hover {
+.dropdown-menu li:hover a, .dropdown-menu li:hover {
     background-color: #ffc629;
     color: #000;
 }
