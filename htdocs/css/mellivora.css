@@ -1088,7 +1088,8 @@ td a:hover {
 
 .page-header {
     margin: 15px 0px 15px 0px;
-    /* border-bottom: 2px solid #222222; */
+    padding-bottom: 5px;
+    border-bottom: 2px solid #222222;
 }
 
 .ctfx-pager {
