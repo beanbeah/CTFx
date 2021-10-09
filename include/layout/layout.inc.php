@@ -42,7 +42,10 @@ function head($title = '')
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/' . $highlightTheme . '.min.css">
-    <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">';
+    <link href="/css/mellivora.css?ver=' . $staticVersion . '" rel="stylesheet">
+
+    <!-- Jqeury -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>';
 
 	js_global_dict();
 
@@ -135,13 +138,12 @@ function foot()
 
 <div id="footer">
     <b>CTFx</b> v1 Beta<br>
-	Made with &#x1f499;</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
+	Made with &#x1f499;</a> by <a href="https://github.com/dbsqwerty">dbsqwerty</a>, <a href="https://github.com/Oceankoh">Oceankoh</a> and <a href="https://github.com/Wealthyturtle">Wealthyturtle</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
 </div>
 
 </div> <!-- /page -->
 
 <!-- JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/mellivora.js?ver=' . $staticVersion . '"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>

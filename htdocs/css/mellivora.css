@@ -240,20 +240,22 @@ body {
 .dropdown-menu {
     border: none;
     border-radius: 5px;
-    margin-top: 0px;
-    padding: 0px;
+    margin-top: 3px;
+    background-color: #f4f4f6;
+    padding: 10px;
+    min-width: 190px;
 }
 
 .dropdown-menu li a {
-    background-color: #D2D2D9;
+    background-color: #f4f4f6;
+    display: inline-block;
     color: #222222;
     transition: none;
-    padding: 5px 20px;
 }
 
 .dropdown-menu li a:hover {
-    background-color: #ffc629;
-    color: #000;
+    /* background-color: #ffc629; */
+    /* color: #000; */
 }
 
 .dropdown-header {
