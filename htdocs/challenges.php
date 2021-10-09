@@ -81,7 +81,7 @@ echo '<h3 style="font-size: 18px">Category: </h3><div id="category-name" class="
 
 // write out our categories menu
 echo '<div id="categories-menu" class="menu">
-', title_decorator("green", "270deg");
+', title_decorator("blue", "270deg");
 
 foreach ($categories as $cat) {
 	echo '<a class="btn btn-xs btn-2 ', ($current_category['id'] == $cat['id'] ? 'active' : ''), '" href="/challenges?category=', htmlspecialchars(to_permalink($cat['title'])), '">', htmlspecialchars($cat['title']), '</a>';
@@ -249,7 +249,7 @@ foreach ($challenges as $challenge) {
 
                 input[type=submit] {
                 width: 100%;
-                background-color: #4CAF50;
+                background-color: #00205cc0;
                 color: white;
                 padding: 14px 20px;
                 margin: 8px 0;
