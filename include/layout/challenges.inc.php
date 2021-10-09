@@ -82,7 +82,7 @@ print_challenge_files($files)
 				$url = htmlspecialchars($file['url']);
 			}
 
-			echo '<a target="_blank" href="', $url, '">', title_decorator("blue", "0deg", "package.png"), '</a>';
+			echo '<a target="_blank" href="', $url, '">', title_decorator("red", "0deg", "package.png"), '</a>';
 			echo '<a target="_blank" class="challenge-filename" href="', $url, '">', htmlspecialchars($file['title']), '</a>';
 
 			if (empty ($file['url'])) {

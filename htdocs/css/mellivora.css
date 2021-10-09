@@ -109,6 +109,11 @@ body {
     filter: invert(1);
 }
 
+.title-decorator-red .title-decorator-icon {
+    filter: invert(1);
+}
+
+
 .title-decorator-gray {
     background-color: #D2D2D9;
     animation: maskdown-second 3s infinite ease-out;
