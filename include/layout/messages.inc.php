@@ -57,7 +57,7 @@ function message_inline($message, $color = "yellow", $strip_html = true, $extra_
 			$textcolor = "#ce0e2d";
 			break;
 		case "blue": 
-			$textcolor = "#00205cc0";
+			$textcolor = "#222222";
 			break;
 		default:
 			$textcolor = "";

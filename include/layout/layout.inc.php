@@ -208,7 +208,7 @@ function title_decorator($color, $rotation = "0deg", $img = "arrow.png")
 	}
 
 	echo '<div class="title-decorator-container title-decorator-', htmlspecialchars($color), '" style="transform: rotate(', $rotation, ')">
-        <div class="title-decorator" style="background-color:', htmlspecialchars($colorcode), '"></div>
+        <div class="title-decorator title-decorator-background-', htmlspecialchars($color), '"></div>
         <div class="title-decorator title-decorator-gray"></div>
         <div class="title-decorator title-decorator-icon" style="background-image: url(\'/img/ui/', $img, '\')"></div>
     </div>';

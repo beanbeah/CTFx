@@ -236,30 +236,9 @@ foreach ($challenges as $challenge) {
 				$displayed_before = true;
 				$get_hint = false;
 			} else {
-				echo "<style>
-                input[type=text], select {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: border-box;
-                }
-
-                input[type=submit] {
-                width: 100%;
-                background-color: #00205cc0;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                }</style>";
 				echo '<div><form method="post">';
 				echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
-				echo '<input type="submit" name="ShowHint" value="Show Hint">
+				echo '<input type = "submit" class="challenge-hint" name="ShowHint" value="Show Hint">
                 </form></div>';
 			}
 		}

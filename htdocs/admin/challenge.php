@@ -118,7 +118,7 @@ $files = db_select_all(
 
 foreach ($files as $file) {
 	echo '<div class="challenge-file">';
-	title_decorator("blue", "0deg", "package.png");
+	title_decorator("red", "0deg", "package.png");
 	echo '<a style="margin: 0px; margin-right: 5px" href="file.php?id=' . htmlspecialchars($file['id']) . '" class="btn btn-xs btn-1">✎</a>';
 
 	if (empty ($file['url'])) {
