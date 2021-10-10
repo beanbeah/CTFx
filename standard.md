@@ -23,6 +23,7 @@ This installation is meant for just **one** machine with a **LEMP** stack.
 6) Configuration
    - Copy `include/config/db.default.inc.php` to `include/config/db.inc.php` and configure. 
    - Copy `include/config/config.default.inc.php` to `include/config/config.inc.php` and configure. 
+   - RUN echo "clear_env = no" >> /etc/php/7.4/fpm/pool.d/www.conf
 7) Create Admin User
    - Register your admin account on the website (and enable 2FA Authentication preferably)
    - Logout of your account

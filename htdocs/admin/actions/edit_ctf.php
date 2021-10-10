@@ -27,17 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$from = $from->format('U');
 			$end = $end->format('U');
 
-			if ($_POST['write_to_config']) {
-				//write to config file, kinda hacky atm
-				$concat_from = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_CTF_START_TIME\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_CTF_START_TIME\'"\'"\', ' . $from . ');+g';
+			//set env to override config file
+			putenv("MELLIVORA_CONFIG_CTF_START_TIME=$from");
+			putenv("MELLIVORA_CONFIG_CTF_END_TIME=$end");
 
-				shell_exec("sed -i '{$concat_from}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
-
-				$concat_to = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_CTF_END_TIME\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_CTF_END_TIME\'"\'"\', ' . $end . ');+g';
-
-				shell_exec("sed -i '{$concat_to}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
-			}
-
+			//db changes for challenges
 			db_update_all(
 				'challenges',
 				array(
@@ -55,12 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else if ($_POST['action'] === 'scoreboard_freeze') {
 		//write to config file, quite hacky at the moment
 		if ($_POST['freeze']) {
-			$concat_hide = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', false);+g';
-			shell_exec("sed -i '{$concat_hide}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
+			//set env
+			putenv("MELLIVORA_CONFIG_SHOW_SCOREBOARD=false")
+			
 		} else {
-			$concat_show = 's+^Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', .*$+Config::set(\'"\'"\'MELLIVORA_CONFIG_SHOW_SCOREBOARD\'"\'"\', true);+g';
-			shell_exec("sed -i '{$concat_show}' /var/www/ctfx/include/config/config.inc.php 2>/dev/null >/dev/null &");
-
+			//set env
+			putenv("MELLIVORA_CONFIG_SHOW_SCOREBOARD=true")
 		}
 
 		redirect('/admin/edit_ctf.php?generic_success=1');
