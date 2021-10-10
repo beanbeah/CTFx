@@ -13,7 +13,7 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
 	echo '<div id="home-logo"></div>
 	<div class="home-intro-text">',
 	(!ctfStarted()) ? (title_decorator("blue", "0deg", "asterisk.png") . 'CTF will start in <b>' . seconds_to_pretty_time(Config::get('MELLIVORA_CONFIG_CTF_START_TIME') - time()) . '</b><br><br>') : '',
-	'CTFx is a blazing fast CTF platform. This is a fork of <a href="https://github.com/Nakiami/mellivora">mellivora</a> that adds extra functionality and various other neat stuff. It should be noted this is still in development and there may be occasional bugs</div>';
+	'</div>';
 
 	echo '<div class="row" style="text-align:center; font-size: 20px; margin-bottom:-5px">
     

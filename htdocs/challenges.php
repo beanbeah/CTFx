@@ -81,7 +81,7 @@ echo '<h3 style="font-size: 18px">Category: </h3><div id="category-name" class="
 
 // write out our categories menu
 echo '<div id="categories-menu" class="menu">
-', title_decorator("green", "270deg");
+', title_decorator("blue", "270deg");
 
 foreach ($categories as $cat) {
 	echo '<a class="btn btn-xs btn-2 ', ($current_category['id'] == $cat['id'] ? 'active' : ''), '" href="/challenges?category=', htmlspecialchars(to_permalink($cat['title'])), '">', htmlspecialchars($cat['title']), '</a>';
@@ -236,30 +236,9 @@ foreach ($challenges as $challenge) {
 				$displayed_before = true;
 				$get_hint = false;
 			} else {
-				echo "<style>
-                input[type=text], select {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                box-sizing: border-box;
-                }
-
-                input[type=submit] {
-                width: 100%;
-                background-color: #4CAF50;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                }</style>";
 				echo '<div><form method="post">';
 				echo '<input type = "hidden" name="Chall" value=' . $challenge["id"] . '><br>';
-				echo '<input type="submit" name="ShowHint" value="Show Hint">
+				echo '<input type = "submit" class="challenge-hint" name="ShowHint" value="Show Hint">
                 </form></div>';
 			}
 		}

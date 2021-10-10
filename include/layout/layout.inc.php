@@ -138,7 +138,7 @@ function foot()
 
 <div id="footer">
     <b>CTFx</b> v1 Beta<br>
-	Made with &#x2764;&#xfe0f;</a> by <a href="https://github.com/dbsqwerty">dbsqwerty</a>, <a href="https://github.com/Oceankoh">Oceankoh</a> and <a href="https://github.com/Wealthyturtle">Wealthyturtle</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
+	Made with &#x2764;&#xfe0f;</a> by <a href="https://github.com/dbsqwerty">dbsqwerty</a>, <a href="https://github.com/Oceankoh">Ocean</a> and <a href="https://github.com/Wealthyturtle">Wealthyturtle</a>, Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
 </div>
 
 </div> <!-- /page -->
@@ -195,7 +195,7 @@ function title_decorator($color, $rotation = "0deg", $img = "arrow.png")
 
 	switch ($color) {
 		case "blue":
-			$colorcode = "#00205c";
+			$colorcode = "#00205cc0";
 			break;
 		case "yellow":
 			$colorcode = "#ffc629";
@@ -208,7 +208,7 @@ function title_decorator($color, $rotation = "0deg", $img = "arrow.png")
 	}
 
 	echo '<div class="title-decorator-container title-decorator-', htmlspecialchars($color), '" style="transform: rotate(', $rotation, ')">
-        <div class="title-decorator" style="background-color:', htmlspecialchars($colorcode), '"></div>
+        <div class="title-decorator title-decorator-background-', htmlspecialchars($color), '"></div>
         <div class="title-decorator title-decorator-gray"></div>
         <div class="title-decorator title-decorator-icon" style="background-image: url(\'/img/ui/', $img, '\')"></div>
     </div>';
