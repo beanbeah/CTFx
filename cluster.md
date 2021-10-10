@@ -11,8 +11,7 @@ It should be noted that this deployment method has been tested only with Digital
 3) Run `composer install --no-dev --optimize-autoloader` under `/var/www/ctfx`
 4) Make the folder `writeable` writable (`sudo chown -R www-data:www-data writeable/`)
 5) Copy the recommended Nginx config `install/recommended_nginx_config` to `/etc/nginx/nginx.conf`. Remember to change the `fastcgi_pass` entry to your current PHP version
-6) RUN echo "clear_env = no" >> /etc/php/7.4/fpm/pool.d/www.conf
-7) Restart Nginx
+6) Restart Nginx
 
 Do note that the current `nginx.conf` is not configured for SSL. To enable SSL, you may wish to make a new `nginx.conf` and a separate config file under `sites-available` . 
 
