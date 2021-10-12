@@ -263,7 +263,7 @@ def syncChallenges():
             "added_by": 0,
             "title": a,
             "category": DB_CATEGORIES[ch.categoryName],
-            "description": "[b]Flag Format: " + CTF_FLAG_FORMAT[ch.ctfName] + "{}[/b]\n\n" + ch.description,
+            "description": "**Flag Format: " + CTF_FLAG_FORMAT[ch.ctfName] + "{}**\n\n" + ch.description,
             "available_until": 4294967295,
             "flag": ch.flag,
             "case_insensitive": 1,
@@ -279,7 +279,7 @@ def syncChallenges():
         v = {
             "id": id,
             "title": title,
-            "description": "[b]Flag Format: " + CTF_FLAG_FORMAT[ch.ctfName] + "{}[/b]\n\n" + ch.description,
+            "description": "**Flag Format: " + CTF_FLAG_FORMAT[ch.ctfName] + "{}**\n\n" + ch.description,
             "flag": ch.flag,
             "points": points,
             "initial_points": points,
