@@ -478,7 +478,7 @@ function logout()
 function register_account($email, $password, $team_name, $country, $type = null, $send_email = true)
 {
 
-	if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
+	if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED') && !user_is_staff()) {
 		message_error(lang_get('registration_closed'));
 	}
 

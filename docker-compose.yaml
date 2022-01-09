@@ -32,12 +32,6 @@ services:
       - ./install/sql:/docker-entrypoint-initdb.d
     ports: 
       - "33060:3306"
-  adminer:
-      image: adminer
-      restart: always
-      ports:
-        - 18080:8080
-
 volumes:
   dbdata:
 

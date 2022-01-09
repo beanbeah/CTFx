@@ -708,8 +708,6 @@ td a:hover {
 
 .challenge-solved .ctfx-card-head {
     background: #ffc62970;
-    /* background: linear-gradient(90deg, #00CCCC 0%, #00CCCC 60%, #00CCCC 100%); */
-    /* border-bottom: 0px solid #222222; */
     padding-bottom: 10px;
 }
 

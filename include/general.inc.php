@@ -254,7 +254,7 @@ function date_time($timestamp = false, $timezone = false, $specific = 6)
 
 function ctfStarted()
 {
-	$timeLeft = time() - Config::get('MELLIVORA_CONFIG_CTF_START_TIME');
+	$timeLeft = time() - $ctf_start;
 	return $timeLeft >= 0;
 }
 
@@ -451,10 +451,10 @@ function get_num_participating_users()
             JOIN challenges AS c ON c.id = s.challenge
             WHERE u.competing = 1 AND u.class = 0
             GROUP BY u.id
-          ) UNION DISTINCT (
+            ) UNION DISTINCT (
             SELECT DISTINCT id
             FROM users
-            WHERE last_active > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY) AND competing = 1
+            WHERE competing = 1
           )
         ) AS x
     ');
