@@ -42,5 +42,7 @@ Standard Deployment: [Standard](standard.md)
 
 Cluster Deployment: [Cluster](cluster.md)
 
+Docker Default Admin Password: `Password1.`
+
 ## License
 This software is licenced under the [GNU General Public License v3 (GPL-3)](http://www.tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29). The "include/thirdparty/" directory contains third party code. Please read their LICENSE files for information on the software availability and distribution.

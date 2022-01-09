@@ -14,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$emails = explode(',', $email_raw);
 		$team_name_raw = $_POST['team_name'];
 		$team_names = explode(',', $team_name_raw);
-		$type = ($_POST['user_type'] ? $_POST['user_type'] : null);
 		$country = $_POST['country'];
 
 		if (count($emails) != count($team_names)) {

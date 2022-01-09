@@ -36,7 +36,7 @@ function show_solves($submissions)
 		foreach ($submissions as $submission) {
 			echo '
                           <tr>
-                            <td>', number_format($i), ' ', get_position_medal($i), '</td>
+                            <td>', number_format($i), '</td>
                             <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
                             <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
                           </tr>

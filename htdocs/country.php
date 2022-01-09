@@ -39,21 +39,28 @@ if (cache_start(CONST_CACHE_NAME_COUNTRY . $_GET['code'], Config::get('MELLIVORA
                co.id AS country_id,
                co.country_name,
                co.country_code,
-               COALESCE(SUM(c.points),0) AS score,
-               MAX(s.added) AS tiebreaker
+               x.score,
+               x.tiebreaker
             FROM users AS u
+            INNER JOIN (
+               SELECT
+                  u.id,
+                  SUM(c.points) AS score,
+                  MAX(s.added) AS tiebreaker
+               FROM users AS u
+               LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
+               LEFT JOIN challenges AS c ON c.id = s.challenge
+               GROUP BY u.id
+            ) AS x USING (id)
             LEFT JOIN countries AS co ON co.id = u.country_id
-            LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
-            LEFT JOIN challenges AS c ON c.id = s.challenge
             WHERE u.competing = 1 AND co.id = :country_id
-            GROUP BY u.id
-            ORDER BY score DESC, tiebreaker ASC',
+            ORDER BY x.score DESC, x.tiebreaker ASC',
 		array(
 			'country_id' => $country['id']
 		)
 	);
 
-	scoreboard($scores);
+	scoreboard($scores,true,false);
 
 	cache_end(CONST_CACHE_NAME_COUNTRY . $_GET['code']);
 }

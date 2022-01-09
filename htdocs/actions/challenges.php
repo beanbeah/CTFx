@@ -21,6 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		validate_id($_POST['challenge']);
 
+		//admins cant submit flags
+		if (user_is_staff())message_generic('Sorry','Admins cannot submit flags');
+
 		$submissions = db_query_fetch_all(
 			'SELECT
               s.added,
@@ -56,13 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$num_attempts++;
 		}
 
-		// ACHIEVEMENT-CODE
-		// A bit imprecise in the implementation but it gets the job done
-		if ($num_attempts >= 10) {
-			add_achievement(11);
-		}
-		// ACHIEVEMENT-CODE
-
 		// get challenge information
 		$challenge = db_select_one(
 			'challenges',
@@ -75,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'available_until',
 				'num_attempts_allowed',
 				'min_seconds_between_submissions',
-				'solve_decay',
 				'solves'
 			),
 			array(
@@ -148,50 +143,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		if ($correct) {
 			challengeSolve($_POST['challenge']);
-
-			// ACHIEVEMENT-CODE
-			$totalChalls = db_count_num('challenges', array('category' => $challenge['category']));
-			$solvedChalls = db_query_fetch_one('
-                SELECT
-                   COUNT(*) AS count
-                FROM challenges AS ch JOIN submissions AS s ON s.challenge = ch.id AND s.user_id=:user_id AND s.correct = 1
-                WHERE
-                  ch.category = :category',
-				array(
-					'user_id' => $_SESSION['id'],
-					'category' => $challenge['category']
-				)
-			)["count"];
-
-			//This section of the code is really based on ur CTF setup and thus subject to change.
-			//Will be highlighted in the documentation.
-
-			if ($solvedChalls == $totalChalls) {
-				// change this however you want
-				if ($challenge['category'] <= 9) {
-					add_achievement($challenge['category'] - 1);
-				}
-			}
-
-			$solvedInThePast5Mins = db_query_fetch_one('
-                SELECT
-                   COUNT(*) AS count
-                FROM submissions
-                WHERE
-                  user_id=:user_id AND
-                  correct=1 AND
-                  added>=:min_time',
-				array(
-					'user_id' => $_SESSION['id'],
-					'min_time' => time() - 5 * 60
-				)
-			)["count"];
-
-			if ($solvedInThePast5Mins >= 5) {
-				add_achievement(10);
-			}
-
-			// ACHIEVEMENT-CODE
 		}
 
 		if (!$challenge['automark']) {

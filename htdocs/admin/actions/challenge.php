@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		$initialPts = Config::get("MELLIVORA_CONFIG_CHALL_INITIAL_POINTS");
 		$minPts = Config::get("MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS");
-		$decay = Config::get("MELLIVORA_CONFIG_CHALL_SOLVE_DECAY");
 
 		$id = db_insert(
 			'challenges',
@@ -31,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'points' => dynamicScoringFormula($initialPts, $minPts, $decay, 0),
 				'initial_points' => $initialPts,
 				'minimum_points' => $minPts,
-				'solve_decay' => $decay,
 				'flag' => $_POST['flag'],
 				'category' => $_POST['category'],
 				'exposed' => $_POST['exposed']
@@ -71,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 				$from = $from->format('U');
 				$end = $end->format('U');
+
 				db_update(
 					'challenges',
 					array(
@@ -79,10 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						'flag' => $_POST['flag'],
 						'automark' => $_POST['automark'],
 						'case_insensitive' => $_POST['case_insensitive'],
-						'points' => dynamicScoringFormula($_POST['initial_points'], $_POST['minimum_points'], $_POST['solve_decay'], $challenge['solves']),
+						'points' => dynamicScoringFormula($_POST['initial_points'], $_POST['minimum_points'], $challenge['solves']),
 						'initial_points' => empty_to_zero($_POST['initial_points']),
 						'minimum_points' => empty_to_zero($_POST['minimum_points']),
-						'solve_decay' => empty_to_zero($_POST['solve_decay']),
 						'category' => $_POST['category'],
 						'exposed' => $_POST['exposed'],
 						'available_from' => $from,

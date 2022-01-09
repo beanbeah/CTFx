@@ -51,9 +51,7 @@ foreach ($rules as $rule) {
         <td>', date_time($rule['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td>', htmlspecialchars($rule['team_name']), '</td>
         <td>
-            ', ($rule['white'] ?
-		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/accept.png" alt="Whitelisted" title="Whitelisted" />' :
-		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/stop.png" alt="Blacklisted" title="Blacklisted" />'), '
+            ', ($rule['white'] ? 'Whitelisted' : 'Blacklisted'),'
         </td>
         <td>', number_format($rule['priority']), '</td>
         <td>', ($rule['enabled'] ? 'Yes' : 'No'), '</td>

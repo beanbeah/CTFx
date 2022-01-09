@@ -35,9 +35,7 @@ foreach ($emails as $email) {
     <tr>
         <td>', htmlspecialchars($email['email']), '</td>
         <td>
-            ', ($email['white'] ?
-		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/accept.png" alt="Whitelisted" title="Whitelisted" />' :
-		'<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/stop.png" alt="Blacklisted" title="Blacklisted" />'), '
+            ', ($email['white'] ? 'Whitelisted' : 'Blacklisted'), '
         </td>
         <td>', ($email['enabled'] ? 'Yes' : 'No'), '</td>
         <td>

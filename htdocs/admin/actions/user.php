@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'enabled' => $_POST['enabled'],
 				'competing' => $_POST['competing'],
 				'country_id' => $_POST['country'],
-				'user_type' => $_POST['user_type'],
 				'class' => $_POST['admin'] * CONST_USER_CLASS_MODERATOR
 				//q bruh code but yesh
 			),

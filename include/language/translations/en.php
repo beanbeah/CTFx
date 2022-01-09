@@ -184,9 +184,6 @@ $lang['list_all_submissions'] = 'List all submissions';
 
 $lang['users'] = 'Users';
 $lang['list_users'] = 'List users';
-$lang['user_types'] = 'User types';
-$lang['add_user_type'] = 'Add user type';
-$lang['list_user_types'] = 'List user types';
 
 $lang['signup_rules'] = 'Signup rules';
 $lang['list_rules'] = 'List rules';

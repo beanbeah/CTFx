@@ -13,14 +13,20 @@ if (cache_start(CONST_CACHE_NAME_USER . $_GET['id'], Config::get('MELLIVORA_CONF
             u.team_name,
             u.email,
             u.competing,
-            u.achievements,
             co.country_name,
             co.country_code,
-            COALESCE(SUM(c.points),0) AS score
+            x.score
         FROM users AS u
+        INNER JOIN (
+               SELECT
+                  u.id,
+                  COALESCE(SUM(c.points),0) AS score
+               FROM users AS u
+               LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
+               LEFT JOIN challenges AS c ON c.id = s.challenge
+               GROUP BY u.id
+            ) AS x USING (id)
         LEFT JOIN countries AS co ON co.id = u.country_id
-        LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
-        LEFT JOIN challenges AS c ON c.id = s.challenge
         WHERE
           u.id = :user_id',
 		array('user_id' => $_GET['id'])
@@ -52,19 +58,6 @@ if (cache_start(CONST_CACHE_NAME_USER . $_GET['id'], Config::get('MELLIVORA_CONF
 	'<div class="user-description">
             <h2>', htmlspecialchars($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true), '</h2>
             <h4><b>', $user["score"], '</b><small>/', $totalPoints, ' Points</small></h4>';
-
-	$userAchievements = $user["achievements"];
-	if (Config::get("MELLIVORA_CONFIG_SHOW_ACHIEVEMENTS") && $userAchievements != 0) {
-		echo '<b>Achievements:</b><br>';
-
-		for ($i = 0; $i < count(CONST_ACHIEVEMENTS); $i++) {
-			if ($userAchievements & (1 << $i)) {
-				$achievement = CONST_ACHIEVEMENTS[$i];
-				echo '<img class="achievement has-tooltip" data-toggle="tooltip" data-html="true" data-placement="top" title="<b>' . $achievement["title"] . '</b><br>' .
-					$achievement["description"] . '" src="/img/achievements/' . $achievement["icon"] . '">';
-			}
-		}
-	}
 
 	echo '</div>
     </div>';

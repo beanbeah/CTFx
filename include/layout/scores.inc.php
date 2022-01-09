@@ -1,6 +1,6 @@
 <?php
 
-function scoreboard($scores, $show_podium = false)
+function scoreboard($scores, $show_podium = false, $show_scoreboard = true)
 {
 	if (empty ($scores)) {
 		message_center("No teams");
@@ -9,7 +9,7 @@ function scoreboard($scores, $show_podium = false)
 	//$scores = json_decode (file_get_contents ("/var/www/ctfx/include/layout/custom_scores.json"), true);
 
 	if ($show_podium) podium($scores);
-	print_graph();
+	if ($show_scoreboard)print_graph();
 	echo '<table class="table team-table table-striped table-hover"><tbody>';
 
 	$maxScore = $scores[0]['score'];
@@ -250,22 +250,4 @@ function challenges($categories)
         </tbody>
         </table>';
 	}
-}
-
-function get_position_medal($position, $return_pos = false)
-{
-	switch ($position) {
-		case 1:
-			return '<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/award_xenon.png" class="has-tooltip challenge-solved-badge" data-html="true" data-toggle="tooltip" data-placement="right" title="<b>Xenon Award: </b>First to solve this challenge."/>';
-		case 2:
-			return '<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/award_osmium.png" class="has-tooltip challenge-solved-badge" data-html="true" data-toggle="tooltip" data-placement="right" title="<b>Osmium Award: </b>Second to solve this challenge."/>';
-		case 3:
-			return '<img src="' . Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES') . 'img/award_hydrogen.png" class="has-tooltip challenge-solved-badge" data-html="true" data-toggle="tooltip" data-placement="right" title="<b>Hydrogen Award: </b>Third to solve this challenge."/>';
-	}
-
-	if ($return_pos) {
-		return '#' . $position . ', ';
-	}
-
-	return '';
 }

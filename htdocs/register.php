@@ -25,26 +25,6 @@ if (Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
         ', (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ? '<input name="' . md5(Config::get('MELLIVORA_CONFIG_SITE_NAME') . 'PWD') . '" type="password" class="form-control form-group" placeholder="Password" id="register-password-input" required /><input name="' . md5(Config::get('MELLIVORA_CONFIG_SITE_NAME') . 'PWD_CONFIRM') . '" type="password" class="form-control form-group" placeholder="Password again" id="register-password-input" required />' : '');
 
 	if (cache_start(CONST_CACHE_NAME_REGISTER, Config::get('MELLIVORA_CONFIG_CACHE_TIME_REGISTER'))) {
-		$user_types = db_select_all(
-			'user_types',
-			array(
-				'id',
-				'title',
-				'description'
-			)
-		);
-
-		if (!empty($user_types)) {
-			echo '<select name="type" class="form-control form-group">
-            <option disabled selected>-- Please select team type --</option>';
-
-			foreach ($user_types as $user_type) {
-				echo '<option value="', htmlspecialchars($user_type['id']), '">', htmlspecialchars($user_type['title'] . ' - ' . $user_type['description']), '</option>';
-			}
-
-			echo '</select>';
-		}
-
 		country_select();
 		cache_end(CONST_CACHE_NAME_REGISTER);
 	}

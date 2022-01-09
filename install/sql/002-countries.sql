@@ -245,7 +245,7 @@ INSERT INTO countries (id, country_name, country_code) VALUES
 (239, 'Uzbekistan', 'uz'),
 (240, 'Vanuatu', 'vu'),
 (241, 'Venezuela, Bolivarian Republic of', 've'),
-(242, 'Viet Nam', 'vn'),
+(242, 'Vietnam', 'vn'),
 (243, 'Virgin Islands, British', 'vg'),
 (244, 'Virgin Islands, U.S.', 'vi'),
 (245, 'Wallis and Futuna', 'wf'),

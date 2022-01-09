@@ -27,15 +27,6 @@ function user_is_staff()
 	return false;
 }
 
-
-function get_user_type()
-{
-	if (user_is_logged_in()) {
-		$user = db_select_one('users', array('user_type'), array('id' => $_SESSION['id']));
-		return $user['user_type'];
-	}
-}
-
 function user_class_name($class)
 {
 	switch ($class) {
@@ -542,7 +533,6 @@ function register_account($email, $password, $team_name, $country, $type = null,
 			'team_name' => $team_name,
 			'added' => time(),
 			'enabled' => (Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
-			'user_type' => (isset($type) ? $type : 0),
 			'country_id' => $country
 		)
 	);

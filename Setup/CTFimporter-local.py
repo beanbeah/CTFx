@@ -270,9 +270,8 @@ def syncChallenges():
             "points": points,
             "initial_points": points,
             "minimum_points": points,
-            "solve_decay": 0
         }
-        cursor.execute("INSERT INTO challenges (added, added_by, title, category, description, available_until, flag, case_insensitive, points, initial_points, minimum_points, solve_decay) VALUES (%(added)s, %(added_by)s, %(title)s, %(category)s, %(description)s, %(available_until)s, %(flag)s, %(case_insensitive)s, %(points)s, %(initial_points)s, %(minimum_points)s, %(solve_decay)s)", v)
+        cursor.execute("INSERT INTO challenges (added, added_by, title, category, description, available_until, flag, case_insensitive, points, initial_points, minimum_points) VALUES (%(added)s, %(added_by)s, %(title)s, %(category)s, %(description)s, %(available_until)s, %(flag)s, %(case_insensitive)s, %(points)s, %(initial_points)s, %(minimum_points)s)", v)
     for (id, title) in challengesToBeEdited:
         ch = CHALLENGES[CHALLENGE_TITLES[title]]
         points = roundPoints(ch.points*CTF_WEIGHT[ch.ctfName])

@@ -449,9 +449,8 @@ function get_num_participating_users()
             FROM users AS u
             JOIN submissions AS s ON s.user_id = u.id AND s.correct
             JOIN challenges AS c ON c.id = s.challenge
-            WHERE u.competing = 1
+            WHERE u.competing = 1 AND u.class = 0
             GROUP BY u.id
-            HAVING SUM(c.points) > 0
           ) UNION DISTINCT (
             SELECT DISTINCT id
             FROM users
@@ -595,7 +594,7 @@ function dynamicScoringFormula($initial, $min, $solves)
 {
 	$lb = Config::get('MELLIVORA_CONFIG_CHALL_LOWER_BOUND');
 	$ub = Config::get('MELLIVORA_CONFIG_CHALL_UPPER_BOUND');
-	$total = Config::get('MELLIVORA_CONFIG_CHALL_PARTICIPANTS');
+	$total = get_num_participating_users();
 	$x = $solves / $total;
 	if ($x <= $lb) {
 		return $initial;
@@ -613,7 +612,6 @@ function challengeSolve($id)
 		array(
 			'initial_points',
 			'minimum_points',
-			'solve_decay',
 			'solves'
 		),
 		array('id' => $id)
@@ -636,7 +634,6 @@ function challengeUnsolve($id)
 		array(
 			'initial_points',
 			'minimum_points',
-			'solve_decay',
 			'solves'
 		),
 		array('id' => $id)

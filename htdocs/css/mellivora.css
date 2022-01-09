@@ -722,29 +722,6 @@ td a:hover {
     color: #22222270;
 }
 
-/*.challenge-solved .solver-1 {
-	background: url('/img/ui/xenon.gif');
-	background-size: cover;
-}
-
-.challenge-solved .solver-2 {
-	background: url('/img/ui/osmium.gif');
-	background-size: cover;
-}
-
-.challenge-solved .solver-3 {
-	background: url('/img/ui/hydrogen.gif');
-	background-size: cover;
-} */
-/* 
-.solver-1 a, .solver-1 .challenge-solved-text, .solver-1 small {
-	color: #000 !important;
-}
-
-.solver-1 .challenge-solved-icon {
-	filter: none;
-} */
-
 .ctfx-card-head .time-left {
     float: right;
     color: #222222;
@@ -870,7 +847,7 @@ td a:hover {
 }
 
 .podium-name a {
-    color: #FFF;
+    color: #222222;
 }
 
 .our-team {
@@ -1089,13 +1066,6 @@ td a:hover {
 
 
 /** Misc **/
-
-.achievement {
-    max-width: 48px;
-    cursor: pointer;
-    margin-right: 5px;
-    image-rendering: -webkit-optimize-contrast;
-}
 
 .g-recaptcha {
     margin-bottom: 3px;
