@@ -12,8 +12,6 @@ services:
       MELLIVORA_CONFIG_DB_USER: meldbuser
       MELLIVORA_CONFIG_DB_PASSWORD: password
     restart: always
-    volumes:
-      - ./htdocs/:/var/www/ctfx/htdocs/
     ports: 
       - "8080:80"
   database:

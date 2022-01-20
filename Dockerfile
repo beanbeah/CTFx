@@ -8,6 +8,7 @@ RUN apt-get install composer php-fpm php-xml php-curl php-mysql php-mbstring php
 RUN rm -rf /var/www/*
 RUN mkdir /var/www/ctfx
 
+COPY htdocs /var/www/ctfx/htdocs
 COPY include /var/www/ctfx/include
 COPY install /var/www/ctfx/install
 COPY composer.* /var/www/ctfx/
