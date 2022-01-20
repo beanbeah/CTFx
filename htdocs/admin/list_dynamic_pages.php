@@ -26,7 +26,7 @@ echo '
       <thead>
         <tr>
           <th>Title</th>
-          <th>visibility</th>
+          <th>Visibility</th>
           <th>Min user class</th>
           <th>Manage</th>
         </tr>

@@ -484,6 +484,8 @@ function get_db_config($config_key) {
 			settype($out,"float");
 			break;
 		case 'bool':
+			//special case
+			$out === "false" ? $out = false : $out = true;
 			settype($out,"boolean");
 			break;
 		default:

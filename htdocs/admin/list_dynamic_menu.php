@@ -29,7 +29,7 @@ echo '
         <tr>
           <th>Title</th>
           <th>Links to</th>
-          <th>visibility</th>
+          <th>Visibility</th>
           <th>Min user class</th>
           <th>Manage</th>
         </tr>

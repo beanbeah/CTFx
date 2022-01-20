@@ -165,14 +165,14 @@ function print_user_submissions($user_id, $limit = false)
 		form_xsrf_token();
 
 		if ($submission['correct']) {
-			echo '<button type="submit" style="color: #CFFF42" title="Click to mark incorrect"
+			echo '<button type="submit" style="color: #222222; font-size:18px" title="Click to mark incorrect"
           class="has-tooltip" data-toggle="tooltip" data-placement="top">
-          ', htmlspecialchars($submission['flag']), ' <img src="/img/ui/correct.png">
+          ', htmlspecialchars($submission['flag']), ' <i class="bi bi-check" style="font-size:20px"></i>
           </button>';
 		} else {
-			echo '<button type="submit" style="color: #FF4242" title="Click to mark correct"
+			echo '<button type="submit" style="color: #FF4242; font-size:18px" title="Click to mark correct"
           class="has-tooltip" data-toggle="tooltip" data-placement="top">
-          ', htmlspecialchars($submission['flag']), ' <img src="/img/ui/wrong.png">
+          ', htmlspecialchars($submission['flag']), ' <i class="bi bi-x" style="color:#FF4242;font-size:20px;"></i>
           </button>';
 		}
 
