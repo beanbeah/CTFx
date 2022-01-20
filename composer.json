@@ -1,7 +1,7 @@
 {
   "name": "dbsqwerty/ctf_platform",
   "type": "project",
-  "description": "CTF engine based off Mellivora",
+  "description": "CTF Platform",
   "homepage": "https://github.com/dbsqwerty/ctf_platform",
   "license": "GPL-3.0",
   "minimum-stability": "stable",
@@ -13,7 +13,11 @@
     {
       "name": "dbsqwerty",
       "homepage": "https://github.com/dbsqwerty/"
-    }
+    },
+    {
+      "name": "Oceankoh",
+      "homepage": "https://github.com/Oceankoh/"
+    },
   ],
   "config": {
     "vendor-dir": "include/thirdparty/composer/vendor"
