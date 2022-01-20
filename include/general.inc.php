@@ -462,6 +462,47 @@ function get_num_participating_users()
 	return $res['num'];
 }
 
+function get_db_config($config_key) {
+	$value = db_select_one(
+		'config',
+		array(
+			'config_value',
+			'config_value_type'
+		),
+		array('config_key' => $config_key)
+	);
+	
+	$out = $value['config_value'];
+	switch ($value['config_value_type']) {
+		case 'string':
+			settype($out, "string");
+			break;
+		case 'int':
+			settype($out,"integer");
+			break;
+		case 'float':
+			settype($out,"float");
+			break;
+		case 'bool':
+			settype($out,"boolean");
+			break;
+		default:
+			settype($out,"string");
+	}
+	return $out;
+}
+
+function update_db_config($config_key,$config_value,$config_type) {
+	db_update(
+		'config',
+		array(
+			'config_value' => $config_value,
+			'config_value_type' => $config_type
+		),
+		array('config_key' => $config_key)
+	);
+}
+
 function check_server_configuration()
 {
 	check_server_and_db_time();
@@ -592,8 +633,8 @@ function empty_to_zero($val)
 
 function dynamicScoringFormula($initial, $min, $solves)
 {
-	$lb = Config::get('MELLIVORA_CONFIG_CHALL_LOWER_BOUND');
-	$ub = Config::get('MELLIVORA_CONFIG_CHALL_UPPER_BOUND');
+	$lb = get_db_config('MELLIVORA_CONFIG_CHALL_LOWER_BOUND');
+	$ub = get_db_config('MELLIVORA_CONFIG_CHALL_UPPER_BOUND');
 	$total = get_num_participating_users();
 	$x = $solves / $total;
 	if ($x <= $lb) {

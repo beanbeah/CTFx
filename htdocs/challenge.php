@@ -38,7 +38,7 @@ function show_solves($submissions)
                           <tr>
                             <td>', number_format($i), '</td>
                             <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
-                            <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
+                            <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
                           </tr>
                           ';
 			$i++;
@@ -104,7 +104,7 @@ if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA
 
 	section_title($challenge['title']);
 
-	if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
+	if (Cget_db_config('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
 		show_solves($submissions);
 	} else {
 		if (user_is_staff()) {

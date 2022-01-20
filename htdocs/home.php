@@ -12,7 +12,7 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
 
 	echo '<div id="home-logo"></div>
 	<div class="home-intro-text">',
-	(!ctfStarted()) ? (title_decorator("blue", "0deg", "asterisk.png") . 'CTF will start in <b>' . seconds_to_pretty_time(Config::get('MELLIVORA_CONFIG_CTF_START_TIME') - time()) . '</b><br><br>') : '',
+	(!ctfStarted()) ? (title_decorator("blue", "0deg", "asterisk.png") . 'CTF will start in <b>' . seconds_to_pretty_time(get_db_config('MELLIVORA_CONFIG_CTF_START_TIME') - time()) . '</b><br><br>') : '',
 	'</div>';
 
 	echo '<div class="row" style="text-align:center; font-size: 20px; margin-bottom:-5px">
@@ -48,7 +48,7 @@ if (cache_start(CONST_CACHE_NAME_HOME, Config::get('MELLIVORA_CONFIG_CACHE_TIME_
             <div class="news-card-head"><h4>',
 		htmlspecialchars($item['title']),
 		'</h4> <small>',
-		date_time($item['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')),
+		date_time($item['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')),
 		'</small></div>
             <div class="ctfx-card-body">
                 ', parse_markdown($item['body']), '

@@ -15,7 +15,7 @@ services:
     volumes:
       - ./htdocs/:/var/www/ctfx/htdocs/
     ports: 
-      - "8088:80"
+      - "8080:80"
   database:
     image: mysql:8
     container_name: database
@@ -30,8 +30,6 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
       - ./install/sql:/docker-entrypoint-initdb.d
-    ports: 
-      - "33060:3306"
 volumes:
   dbdata:
 

@@ -2,7 +2,7 @@
 
 require('../include/mellivora.inc.php');
 
-if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === false) {
+if (get_db_config('MELLIVORA_CONFIG_SHOW_SCOREBOARD') === false) {
 	enforce_authentication(CONST_USER_CLASS_MODERATOR);
 }
 

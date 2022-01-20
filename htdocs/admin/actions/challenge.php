@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 		require_fields(array('title'), $_POST);
 
-		$initialPts = Config::get("MELLIVORA_CONFIG_CHALL_INITIAL_POINTS");
-		$minPts = Config::get("MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS");
+		$initialPts = get_db_config("MELLIVORA_CONFIG_CHALL_INITIAL_POINTS");
+		$minPts = get_db_config("MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS");
 
 		$id = db_insert(
 			'challenges',
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'added_by' => $_SESSION['id'],
 				'title' => $_POST['title'],
 				'description' => $_POST['description'],
-				'available_from' => Config::get("MELLIVORA_CONFIG_CTF_START_TIME"),
-				'available_until' => Config::get("MELLIVORA_CONFIG_CTF_END_TIME"),
-				'points' => dynamicScoringFormula($initialPts, $minPts, $decay, 0),
+				'available_from' => get_db_config("MELLIVORA_CONFIG_CTF_START_TIME"),
+				'available_until' => get_db_config("MELLIVORA_CONFIG_CTF_END_TIME"),
+				'points' => dynamicScoringFormula($initialPts, $minPts, 0),
 				'initial_points' => $initialPts,
 				'minimum_points' => $minPts,
 				'flag' => $_POST['flag'],
@@ -64,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$end_raw = $_POST['available_until'];
 
 			if (preg_match($expression, $from_raw) && preg_match($expression, $end_raw)) {
-				$from = new DateTime($from_raw, new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')));
-				$end = new DateTime($end_raw, new DateTimeZone(Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')));
+				$from = new DateTime($from_raw, new DateTimeZone(get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')));
+				$end = new DateTime($end_raw, new DateTimeZone(get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')));
 
 				$from = $from->format('U');
 				$end = $end->format('U');

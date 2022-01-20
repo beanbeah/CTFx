@@ -67,7 +67,7 @@ if (cache_start(CONST_CACHE_NAME_USER . $_GET['id'], Config::get('MELLIVORA_CONF
 		message_inline(lang_get('non_competing_user'));
 	}
 
-	if (ctfStarted() && Config::get("MELLIVORA_CONFIG_SHOW_SCOREBOARD")) {
+	if (ctfStarted() && get_db_config("MELLIVORA_CONFIG_SHOW_SCOREBOARD")) {
 		print_solved_graph($_GET['id']);
 		print_solved_challenges($_GET['id']);
 	} else {

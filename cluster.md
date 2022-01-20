@@ -27,6 +27,7 @@ This should be done on a separate droplet or machine that is within the same pri
    - `exit`
 2) `sudo mysql < install/sql/001-mellivora.sql`
 3) `sudo mysql < install/sql/002-countries.sql`
+4) `sudo mysql < install/sql/004-initial_config.sql`
 
 ## Redis Configuration
 

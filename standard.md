@@ -20,6 +20,8 @@ This installation is meant for just **one** machine with a **LEMP** stack.
      - `exit`
    - `sudo mysql < install/sql/001-mellivora.sql`
    - `sudo mysql < install/sql/002-countries.sql`
+   - `sudo mysql < install/sql/004-initial_config.sql`
+
 6) Configuration
    - Copy `include/config/db.default.inc.php` to `include/config/db.inc.php` and configure. 
    - Copy `include/config/config.default.inc.php` to `include/config/config.inc.php` and configure. 

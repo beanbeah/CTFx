@@ -478,7 +478,7 @@ function logout()
 function register_account($email, $password, $team_name, $country, $type = null, $send_email = true)
 {
 
-	if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED') && !user_is_staff()) {
+	if (!get_db_config('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED') && !user_is_staff()) {
 		message_error(lang_get('registration_closed'));
 	}
 
@@ -490,7 +490,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 		message_error(lang_get('invalid_team_type'));
 	}
 
-	if (strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')) {
+	if (strlen($team_name) > get_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < get_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')) {
 		message_error('team_name_too_long_or_short');
 	}
 
@@ -532,7 +532,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 			'download_key' => hash('sha256', generate_random_string(128)),
 			'team_name' => $team_name,
 			'added' => time(),
-			'enabled' => (Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
+			'enabled' => (get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
 			'country_id' => $country
 		)
 	);
@@ -551,10 +551,10 @@ function register_account($email, $password, $team_name, $country, $type = null,
 			array(
 				'team_name' => htmlspecialchars($team_name),
 				'site_name' => Config::get('MELLIVORA_CONFIG_SITE_NAME'),
-				'signup_email_availability' => Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ?
+				'signup_email_availability' => get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ?
 					lang_get('signup_email_account_availability_message_login_now') :
 					lang_get('signup_email_account_availability_message_login_later'),
-				'signup_email_password' => Config::get('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ?
+				'signup_email_password' => get_db_config('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ?
 					lang_get('your_password_is') . ': ' . $password :
 					lang_get('your_password_was_set')
 			)
@@ -564,7 +564,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 		if ($send_email) send_email(array($email), $email_subject, $email_body);
 
 		// if account isn't enabled by default, display message and die
-		if (!Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED')) {
+		if (!get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED')) {
 			message_generic(
 				lang_get('signup_successful'),
 				lang_get(

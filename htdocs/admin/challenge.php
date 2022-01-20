@@ -55,8 +55,8 @@ $opts = db_query_fetch_all('
 array_unshift($opts, array('id' => 0, 'title' => '-- Depend on another challenge? --'));
 form_select($opts, 'Relies on', 'id', $challenge['relies_on'], 'title', 'category');
 
-form_input_text('Available from', date_time($challenge['available_from'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), null, "Available from");
-form_input_text('Available until', date_time($challenge['available_until'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), null, "Available until");
+form_input_text('Available from', date_time($challenge['available_from'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), null, "Available from");
+form_input_text('Available until', date_time($challenge['available_until'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), null, "Available until");
 
 form_input_checkbox('Automark', $challenge['automark']);
 form_input_checkbox('Case insensitive', $challenge['case_insensitive']);

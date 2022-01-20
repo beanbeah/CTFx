@@ -39,38 +39,10 @@ Config::set('MELLIVORA_CONFIG_SITE_DESCRIPTION', 'CTFx - CTF Platform');
 Config::set('MELLIVORA_CONFIG_SITE_URL', '/');
 Config::set('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES', '/');
 
-// Challenges
-Config::set('MELLIVORA_CONFIG_CHALL_INITIAL_POINTS', 500);
-Config::set('MELLIVORA_CONFIG_CHALL_MINIMUM_POINTS', 50);
-Config::set('MELLIVORA_CONFIG_CHALL_LOWER_BOUND', 0.1);
-Config::set('MELLIVORA_CONFIG_CHALL_UPPER_BOUND', 0.7);
-
-// CTF default start and end times, in unix timestamp
-Config::set('MELLIVORA_CONFIG_CTF_START_TIME', 1584699200);
-Config::set('MELLIVORA_CONFIG_CTF_END_TIME', 1985699206);
-Config::set('MELLIVORA_CONFIG_CTF_TIMEZONE', 'Asia/Singapore');
-
-//CTF Misc Settings
-Config::set('MELLIVORA_CONFIG_SHOW_SCOREBOARD', true);   //boolean
-
 // redirects
 Config::set('MELLIVORA_CONFIG_INDEX_REDIRECT_TO', 'home');
 Config::set('MELLIVORA_CONFIG_LOGIN_REDIRECT_TO', 'home');
 Config::set('MELLIVORA_CONFIG_REGISTER_REDIRECT_TO', 'home');
-
-// account limitations
-Config::set('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH', 2);
-Config::set('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH', 30);
-Config::set('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED', true);
-
-//Signup restrictions, boolean
-Config::set('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', true);
-Config::set('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', false);
-Config::set('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK', false);
-
-// if set to true, a random password will be generated
-// on signup and sent out by email to the user
-Config::set('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP', false);
 
 // is site SSL compatible? if true, cookies will be sent using only SSL
 Config::set('MELLIVORA_CONFIG_SSL_COMPAT', false);
@@ -119,7 +91,7 @@ Config::set('MELLIVORA_CONFIG_RECAPTCHA_PRIVATE_KEY', 'private_v2_captcha_key');
 // some sort of reverse proxy, like Cloudflare. when set
 // to true, the latest added forwarded-for ip will be used
 // for logging and housekeeping
-Config::set('MELLIVORA_CONFIG_TRUST_HTTP_X_FORWARDED_FOR_IP', true);
+Config::set('MELLIVORA_CONFIG_TRUST_HTTP_X_FORWARDED_FOR_IP', false);
 
 // when this is set to true, an IP address
 // will be resolved when it is listed. set

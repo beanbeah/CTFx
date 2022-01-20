@@ -68,7 +68,7 @@ if (!ctfStarted()) {
 	if (user_is_staff()) {
 		message_inline("CTF has not started yet, so only admins can see the challenges.");
 	} else {
-		$timeLeft = Config::get('MELLIVORA_CONFIG_CTF_START_TIME') - time();
+		$timeLeft = get_db_config('MELLIVORA_CONFIG_CTF_START_TIME') - time();
 		message_center("No challenges yet", "CTF will start in " . seconds_to_pretty_time($timeLeft));
 	}
 }
@@ -133,7 +133,7 @@ foreach ($challenges as $challenge) {
                 <h4>Hidden challenge worth ', number_format($challenge['points']), 'pts</h4>
             </div>
             <div class="ctfx-card-body">
-                Available in ', time_remaining($challenge['available_from']), ' (from ', date_time($challenge['available_from'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ' until ', date_time($challenge['available_until'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
+                Available in ', time_remaining($challenge['available_from']), ' (from ', date_time($challenge['available_from'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), ' until ', date_time($challenge['available_until'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
             </div>
         </div>';
 

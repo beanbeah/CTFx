@@ -1,6 +1,14 @@
 USE mellivora;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 
+CREATE TABLE config (
+  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  config_key varchar(255) NOT NULL,
+  config_value varchar(255) NOT NULL,
+  config_value_type varchar(255) NOT NULL,
+  PRIMARY KEY (id)
+) Engine=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE categories (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   added int(10) unsigned NOT NULL,

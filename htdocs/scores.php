@@ -49,7 +49,7 @@ function show_score()
 	}
 }
 
-if (Config::get('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
+if (get_db_config('MELLIVORA_CONFIG_SHOW_SCOREBOARD')) {
 	show_score();
 } else {
 	if (user_is_staff()) {

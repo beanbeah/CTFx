@@ -87,7 +87,7 @@ function print_solved_challenges($user_id)
                 </td>
 
                 <td>
-                    ', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
+                    ', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')
                 </td>
 
                 <td>', '#' . $position . ', ', '
@@ -243,7 +243,7 @@ function print_user_exception_log($user_id, $limit = false)
 		echo '
     <tr>
         <td>', htmlspecialchars($exception['message']), '</td>
-        <td>', date_time($exception['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+        <td>', date_time($exception['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td><a href="/admin/ip_log.php?ip=', htmlspecialchars($exception['user_ip']), '">', htmlspecialchars($exception['user_ip']), '</a></td>
         <td>', htmlspecialchars($exception['trace']), '</td>
     </tr>
@@ -299,8 +299,8 @@ function print_user_ip_log($user_id, $limit = 0)
         <tr>
             <td><a href="/admin/ip_log.php?ip=', htmlspecialchars($entry['ip']), '">', htmlspecialchars($entry['ip']), '</a></td>
             <td>', (Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? htmlspecialchars(gethostbyaddr($entry['ip'])) : '<i>Lookup disabled in config</i>'), '</td>
-            <td>', date_time($entry['added'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
-            <td>', date_time($entry['last_used'], Config::get('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+            <td>', date_time($entry['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
+            <td>', date_time($entry['last_used'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
             <td>', number_format($entry['times_used']), '</td>
         </tr>
         ';
