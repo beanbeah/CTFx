@@ -14,7 +14,7 @@ spacer();
 $user = db_query_fetch_one('
     SELECT
         u.id,
-        u.team_name,
+        u.username,
         u.email,
         u.competing,
         co.country_name,
@@ -39,7 +39,7 @@ echo '<div class="user-profile">
     <div class="user-image" style="background-image:url(\'', htmlspecialchars($avatarURL), '\')"></div>',
 '<div class="user-description">
         <h2><a style="color:#222222" href="/user.php?id=', htmlspecialchars($user['id']), '">',
-htmlspecialchars($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true),
+htmlspecialchars($user["username"]), country_flag_link($user['country_name'], $user['country_code'], true),
 '</a></h2>',
 spacer(),
 '<h4>', button_link('Edit user', 'edit_user?id=' . htmlspecialchars($user['id'])), button_link('Email user', 'new_email?to=' . htmlspecialchars($user['email'])), '</h4>';

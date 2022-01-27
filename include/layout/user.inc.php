@@ -119,7 +119,7 @@ function print_user_submissions($user_id, $limit = false)
         SELECT
            s.id,
            u.id AS user_id,
-           u.team_name,
+           u.username,
            s.added,
            s.correct,
            s.flag,
@@ -210,7 +210,7 @@ function print_user_exception_log($user_id, $limit = false)
            e.added_by,
            e.trace,
            INET_NTOA(e.user_ip) AS user_ip,
-           u.team_name
+           u.username
         FROM exceptions AS e
         LEFT JOIN users AS u ON u.id = e.added_by
         WHERE e.added_by = :user_id

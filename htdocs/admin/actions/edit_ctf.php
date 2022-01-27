@@ -59,16 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_POST['email_whitelist_check'] ? $email_whitelist_check = true : $email_whitelist_check = false;
 		$_POST['email_regex_check'] ? $email_regex_check = true : $email_regex_check = false;
 		$_POST['accounts_enabled_by_default'] ? $accounts_enabled_by_default = true : $accounts_enabled_by_default = false;
-		is_numeric($_POST['team_name_min_length']) ? $min_length = $_POST['team_name_min_length'] : $min_length = get_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH');
-		is_numeric($_POST['team_name_max_length']) ? $max_length = $_POST['team_name_max_length'] : $max_length = get_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH');
+		is_numeric($_POST['username_min_length']) ? $min_length = $_POST['username_min_length'] : $min_length = get_db_config('MELLIVORA_CONFIG_MIN_USERNAME_LENGTH');
+		is_numeric($_POST['username_max_length']) ? $max_length = $_POST['username_max_length'] : $max_length = get_db_config('MELLIVORA_CONFIG_MAX_USERNAME_LENGTH');
 		$_POST['email_password_on_signup'] ? $email_password_on_signup = true : $email_password_on_signup = false; 
 		
 		update_db_config('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED', $signup_allowed, 'bool');
 		update_db_config('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK', $email_whitelist_check, 'bool');
 		update_db_config('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK', $email_regex_check, 'bool');
 		update_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED', $accounts_enabled_by_default, 'bool');
-		update_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH', $min_length, 'int');
-		update_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH',$max_length,'int');
+		update_db_config('MELLIVORA_CONFIG_MIN_USERNAME_LENGTH', $min_length, 'int');
+		update_db_config('MELLIVORA_CONFIG_MAX_USERNAME_LENGTH',$max_length,'int');
 		update_db_config('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP', $email_password_on_signup, 'bool');
 		redirect('/admin/edit_ctf.php?generic_success=1');
 

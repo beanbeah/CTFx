@@ -121,7 +121,7 @@ foreach ($files as $file) {
 	echo '<a style="margin: 0px; margin-right: 5px" href="file.php?id=' . htmlspecialchars($file['id']) . '" class="btn btn-xs btn-1">✎</a>';
 
 	if (empty ($file['url'])) {
-		echo '<a target="_blank" href="../download?file_key=', htmlspecialchars($file['download_key']), '&team_key=', get_user_download_key(), '">', htmlspecialchars($file['title']), '</a>';
+		echo '<a target="_blank" href="../download?file_key=', htmlspecialchars($file['download_key']), '&user_key=', get_user_download_key(), '">', htmlspecialchars($file['title']), '</a>';
 		if ($file['size']) {
 			tag('Size: ' . bytes_to_pretty_size($file['size']));
 		}

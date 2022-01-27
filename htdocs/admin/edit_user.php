@@ -9,7 +9,7 @@ validate_id($_GET['id']);
 $user = db_select_one(
 	'users',
 	array(
-		'team_name',
+		'username',
 		'email',
 		'enabled',
 		'competing',
@@ -22,11 +22,11 @@ $user = db_select_one(
 head('Site management');
 menu_management();
 
-section_title('Edit user: ' . $user['team_name']);
+section_title('Edit user: ' . $user['username']);
 
 form_start('/admin/actions/user');
 form_input_text('Email', $user['email']);
-form_input_text('Team name', $user['team_name']);
+form_input_text('Username', $user['username']);
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
 

@@ -7,7 +7,7 @@ function get_two_factor_auth_qr_url()
 	$user = db_query_fetch_one(
 		'SELECT
             u.id,
-            u.team_name,
+            u.username,
             t.secret
         FROM users AS u
         JOIN two_factor_auth AS t ON t.user_id = u.id
@@ -22,7 +22,7 @@ function get_two_factor_auth_qr_url()
 		message_error('No two-factor authentication tokens found for this user.');
 	}
 
-	return Google2FA::get_qr_code_url($user['team_name'], $user['secret']);
+	return Google2FA::get_qr_code_url($user['username'], $user['secret']);
 }
 
 function validate_two_factor_auth_code($code)

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (register_account(
 			$email,
 			$password,
-			$_POST['team_name'],
+			$_POST['username'],
 			$_POST['country'],
 			array_get($_POST, 'type')
 		)) {

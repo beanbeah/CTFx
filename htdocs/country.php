@@ -33,7 +33,7 @@ if (cache_start(CONST_CACHE_NAME_COUNTRY . $_GET['code'], Config::get('MELLIVORA
 	$scores = db_query_fetch_all('
             SELECT
                u.id AS user_id,
-               u.team_name,
+               u.username,
                u.competing,
                u.email,
                co.id AS country_id,

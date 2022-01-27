@@ -116,19 +116,16 @@ function email_whitelist_search($email)
 
 	$emails = db_select_all(
 		'email_list',
-		array('email', 'white'),
+		array('email'),
 		array('enabled' => 1)
 	);
 
 	foreach ($emails as $whitelist) {
-		if ($email === $whitelist['email']) {
-			if ($whitelist['white']) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		//if email whitelisted, allow. else dont allow. 
+		if ($email === $whitelist['email'])  return true;
 	}
+
+	return false;
 }
 
 function email_regex_search($email)
@@ -137,7 +134,6 @@ function email_regex_search($email)
 		'restrict_email',
 		array(
 			'rule',
-			'white'
 		),
 		array(
 			'enabled' => 1
@@ -146,14 +142,10 @@ function email_regex_search($email)
 	);
 
 	foreach ($rules as $rule) {
-		if (preg_match('/' . $rule['rule'] . '/', $email)) {
-			if ($rule['white']) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		if (preg_match('/' . $rule['rule'] . '/', $email)) return true;
 	}
+	
+	return false;
 }
 
 function allowed_email($email)

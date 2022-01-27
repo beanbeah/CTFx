@@ -59,9 +59,9 @@ function addCheckboxClickEffects() {
     })
 }
 
-function highlightLoggedOnTeamName() {
-    var t = document.getElementsByClassName("team_" + global_dict.user_id)[0];
-    null != t && (t.classList.add("our-team"))
+function highlightLoggedOnUserName() {
+    var t = document.getElementsByClassName("user_" + global_dict.user_id)[0];
+    null != t && (t.classList.add("our-user"))
 }
 
 function initialiseCountdowns() {
@@ -125,5 +125,5 @@ function prettyPrintTime(t) {
 }
 
 $(document).ready(function() {
-    highlightSelectedMenuItem(), highlightLoggedOnTeamName(),  addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
+    highlightSelectedMenuItem(), highlightLoggedOnUserName(),  addButtonMouseoverEffects(), addDropdownMouseoverEffects(), addCheckboxClickEffects(), initialiseDialogs(), initialiseTooltips(), initialiseCountdowns(), setFormSubmissionBehaviour()
 });

@@ -11,7 +11,6 @@ $rule = db_select_one(
 	array(
 		'rule',
 		'enabled',
-		'white',
 		'priority'
 	),
 	array('id' => $_GET['id'])
@@ -24,7 +23,6 @@ section_title('Edit signup rule');
 form_start('/admin/actions/edit_restrict_email');
 form_input_text('Rule', $rule['rule']);
 form_input_text('Priority', $rule['priority']);
-form_input_checkbox('Whitelist', $rule['white']);
 form_input_checkbox('Enabled', $rule['enabled']);
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);

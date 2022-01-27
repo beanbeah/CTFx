@@ -848,29 +848,29 @@ td a:hover {
     color: #222222;
 }
 
-.our-team {
+.our-user {
 }
 
-.team-table tbody tr td {
+.user-table tbody tr td {
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-.team-table {
+.user-table {
     font-weight: bold;
 }
 
-.team-table tbody tr {
+.user-table tbody tr {
     background-color: #22222205 !important;
 }
 
-.team-table .team-number {
+.user-table .user-number {
     display: inline;
     float: left;
     color: #222222;
 }
 
-.team-table .team-name {
+.user-table .username {
     max-width: 200px;
     width: 150px;
     text-align: right;
@@ -880,17 +880,17 @@ td a:hover {
     padding-right: 0px;
 }
 
-.team-table .team-name a {
+.user-table .username a {
     float: left;
     color: #222222;
 }
 
-.team-table .team-flag {
+.user-table .user-flag {
     width: 26px;
     padding: 0px;
 }
 
-.team-table .team-progress-bar {
+.user-table .user-progress-bar {
     float: left;
     width: 100%;
     border-bottom: 2px solid #a0a0a0;
@@ -899,7 +899,7 @@ td a:hover {
     padding-bottom: 2px;
 }
 
-.team-table .progress {
+.user-table .progress {
     background: none;
     margin-bottom: 3px;
     height: 23px;
@@ -910,21 +910,21 @@ td a:hover {
 	width: 0px;
 }
 
-.team-table .progress svg {
+.user-table .progress svg {
 	width: 23px;
 	float: right;
 } */
 
-.team-table .progress-bar {
+.user-table .progress-bar {
     background-color: #ffc629aa;
 }
 
-.team-table .team-score {
+.user-table .user-score {
     position: absolute;
     margin-left: -3px;
 }
 
-.challenge-table .team-name {
+.challenge-table .username {
     max-width: 300px;
     overflow: hidden;
     text-overflow: ellipsis;

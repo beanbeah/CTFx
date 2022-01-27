@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			'users',
 			array(
 				'id',
-				'team_name',
+				'username',
 				'email'
 			),
 			array(
@@ -58,9 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				)
 			);
 
-			$email_subject = 'Password recovery for team ' . htmlspecialchars($user['team_name']);
+			$email_subject = 'Password recovery for User ' . htmlspecialchars($user['username']);
 			// body
-			$email_body = htmlspecialchars($user['team_name']) . ', please follow the link below to reset your password:' .
+			$email_body = htmlspecialchars($user['username']) . ', please follow the link below to reset your password:' .
 				"\r\n" .
 				"\r\n" .
 				Config::get('MELLIVORA_CONFIG_SITE_URL') . 'reset_password?action=choose_password&auth_key=' . $auth_key . '&id=' . $user['id'] .

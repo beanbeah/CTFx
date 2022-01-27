@@ -31,8 +31,8 @@ form_input_checkbox('Signup Allowed', get_db_config('MELLIVORA_CONFIG_ACCOUNTS_S
 form_input_checkbox('Email Whitelist Check', get_db_config('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK'));
 form_input_checkbox('Email Regex Check', get_db_config('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK'));
 form_input_checkbox('Accounts Enabled by Default', get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED'));
-form_input_text('Team Name Min Length', get_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH'));
-form_input_text('Team Name Max Length', get_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH'));
+form_input_text('Username Min Length', get_db_config('MELLIVORA_CONFIG_MIN_USERNAME_LENGTH'));
+form_input_text('Username Max Length', get_db_config('MELLIVORA_CONFIG_MAX_USERNAME_LENGTH'));
 form_input_checkbox('Email Password on Signup', get_db_config('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP'));
 form_hidden('action', 'signup_settings');
 form_button_submit('Update');

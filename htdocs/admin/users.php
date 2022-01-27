@@ -11,7 +11,7 @@ section_title('Users');
 echo '<table id="files" class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Team</th>
+          <th>user</th>
           <th>E-Mail</th>
           <th>Last active</th>
           <th class="center">Class</th>
@@ -23,13 +23,13 @@ echo '<table id="files" class="table table-striped table-hover">
 $values = array();
 $search_for = array_get($_GET, 'search_for');
 if ($search_for) {
-	$values['search_for_team_name'] = '%' . $search_for . '%';
+	$values['search_for_username'] = '%' . $search_for . '%';
 	$values['search_for_email'] = '%' . $search_for . '%';
 
 	$res = db_query('
         SELECT COUNT(*) AS num
         FROM users AS u
-        WHERE u.team_name LIKE :search_for_team_name OR u.email LIKE :search_for_email
+        WHERE u.username LIKE :search_for_username OR u.email LIKE :search_for_email
     ', $values, false);
 
 	$total_results = $res['num'];
@@ -45,7 +45,7 @@ $users = db_query_fetch_all('
     SELECT
        u.id,
        u.email,
-       u.team_name,
+       u.username,
        u.added,
        u.last_active,
        u.class,
@@ -62,8 +62,8 @@ $users = db_query_fetch_all('
        GROUP BY u.id
     ) AS x USING (id)
     LEFT JOIN countries AS co ON co.id = u.country_id
-    ' . ($search_for ? 'WHERE u.team_name LIKE :search_for_team_name OR u.email LIKE :search_for_email' : '') . '
-    ORDER BY u.team_name ASC
+    ' . ($search_for ? 'WHERE u.username LIKE :search_for_username OR u.email LIKE :search_for_email' : '') . '
+    ORDER BY u.username ASC
     LIMIT ' . $from . ', ' . $results_per_page,
 	$values
 );
@@ -78,7 +78,7 @@ foreach ($users as $user) {
 	echo '
     <tr>
         <td>
-            <a href="/admin/user.php?id=', htmlspecialchars($user['id']), '">✎ ', htmlspecialchars($user['team_name']),
+            <a href="/admin/user.php?id=', htmlspecialchars($user['id']), '">✎ ', htmlspecialchars($user['username']),
 	country_flag_link($user['country_name'], $user['country_code']);
 
 	if (!$user['enabled']) {

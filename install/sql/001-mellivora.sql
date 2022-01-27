@@ -163,7 +163,6 @@ CREATE TABLE restrict_email (
   added_by int(11) NOT NULL,	
   rule varchar(255) NOT NULL,	
   enabled tinyint(1) NOT NULL DEFAULT '1',	
-  white tinyint(1) NOT NULL DEFAULT '1',	
   priority int(10) unsigned NOT NULL,	
   PRIMARY KEY (id)	
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;	
@@ -172,7 +171,6 @@ CREATE TABLE email_list (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   email varchar(255) NOT NULL,
   enabled tinyint(1) NOT NULL DEFAULT '1',
-  white tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -201,7 +199,7 @@ CREATE TABLE two_factor_auth (
 CREATE TABLE users (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   email varchar(255) NOT NULL,
-  team_name varchar(255) NOT NULL,
+  username varchar(255) NOT NULL,
   added int(10) unsigned NOT NULL,
   last_active int(10) unsigned NOT NULL DEFAULT '0',
   passhash varchar(255) NOT NULL,
@@ -213,6 +211,6 @@ CREATE TABLE users (
   2fa_status enum('disabled','generated','enabled') NOT NULL DEFAULT 'disabled',
   PRIMARY KEY (id),
   UNIQUE KEY email (email),
-  UNIQUE KEY team_name (team_name),
+  UNIQUE KEY username (username),
   UNIQUE KEY (download_key)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

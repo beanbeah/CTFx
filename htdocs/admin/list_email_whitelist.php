@@ -14,7 +14,6 @@ echo '
       <thead>
         <tr>
           <th>Email</th>
-          <th>Type</th>
           <th>Enabled</th>
           <th>Manage</th>
         </tr>
@@ -26,17 +25,13 @@ $emails = db_query_fetch_all('
     SELECT
        re.id,
        re.email,
-       re.enabled,
-       re.white
+       re.enabled
     FROM email_list AS re');
 
 foreach ($emails as $email) {
 	echo '
     <tr>
         <td>', htmlspecialchars($email['email']), '</td>
-        <td>
-            ', ($email['white'] ? 'Whitelisted' : 'Blacklisted'), '
-        </td>
         <td>', ($email['enabled'] ? 'Yes' : 'No'), '</td>
         <td>
             <a href="edit_email_whitelist.php?id=', htmlspecialchars($email['id']), '" class="btn btn-xs btn-primary">Edit</a>

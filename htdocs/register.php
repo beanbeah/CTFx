@@ -20,7 +20,7 @@ if (get_db_config('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
 		)
 	), '</p>
     <form method="post" id="registerForm" class="form-signin" action="actions/register">
-        <input name="team_name" type="text" class="form-control form-group" placeholder="Team name" minlength="', get_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH'), '" maxlength="', get_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH'), '" required />
+        <input name="username" type="text" class="form-control form-group" placeholder="Username" minlength="', get_db_config('MELLIVORA_CONFIG_MIN_USERNAME_LENGTH'), '" maxlength="', get_db_config('MELLIVORA_CONFIG_MAX_USERNAME_LENGTH'), '" required />
         <input name="', md5(Config::get('MELLIVORA_CONFIG_SITE_NAME') . 'USR'), '" type="email" class="form-control form-group" placeholder="Email address" id="register-email-input" required />
         ', (!get_db_config('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ? '<input name="' . md5(Config::get('MELLIVORA_CONFIG_SITE_NAME') . 'PWD') . '" type="password" class="form-control form-group" placeholder="Password" id="register-password-input" required /><input name="' . md5(Config::get('MELLIVORA_CONFIG_SITE_NAME') . 'PWD_CONFIRM') . '" type="password" class="form-control form-group" placeholder="Password again" id="register-password-input" required />' : '');
 
@@ -36,7 +36,7 @@ if (get_db_config('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
 	echo '
     <input type="hidden" name="action" value="register" />
 
-    <button class="btn btn-1 btn-lg" type="submit" id="register-team-button">Register</button>
+    <button class="btn btn-1 btn-lg" type="submit" id="register-user-button">Register</button>
 </form>
 ';
 

@@ -18,7 +18,7 @@ function show_score()
 		$scores = db_query_fetch_all('
          SELECT
             u.id AS user_id,
-            u.team_name,
+            u.username,
             u.email,
             co.id AS country_id,
             co.country_name,

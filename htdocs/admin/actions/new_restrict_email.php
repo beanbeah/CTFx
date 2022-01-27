@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'added' => time(),
 				'added_by' => $_SESSION['id'],
 				'rule' => $_POST['rule'],
-				'white' => $_POST['whitelist'],
 				'priority' => $_POST['priority'],
 				'enabled' => $_POST['enabled']
 			)

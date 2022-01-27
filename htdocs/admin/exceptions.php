@@ -57,7 +57,7 @@ $query = 'SELECT
        e.added_by,
        e.trace,
        INET_NTOA(e.user_ip) AS user_ip,
-       u.team_name
+       u.username
     FROM exceptions AS e
     LEFT JOIN users AS u ON u.id = e.added_by
     ';
@@ -77,7 +77,7 @@ foreach ($exceptions as $exception) {
         <td>', htmlspecialchars($exception['message']), '</td>
         <td>', date_time($exception['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
         <td>', ($exception['added_by'] ?
-		'<a href="/admin/user.php?id=' . htmlspecialchars($exception['added_by']) . '">' . htmlspecialchars($exception['team_name']) . '</a>'
+		'<a href="/admin/user.php?id=' . htmlspecialchars($exception['added_by']) . '">' . htmlspecialchars($exception['username']) . '</a>'
 		:
 		'<i>N/A</i>'), '
         </td>

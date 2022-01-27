@@ -5,12 +5,12 @@ require('../include/mellivora.inc.php');
 $user = db_select_one(
 	'users',
 	array('id', 'enabled'),
-	array('download_key' => $_GET['team_key'])
+	array('download_key' => $_GET['user_key'])
 );
 
 if (!is_valid_id($user['id'])) {
-	log_exception(new Exception('Invalid team key used for download'));
-	message_error(lang_get('invalid_team_key'));
+	log_exception(new Exception('Invalid user key used for download'));
+	message_error(lang_get('invalid_user_key'));
 }
 
 if (!$user['enabled']) {

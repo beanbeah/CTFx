@@ -10,7 +10,7 @@ if (cache_start(CONST_CACHE_NAME_USER . $_GET['id'], Config::get('MELLIVORA_CONF
 
 	$user = db_query_fetch_one('
         SELECT
-            u.team_name,
+            u.username,
             u.email,
             u.competing,
             co.country_name,
@@ -56,7 +56,7 @@ if (cache_start(CONST_CACHE_NAME_USER . $_GET['id'], Config::get('MELLIVORA_CONF
 	echo '<div class="user-profile">
         <div class="user-image" style="background-image:url(\'', htmlspecialchars($avatarURL), '\')"></div>',
 	'<div class="user-description">
-            <h2>', htmlspecialchars($user["team_name"]), country_flag_link($user['country_name'], $user['country_code'], true), '</h2>
+            <h2>', htmlspecialchars($user["username"]), country_flag_link($user['country_name'], $user['country_code'], true), '</h2>
             <h4><b>', $user["score"], '</b><small>/', $totalPoints, ' Points</small></h4>';
 
 	echo '</div>

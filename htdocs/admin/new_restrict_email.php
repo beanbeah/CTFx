@@ -17,7 +17,6 @@ message_inline('Add rules to restrict which emails can sign up.
 form_start('/admin/actions/new_restrict_email');
 form_input_text('Rule');
 form_input_text('Priority');
-form_input_checkbox('Whitelist');
 form_input_checkbox('Enabled');
 form_hidden('action', 'new');
 form_button_submit('Create new rule');

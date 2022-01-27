@@ -3,14 +3,14 @@
 function scoreboard($scores, $show_podium = false, $show_scoreboard = true)
 {
 	if (empty ($scores)) {
-		message_center("No teams");
+		message_center("No Users");
 	}
 
 	//$scores = json_decode (file_get_contents ("/var/www/ctfx/include/layout/custom_scores.json"), true);
 
 	if ($show_podium) podium($scores);
 	if ($show_scoreboard)print_graph();
-	echo '<table class="table team-table table-striped table-hover"><tbody>';
+	echo '<table class="table user-table table-striped table-hover"><tbody>';
 
 	$maxScore = $scores[0]['score'];
 	if ($maxScore == 0) {
@@ -20,14 +20,14 @@ function scoreboard($scores, $show_podium = false, $show_scoreboard = true)
 	$i = 1;
 	foreach ($scores as $score) {
 		echo '<tr>
-          <td class="team-name">
-            <div class="team-number">', number_format($i++), '. </div>
-            <a href="user?id=', htmlspecialchars($score['user_id']), '" class="team_', htmlspecialchars($score['user_id']), '">'
-		, htmlspecialchars($score['team_name']),
+          <td class="username">
+            <div class="user-number">', number_format($i++), '. </div>
+            <a href="user?id=', htmlspecialchars($score['user_id']), '" class="user_', htmlspecialchars($score['user_id']), '">'
+		, htmlspecialchars($score['username']),
 		'</a></td>',
-		'<td class="team-flag">', country_flag_link($score['country_name'], $score['country_code']), '</td>
-          <td class="team-progress-bar">', progress_bar(($score['score'] / $maxScore) * 100, false, false), '</td>
-          <td class="team-score">', number_format($score['score']), ' Points</td>
+		'<td class="user-flag">', country_flag_link($score['country_name'], $score['country_code']), '</td>
+          <td class="user-progress-bar">', progress_bar(($score['score'] / $maxScore) * 100, false, false), '</td>
+          <td class="user-score">', number_format($score['score']), ' Points</td>
         </tr>';
 	}
 
@@ -43,7 +43,7 @@ function print_graph()
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="/js/chartjs-plugin-zoom.min.js"></script>
-    <div class="score-graph">Top 10 Teams</div>
+    <div class="score-graph">Top 10 Users</div>
     <canvas></canvas>
     <script>';
 
@@ -133,18 +133,18 @@ function podium($scores)
 	echo '<div class="podium">';
 
 	for ($i = 0; $i < 3; $i++) {
-		$team = $scores[$top3[$i]];
+		$user = $scores[$top3[$i]];
 
-		if (!isset ($team))
+		if (!isset ($user))
 			continue;
 
-		$avatar = "https://www.gravatar.com/avatar/" . md5($team["email"]) . "?s=256&d=mp";
+		$avatar = "https://www.gravatar.com/avatar/" . md5($user["email"]) . "?s=256&d=mp";
 
 		echo '<div class="podium-position" style="width:', $widths[$i], 'px">
-      <a href="/user?id=', $team['user_id'], '">
+      <a href="/user?id=', $user['user_id'], '">
         <img class="podium-icon" style="width:', $widths[$i], 'px" src="', htmlspecialchars($avatar), '">
-      <div class="podium-name has-tooltip" data-toggle="tooltip" data-placement="top" title="', htmlspecialchars($team["team_name"]), '">
-      ', $top3[$i] + 1, '. ', htmlspecialchars($team["team_name"]), '
+      <div class="podium-name has-tooltip" data-toggle="tooltip" data-placement="top" title="', htmlspecialchars($user["username"]), '">
+      ', $top3[$i] + 1, '. ', htmlspecialchars($user["username"]), '
       </a></div>
     </div>';
 	}
@@ -160,7 +160,7 @@ function challenges($categories)
 	foreach ($categories as $category) {
 
 		echo '
-        <table class="team-table table table-striped table-hover">
+        <table class="user-table table table-striped table-hover">
           <thead>
             <tr>
               <th>', htmlspecialchars($category['title']), '</th>
@@ -213,12 +213,12 @@ function challenges($categories)
                     ', number_format($num_participating_users ? ($num_solvers / $num_participating_users) * 100 : 0), '%
                 </td>
 
-                <td class="team-name">';
+                <td class="username">';
 
 			$users = db_query_fetch_all('
                 SELECT
                    u.id,
-                   u.team_name
+                   u.username
                 FROM users AS u
                 JOIN submissions AS s ON s.user_id = u.id
                 WHERE
@@ -236,7 +236,7 @@ function challenges($categories)
 				$pos = 1;
 				foreach ($users as $user) {
 					echo get_position_medal($pos++),
-					'<a href="user?id=', htmlspecialchars($user['id']), '">', htmlspecialchars($user['team_name']), '</a><br />';
+					'<a href="user?id=', htmlspecialchars($user['id']), '">', htmlspecialchars($user['username']), '</a><br />';
 				}
 			} else {
 				echo '<i>', lang_get('unsolved'), '</i>';

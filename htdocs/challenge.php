@@ -26,7 +26,7 @@ function show_solves($submissions)
                    <thead>
                    <tr>
                      <th>', lang_get('position'), '</th>
-                     <th>', lang_get('team'), '</th>
+                     <th>', lang_get('user'), '</th>
                      <th>', lang_get('solved'), '</th>
                    </tr>
                    </thead>
@@ -37,7 +37,7 @@ function show_solves($submissions)
 			echo '
                           <tr>
                             <td>', number_format($i), '</td>
-                            <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
+                            <td class="username"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['username']), '</a></td>
                             <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), ')</td>
                           </tr>
                           ';
@@ -88,7 +88,7 @@ if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA
 	$submissions = db_query_fetch_all(
 		'SELECT
             u.id AS user_id,
-            u.team_name,
+            u.username,
             s.added,
             c.available_from
           FROM users AS u

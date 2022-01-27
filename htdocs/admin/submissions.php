@@ -54,7 +54,7 @@ echo '<table id="files" class="table table-striped table-hover">
       <thead>
         <tr>
           <th>Challenge</th>
-          <th>Team name</th>
+          <th>Username</th>
           <th>Added</th>
           <th>Flag</th>
           <th>Delete</th>
@@ -66,7 +66,7 @@ $submissions = db_query_fetch_all('
     SELECT
        s.id,
        u.id AS user_id,
-       u.team_name,
+       u.username,
        s.added,
        s.correct,
        s.flag,
@@ -81,7 +81,7 @@ $submissions = db_query_fetch_all('
 foreach ($submissions as $submission) {
 	echo '<tr>
       <td><a href="/challenge.php?id=', htmlspecialchars($submission['challenge_id']), '">', htmlspecialchars($submission['challenge_title']), '</a></td>
-      <td><a href="/admin/user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
+      <td><a href="/admin/user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['username']), '</a></td>
       <td>', time_elapsed($submission['added']), ' ago</td>
       <td>
       <form method="post" action="/admin/actions/submissions" class="discreet-inline">

@@ -475,23 +475,23 @@ function logout()
 	redirect(Config::get('MELLIVORA_CONFIG_INDEX_REDIRECT_TO'));
 }
 
-function register_account($email, $password, $team_name, $country, $type = null, $send_email = true)
+function register_account($email, $password, $username, $country, $type = null, $send_email = true)
 {
 
 	if (!get_db_config('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED') && !user_is_staff()) {
 		message_error(lang_get('registration_closed'));
 	}
 
-	if (empty($email) || empty($password) || empty($team_name)) {
+	if (empty($email) || empty($password) || empty($username)) {
 		message_error(lang_get('please_fill_details_correctly'));
 	}
 
 	if (isset($type) && !is_valid_id($type)) {
-		message_error(lang_get('invalid_team_type'));
+		message_error(lang_get('invalid_user_type'));
 	}
 
-	if (strlen($team_name) > get_db_config('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < get_db_config('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')) {
-		message_error('team_name_too_long_or_short');
+	if (strlen($username) > get_db_config('MELLIVORA_CONFIG_MAX_USERNAME_LENGTH') || strlen($username) < get_db_config('MELLIVORA_CONFIG_MIN_USERNAME_LENGTH')) {
+		message_error('username_too_long_or_short');
 	}
 
 	validate_email($email);
@@ -513,7 +513,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 		'users',
 		array('id'),
 		array(
-			'team_name' => $team_name,
+			'username' => $username,
 			'email' => $email
 		),
 		null,
@@ -530,7 +530,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 			'email' => $email,
 			'passhash' => make_passhash($password),
 			'download_key' => hash('sha256', generate_random_string(128)),
-			'team_name' => $team_name,
+			'username' => $username,
 			'added' => time(),
 			'enabled' => (get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
 			'country_id' => $country
@@ -549,7 +549,7 @@ function register_account($email, $password, $team_name, $country, $type = null,
 		$email_body = lang_get(
 			'signup_email_success',
 			array(
-				'team_name' => htmlspecialchars($team_name),
+				'username' => htmlspecialchars($username),
 				'site_name' => Config::get('MELLIVORA_CONFIG_SITE_NAME'),
 				'signup_email_availability' => get_db_config('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ?
 					lang_get('signup_email_account_availability_message_login_now') :

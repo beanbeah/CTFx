@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			array(
 				'email' => $_POST['email'],
 				'enabled' => $_POST['enabled'],
-				'white' => $_POST['whitelist']
 			),
 			array(
 				'id' => $_POST['id']

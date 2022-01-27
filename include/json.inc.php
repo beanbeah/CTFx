@@ -13,7 +13,7 @@ function json_scoreboard()
 	$scores = db_query_fetch_all('
         SELECT
            u.id AS user_id,
-           u.team_name,
+           u.username,
            co.country_code,
            x.score,
            x.tiebreaker
@@ -39,7 +39,7 @@ function json_scoreboard()
 	for ($i = 0; $i < count($scores); $i++) {
 		$scoreboard['standings'][$i] = array(
 			'pos' => ($i + 1),
-			'team' => $scores[$i]['team_name'],
+			'user' => $scores[$i]['username'],
 			'score' => intval(array_get($scores[$i], 'score', 0))
 		);
 	}
@@ -55,7 +55,7 @@ function json_score_graph()
     $consolidated_scores = db_query_fetch_all('
         SELECT
            u.id AS user_id,
-           u.team_name,
+           u.username,
            x.score,
            x.tiebreaker
         FROM users AS u
@@ -87,7 +87,7 @@ function json_score_graph()
                 submissions.challenge = challenges.id
             ORDER BY time_solve ASC');
 
-		$export[$i]['label'] = $consolidated_scores[$i]['team_name'];
+		$export[$i]['label'] = $consolidated_scores[$i]['username'];
 
 		//consolidate scores
 		$sum = 0;

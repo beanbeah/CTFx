@@ -13,7 +13,6 @@ message_inline('Add email or emails. Comma delimited.');
 
 form_start('/admin/actions/new_email_whitelist');
 form_input_text('Email');
-form_input_checkbox('Whitelist');
 form_input_checkbox('Enabled');
 form_hidden('action', 'new');
 form_button_submit('Add emails');

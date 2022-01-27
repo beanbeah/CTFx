@@ -305,7 +305,7 @@ function menu_management()
 	echo '<div id="menu-management" class="menu">';
 	dropdown("Dashboard", [["Dashboard", "/admin/"]]);
 	dropdown("Submissions", [["List submissions", "/admin/submissions"]]);
-	dropdown("Users", [["List users", "/admin/users"], ["Bulk Registration", "/admin/bulk_register"]]);
+	dropdown("Users", [["List users", "/admin/users"], ["Register Users", "/admin/register"]]);
 	dropdown("Email", [["Send Email", "/admin/new_email"], ["Send Email to all users", "/admin/new_email?bcc=all"]]);
 	dropdown("Exceptions", [["List exceptions", "/admin/exceptions"]]);
 	dropdown("Search", [["Search", "/admin/search"]]);

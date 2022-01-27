@@ -10,7 +10,7 @@ menu_management();
 $where = array();
 
 if (is_valid_ip(array_get($_GET, 'ip'))) {
-	section_title('Teams using IP ' . $_GET['ip']);
+	section_title('users using IP ' . $_GET['ip']);
 	$where['ip'] = ip2long($_GET['ip']);
 } else if (is_valid_id(array_get($_GET, 'user_id'))) {
 	section_title('IP log for user');
@@ -23,7 +23,7 @@ echo '
     <table id="files" class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>Team name</th>
+          <th>Username</th>
           <th>Hostname</th>
           <th>First used</th>
           <th>Last used</th>
@@ -38,7 +38,7 @@ $query = 'SELECT
            ipl.added,
            ipl.last_used,
            ipl.times_used,
-           u.team_name,
+           u.username,
            u.id AS user_id
         FROM ip_log AS ipl
         LEFT JOIN users AS u ON ipl.user_id = u.id
@@ -58,7 +58,7 @@ foreach ($entries as $entry) {
     <tr>
         <td>
             <a href="/admin/user.php?id=', htmlspecialchars($entry['user_id']), '">
-                ', htmlspecialchars($entry['team_name']), '
+                ', htmlspecialchars($entry['username']), '
             </a>
         </td>
         <td><a href="/admin/ip_log?ip=', htmlspecialchars($entry['ip']), '">', htmlspecialchars(Config::get('MELLIVORA_CONFIG_GET_IP_HOST_BY_ADDRESS') ? gethostbyaddr($entry['ip']) : $entry['ip']), '</a></td>

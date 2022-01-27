@@ -77,7 +77,7 @@ print_challenge_files($files)
 			echo '<div class="challenge-file">';
 
 			if (empty ($file['url'])) {
-				$url = 'download?file_key=' . htmlspecialchars($file['download_key']) . '&team_key=' . get_user_download_key();
+				$url = 'download?file_key=' . htmlspecialchars($file['download_key']) . '&user_key=' . get_user_download_key();
 			} else {
 				$url = htmlspecialchars($file['url']);
 			}

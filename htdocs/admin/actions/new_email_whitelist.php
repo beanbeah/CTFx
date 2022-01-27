@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//convert emails to array (comma delimited). Iterate thru each email/add it
 		$email_raw = $_POST['email'];
 		$emails = explode(',', $email_raw);
-		$whitelist_post = $_POST['whitelist'];
 		$enabled_post = $_POST['enabled'];
 
 		foreach ($emails as $email_arr) {
@@ -22,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					'email_list',
 					array(
 						'email' => $email_arr,
-						'white' => $whitelist_post,
 						'enabled' => $enabled_post
 					)
 				);

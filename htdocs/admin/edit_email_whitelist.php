@@ -11,7 +11,6 @@ $email = db_select_one(
 	array(
 		'email',
 		'enabled',
-		'white',
 	),
 	array('id' => $_GET['id'])
 );
@@ -22,7 +21,6 @@ menu_management();
 section_title('Edit Email');
 form_start('/admin/actions/edit_email_whitelist');
 form_input_text('Email', $email['email']);
-form_input_checkbox('Whitelist', $email['white']);
 form_input_checkbox('Enabled', $email['enabled']);
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);

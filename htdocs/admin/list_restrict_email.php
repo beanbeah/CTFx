@@ -20,7 +20,6 @@ echo '
           <th>Rule</th>
           <th>Added</th>
           <th>Added by</th>
-          <th>Type</th>
           <th>Priority</th>
           <th>Enabled</th>
           <th>Manage</th>
@@ -36,9 +35,8 @@ $rules = db_query_fetch_all('
        re.added_by,
        re.rule,
        re.enabled,
-       re.white,
        re.priority,
-       u.team_name
+       u.username
     FROM restrict_email AS re
     LEFT JOIN users AS u ON re.added_by = u.id
     ORDER BY re.priority ASC'
@@ -49,10 +47,7 @@ foreach ($rules as $rule) {
     <tr>
         <td>', htmlspecialchars($rule['rule']), '</td>
         <td>', date_time($rule['added'], get_db_config('MELLIVORA_CONFIG_CTF_TIMEZONE')), '</td>
-        <td>', htmlspecialchars($rule['team_name']), '</td>
-        <td>
-            ', ($rule['white'] ? 'Whitelisted' : 'Blacklisted'),'
-        </td>
+        <td>', htmlspecialchars($rule['username']), '</td>
         <td>', number_format($rule['priority']), '</td>
         <td>', ($rule['enabled'] ? 'Yes' : 'No'), '</td>
         <td>
