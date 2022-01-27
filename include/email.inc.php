@@ -162,7 +162,7 @@ function allowed_email($email)
 	$allowedEmail = true;
 
 	if (get_db_config('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK') && get_db_config('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')) {
-		$allowedEmail = email_regex_search($email) && email_whitelist_search($email);
+		$allowedEmail = email_regex_search($email) || email_whitelist_search($email);
 	} else if (get_db_config('MELLIVORA_CONFIG_EMAIL_WHITELIST_CHECK')) {
 		$allowedEmail = email_whitelist_search($email);
 	} else if (get_db_config('MELLIVORA_CONFIG_EMAIL_REGEX_CHECK')) {
