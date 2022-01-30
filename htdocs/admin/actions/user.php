@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				'competing' => $_POST['competing'],
 				'country_id' => $_POST['country'],
 				'class' => $_POST['admin'] * CONST_USER_CLASS_MODERATOR
-				//q bruh code but yesh
+				//q bruh code but yes
 			),
 			array(
 				'id' => $_POST['id']
