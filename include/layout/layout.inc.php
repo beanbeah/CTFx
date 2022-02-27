@@ -138,7 +138,7 @@ function foot()
 
 <div id="footer">
     <b>CTFx</b> v1 Beta<br>
-	Made with &#x2764;&#xfe0f;</a> by <a href="https://github.com/dbsqwerty123">dbsqwerty123</a>, <a href="https://github.com/Oceankoh">Ocean</a> and <a href="https://github.com/Wealthyturtle">Wealthyturtle</a>. Visuals by <a href="https://www.linkedin.com/in/xue-hong-toh-7862b5199/">Xue Hong</a>. Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
+	Made with &#x2764;&#xfe0f;</a> by <a href="https://github.com/beanbeah">Sean</a>, <a href="https://github.com/Oceankoh">Ocean</a> and <a href="https://github.com/Wealthyturtle">Wealthyturtle</a>. Visuals by <a href="https://www.linkedin.com/in/xue-hong-toh-7862b5199/">Xue Hong</a>. Based on <a href="https://github.com/Nakiami/mellivora">mellivora</a>
 </div>
 
 </div> <!-- /page -->
