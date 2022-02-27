@@ -1,8 +1,8 @@
 {
-  "name": "dbsqwerty/ctf_platform",
+  "name": "beanbeah/ctf_platform",
   "type": "project",
   "description": "CTF Platform",
-  "homepage": "https://github.com/dbsqwerty/ctf_platform",
+  "homepage": "https://github.com/beanbeah/ctf_platform",
   "license": "GPL-3.0",
   "minimum-stability": "stable",
   "authors": [
@@ -11,8 +11,8 @@
       "homepage": "https://github.com/Wealthyturtle/"
     },
     {
-      "name": "dbsqwerty",
-      "homepage": "https://github.com/dbsqwerty/"
+      "name": "beanbeah",
+      "homepage": "https://github.com/beanbeah/"
     },
     {
       "name": "Oceankoh",
