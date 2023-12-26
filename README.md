@@ -1,5 +1,8 @@
 # CTFx
 
+## Deprecation Notice
+This platform is no longer maintained (and has not been for a while). This platform is succeeded by [dunhack.me](https://github.com/ItzyBitzySpider/dunhack.me)
+
 CTFx is a CTF Platform forked from [mellivora](https://github.com/Nakiami/mellivora), that focuses on low memory footprint and low server CPU usage. A jeopardy CTF platform with a futuristic interface that's optimized for slower hardware, meaning that there is no bulky Javascript running in the background, nor length CSS stylesheets. CTFx improves on mellivora with the addition of new features and a revamped UI. 
 
 ![](https://i.imgur.com/PpCMNPy.png)
